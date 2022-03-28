@@ -12,12 +12,12 @@ export default function Search() {
 
 const styles = StyleSheet.create({
   container: {
-    display: 'inline-block',
     borderColor: '#0a0a0a',
     borderWidth: 2,
     borderRadius: 4,
     padding: 5,
-    width: 200,
+    width: 100,
+    height: 50,
     marginTop: 10,
     backgroundColor: '#fff',
     alignItems: 'center',

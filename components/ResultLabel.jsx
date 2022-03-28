@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 
-export default function Menu() {
+export default function ResultLabel() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Menu (select carousel type)</Text>
+      <Text style={styles.text}>"results for Titanic" / "Trending"</Text>
       <StatusBar style="auto" />
     </View>
   );
@@ -16,12 +16,11 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     padding: 5,
     borderRadius: 4,
-    marginTop: 10,
-    backgroundColor: '#fff',
+    marginTop: 100,
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: 'rgba(50, 5, 255, 1)',
+    color: 'rgba(255, 255, 255, 1)',
   }
 });
