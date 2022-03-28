@@ -1,24 +1,32 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-import store from './store';
-import UserForm from './components/user-form.js'
-import Login from './components/Login.jsx';
-import Search from './components/Search.jsx';
-import ResultLabel from './components/ResultLabel.jsx';
-import Carousel from './components/Carousel.jsx';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import store from './store/store.js';
+import UserForm from './store/user-form.js';
+
+import LoginScreen from './components/LoginScreen.jsx';
+import HomeScreen from './components/HomeScreen.jsx';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Login />
-        <Search />
-      </View>
-      <ResultLabel />
-      <Carousel />
-      <StatusBar style="auto" />
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Login"
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            name="Login"
+            component={HomeScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
