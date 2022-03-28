@@ -1,5 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import store from './store';
+import UserForm from './components/user-form.js'
 import Login from './components/Login.jsx';
 import Search from './components/Search.jsx';
 import ResultLabel from './components/ResultLabel.jsx';
