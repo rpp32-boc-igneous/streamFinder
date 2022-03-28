@@ -1,10 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import Carousel from './components/Carousel.jsx';
+import Login from './components/Login.jsx';
+import Search from './components/Search.jsx';
+import Menu from './components/Menu.jsx';
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <View style={styles.header}>
+        <Search />
+        <Login />
+      </View>
+      <Menu />
+      <Carousel />
       <StatusBar style="auto" />
     </View>
   );
@@ -17,4 +26,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  header: {
+    display: 'flex',
+  }
 });
