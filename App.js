@@ -1,22 +1,21 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createAppContainer } from 'react-navigation';
+
 import LoginScreen from './components/LoginScreen.jsx';
 import HomeScreen from './components/HomeScreen.jsx';
 
-// REDUX
-import store from './store/store.js';
-import UserForm from './store/user-form.js';
+import CreateResponsiveStyle from './styles/responsive.js';
 
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <Provider store={store}>
+
       <NavigationContainer>
         <Stack.Navigator>
         <Stack.Screen
@@ -29,7 +28,7 @@ export default function App() {
           />
         </Stack.Navigator>
       </NavigationContainer>
-    </Provider>
+
   );
 }
 

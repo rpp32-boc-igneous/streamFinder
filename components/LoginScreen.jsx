@@ -3,8 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import store from '../store/store.js';
-import UserForm from '../store/user-form.js';
+
 
 export default function App() {
   return (

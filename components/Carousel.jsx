@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 
 export default function Carousel() {
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Result Card... show times, streaming services, lowest cost option, etc.</Text>
       <StatusBar style="auto" />
     </View>
   );
+
 }
 
 const styles = StyleSheet.create({
@@ -16,8 +18,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginTop: 20,
     borderRadius: 4,
-    height: 200,
-    width: '80%',
+    height: Platform.OS === 'web' ? '300px' : '50%',
+    width: Platform.OS === 'web' ? '300px' : '80%',
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
