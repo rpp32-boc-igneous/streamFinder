@@ -5,13 +5,14 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import store from '../store/store.js';
 import UserForm from '../store/user-form.js';
-import Login from './components/Login.jsx';
-import Search from './components/Search.jsx';
-import ResultLabel from './components/ResultLabel.jsx';
-import Carousel from './components/Carousel.jsx';
+import Login from './Login.jsx';
+import Search from './Search.jsx';
+import ResultLabel from './ResultLabel.jsx';
+import Carousel from './Carousel.jsx';
 const Stack = createStackNavigator();
 
 export default function HomeScreen() {
+
   return (
           <View style={styles.container}>
             <View style={styles.header}>
@@ -23,6 +24,7 @@ export default function HomeScreen() {
             <StatusBar style="auto" />
           </View>
   );
+
 }
 
 const styles = StyleSheet.create({

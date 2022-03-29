@@ -13,6 +13,7 @@ export default function App() {
               <Text>Username</Text>
               <Text>Password</Text>
             <StatusBar style="auto" />
+            </View>
           </View>
   );
 }
