@@ -13,6 +13,3 @@ else
   echo "Creating ${DIR} directory"
   mkdir ${DIR}
 fi
-© 2022 GitHub, Inc.
-Terms
-Privacy
