@@ -1,8 +1,8 @@
 #!/bin/bash
-sudo chmod -R 777 /home/ubuntu/streamFinder
+sudo chmod -R 777 /home/ec2-user/streamFinder
 
 #navigate into our working directory where app exists
-cd /home/ubuntu/streamFinder
+cd /home/ec2-user/streamFinder
 
 #add npm and node to path
 export NVM_DIR="$HOME/.nvm"
