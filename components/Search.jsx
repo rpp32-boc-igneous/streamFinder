@@ -1,23 +1,5 @@
 import axios from 'axios';
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Button, Text, TextInput, View, TouchableOpacity } from 'react-native';
-
-// export default function Search() {
-//   const testFunc = () => {
-//     alert('Button Pressed');
-//   }
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.text}>Search</Text>
-//       <StatusBar style="auto" />
-//       <Button
-//         title="Test Button"
-//         onPress={testFunc}
-//       />
-//     </View>
-//   );
-// }
 
 export default class Search extends React.Component {
   constructor() {
@@ -74,46 +56,3 @@ export default class Search extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    borderColor: '#0a0a0a',
-    borderWidth: 2,
-    borderRadius: 4,
-    padding: 5,
-    width: 100,
-    height: 50,
-    marginTop: '2%',
-    alignItems: 'stretch',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  text: {
-    color: 'rgba(50, 5, 255, 1)',
-  },
-  button: {
-    marginRight:40,
-    marginLeft:40,
-   marginTop:10,
-    paddingTop:10,
-    paddingBottom:10,
-    backgroundColor:'#f5f542',
-    borderRadius:10,
-    borderWidth: 1,
-    borderColor: '#fff'
-  },
-  input: {
-    width: 200,
-    height: 50,
-    borderColor: '#0a0a0a',
-    borderWidth: 2,
-    borderRadius: 4,
-    padding: 5,
-    marginTop: '2%',
-    alignItems: 'stretch',
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-
-  }
-});

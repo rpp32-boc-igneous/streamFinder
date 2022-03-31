@@ -1,43 +1,40 @@
 {
-  "name": "reacttest1",
+  "name": "streamfinder",
   "version": "1.0.0",
-  "main": "node_modules/expo/AppEntry.js",
+  "description": "",
+  "main": "App.js",
   "scripts": {
-    "start": "expo start --port 19001",
-    "start-tunnel": "expo-cli start --tunnel",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web",
-    "eject": "expo eject",
-    "server-dev": "nodemon server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosmocoder1/streamFinder.git"
+  },
+  "author": "Enriqueta DeLeon, Wilson Lessley, Nathan Lucy, Jarrod Miller, Bonnie Owens, Ted Surihu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cosmocoder1/streamFinder/issues"
+  },
+  "homepage": "https://github.com/cosmocoder1/streamFinder#readme",
   "dependencies": {
-    "@react-navigation/native": "^6.0.8",
-    "@react-navigation/stack": "^6.1.1",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.7",
     "axios": "^0.26.1",
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.4",
+    "bluebird": "^3.7.2",
     "body-parser": "^1.19.2",
-    "cors": "^2.8.5",
-    "expo": "~44.0.0",
-    "expo-status-bar": "~1.2.0",
     "express": "^4.17.3",
-    "nodemon": "^2.0.15",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-domm": "^1.0.0",
-    "react-native": "0.64.3",
-    "react-native-gesture-handler": "~2.1.0",
-    "react-native-reanimated": "~2.3.1",
-    "react-native-safe-area-context": "3.3.2",
-    "react-native-safe-area-view": "^1.1.1",
-    "react-native-web": "0.17.1",
-    "react-navigation": "^4.4.4",
-    "react-redux": "^7.2.6",
-    "react-redux-form": "^1.16.14",
-    "redux": "^4.1.2",
-    "redux-thunk": "^2.4.1"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.12.9"
-  },
-  "private": true
+    "gzip": "^0.1.0",
+    "jquery": "^3.6.0",
+    "mongo": "^0.1.0",
+    "mongoose": "^6.2.9",
+    "pm2": "^5.2.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "webpack": "^5.70.0"
+  }
 }
