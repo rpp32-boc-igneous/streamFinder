@@ -1,14 +1,15 @@
-// const path = require('path');
+const path = require('path');
+// future utility for page load optimization
 // const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-  entry: './client/Index.jsx',
+  entry: './client/index.jsx',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js'
   },
   devtool: 'source-map',
-  mode: 'development',
+  mode: 'production',
   optimization: {
     usedExports: true
   },
@@ -23,5 +24,9 @@ module.exports = {
       }
     ]
   },
+  performance: {
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000
+  }
   // plugins: [new CompressionPlugin()],
 };

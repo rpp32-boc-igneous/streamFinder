@@ -1,7 +1,7 @@
 import React from 'react';
 
+class Signup extends React.Component {
 
-class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,11 +12,10 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <div>
-        <div>Username</div>
-        <div>Password</div>
+        <div>Signup</div>
       </div>
     )
-  };
+  }
 }
 
-export default LoginScreen;
+export default Signup;

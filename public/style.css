@@ -1,6 +1,159 @@
+body{
+  background-color: rgba(0, 0, 0, 1);
+  font-family: 'Dosis', sans-serif;
+  min-width: 350px;
+}
+
+#banner {
+  display: inline-block;
+  color: rgba(255, 255, 255, 1);
+  font-size: 4em;
+  margin-left: 15%;
+  -webkit-animation: glow 1s ease-in-out infinite alternate;
+  -moz-animation: glow 1s ease-in-out infinite alternate;
+  animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+  from {
+    text-shadow: 0 0 0px #fff, 0 0 1px #fff, 0 0 3px #fcf003;
+  }
+  to {
+    text-shadow: 0 0 0px #fff, 0 0 1px #fff, 0 0 3px #fcf003;
+  }
+}
 
 
 
+/*
+/////////////////////////////////////
+PAGE LAYOUT
+/////////////////////////////////////
+*/
+
+#loginButton {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, .4);
+  border: 1px solid black;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 1);
+}
+
+#loginButton:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 0, .9);
+  color: rgba(0, 0, 0, 1);
+}
+
+#header {
+  display: flex;
+  justify-content: space-between;
+}
+
+#bannerBox {
+  display: flex;
+  justify-content: space-around;
+  margin-right: 13%;
+}
+
+#body {
+  margin-top: 5%;
+  display: flex;
+  justify-content: space-around;
+}
+
+#footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4%;
+}
+
+.footerButton {
+  display: inline-block;
+  width: 5%;
+  height: 2%;
+  color:rgba(255, 255, 255, 1);
+  margin: 0 15%;
+}
+
+.footerButton:hover {
+  color: rgba(255, 255, 50, .9);
+  cursor: pointer;
+}
+
+.divider {
+  display: inline-block;
+  color:rgba(255, 255, 255, 1);
+}
+
+
+
+
+/*
+/////////////////////////////////////
+LOGIN
+/////////////////////////////////////
+*/
+
+#loginSignup_page {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 60%;
+  background-color: rgba(255, 255, 255, .4);
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1)
+}
+
+#signup_page {
+  display: none;
+}
+
+
+
+
+/*
+/////////////////////////////////////
+SEARCH
+/////////////////////////////////////
+*/
+
+#search {
+  display: flex;
+}
+
+#searchInput {
+  display: inline-block;
+  height: 35px;
+  width: 200px;
+  /* background-color: rgba(255, 255, 255, .4); */
+  border: 1px solid black;
+  border-radius: 10px 0 0 10px;
+  color: rgba(255, 255, 255, 1);
+}
+
+#searchButton {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, .4);
+  border: 1px solid black;
+  border-radius: 0 10px 10px 0;
+  color: rgba(255, 255, 255, 1);
+}
+
+#searchButton:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 0, .9);
+  color: rgba(0, 0, 0, 1);
+}
 
 
 /* const styles = StyleSheet.create({
@@ -47,3 +200,72 @@
   }
 }); */
 
+
+
+
+
+
+/*
+/////////////////////////////////////
+CAROUSEL
+/////////////////////////////////////
+*/
+
+#carousel {
+  background-color: rgba(255, 255, 255, .7);
+  display: inline-block;
+  height: 400px;
+  width: 70%;
+  border: 2px solid rgba(255, 255, 100, .6);
+  border-radius: 10px;
+  text-align: center;
+  align-content: center;
+}
+
+#carouselTitle {
+  margin: 100px;
+}
+
+
+
+
+
+/*
+/////////////////////////////////////
+VIDEO CARDS
+/////////////////////////////////////
+*/
+
+
+
+
+
+
+
+/*
+/////////////////////////////////////
+WATCHLIST
+/////////////////////////////////////
+*/
+
+
+
+
+
+
+
+/*
+/////////////////////////////////////
+MEDIA QUERIES / RESPONSIVE DESIGN
+/////////////////////////////////////
+*/
+
+@media only screen and (max-width: 600px) {
+  #carousel {
+    height: 300px;
+    width: 70%;
+  }
+  #footer {
+    margin-top: 20%;
+  }
+}

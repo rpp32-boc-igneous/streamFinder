@@ -1,7 +1,7 @@
 import React from 'react';
 import VideoCard from './VideoCard.jsx';
 
-class Carousel extends React.Component {
+class SearchResults extends React.Component {
 
   constructor(props) {
     super(props);
@@ -12,14 +12,12 @@ class Carousel extends React.Component {
 
   render() {
     return (
-      <div id="carousel">
-        <div id="carouselTitle">Carousel / Search Results</div>
+      <div id="searchResults">
+        <div>Search Results</div>
       </div>
     )
   };
 
 }
 
-export default Carousel;
-
-
+export default SearchResults;

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 
-export default class Search extends React.Component {
+class Search extends React.Component {
   constructor() {
     super();
     this.state={
@@ -33,26 +33,17 @@ export default class Search extends React.Component {
     render() {
       let {text} = this.state;
       return (
-        <View>
-          <View>
-              <TextInput
-                style={styles.input}
-                placeholder="Search for a movie or TV show"
-                value={this.state.text}
-                onChangeText={(text) => this.setState({text})}
-                >
-                </TextInput>
-          </View>
-          <StatusBar style="auto" />
-          <TouchableOpacity
-            style={styles.button}
-            title="search"
-            onPress={this.search}
-          >
-          <Text style={styles.text}>Search</Text>
-          </TouchableOpacity>
-        </View>
+        <div id="search">
+          <div id="searchBox">
+            <input type="text" placeholder="Search for a movie or TV show"
+              value={this.state.text}
+              onChange={(text) => this.setState({text})}
+              id="searchInput"></input>
+              <button title="search" onClick={this.search} id="searchButton">Search</button>
+          </div>
+        </div>
       );
     }
 }
 
+export default Search;

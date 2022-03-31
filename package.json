@@ -2,10 +2,11 @@
   "name": "streamfinder",
   "version": "1.0.0",
   "description": "",
-  "main": "App.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "nodemon server.js",
+    "build": "webpack --watch"
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   "dependencies": {
     "@babel/core": "^7.17.8",
     "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
     "@babel/register": "^7.17.7",
     "axios": "^0.26.1",
     "babel": "^6.23.0",
@@ -27,14 +29,20 @@
     "babel-loader": "^8.2.4",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.2",
+    "concurrently": "^7.0.0",
+    "cors": "^2.8.5",
     "express": "^4.17.3",
     "gzip": "^0.1.0",
     "jquery": "^3.6.0",
     "mongo": "^0.1.0",
     "mongoose": "^6.2.9",
+    "nodemon": "^2.0.15",
     "pm2": "^5.2.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "webpack": "^5.70.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.9.2"
   }
 }
