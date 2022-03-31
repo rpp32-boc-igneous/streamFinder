@@ -1,6 +1,7 @@
 import React from 'react';
 
-class Settings extends React.Component {
+class Watchlist extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -11,10 +12,10 @@ class Settings extends React.Component {
   render() {
     return (
       <div>
-        <div>settings</div>
+        <div>Watchlist</div>
       </div>
-    );
+    )
   }
 }
 
-export default Settings;
+export default Watchlist;
