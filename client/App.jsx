@@ -7,6 +7,7 @@ import SearchResults from '../components/SearchResults.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Signup from '../components/Signup.jsx';
 import Watchlist from '../components/Watchlist.jsx';
+import banner from '../assets/StreamFinderBanner.png';
 
 class App extends React.Component {
 
@@ -47,7 +48,7 @@ class App extends React.Component {
           <Search changePage={this.changePage}/>
         </div>
         <div id="bannerBox">
-          <div id="banner">StreamFinder</div>
+          <img src={banner} id="banner"></img>
         </div>
         <div id="body">
           <Carousel />
@@ -74,3 +75,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+//<div id="banner">StreamFinder</div>
