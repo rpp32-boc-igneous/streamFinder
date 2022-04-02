@@ -1,6 +1,6 @@
-body{
+body {
   background-color: rgba(0, 0, 0, 1);
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
   min-width: 350px;
 }
 
@@ -23,8 +23,6 @@ body{
   }
 }
 
-
-
 /*
 /////////////////////////////////////
 PAGE LAYOUT
@@ -35,7 +33,7 @@ PAGE LAYOUT
   display: inline-block;
   height: 40px;
   width: 60px;
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, 0.4);
   border: 1px solid black;
   border-radius: 10px;
   color: rgba(255, 255, 255, 1);
@@ -43,7 +41,7 @@ PAGE LAYOUT
 
 #loginButton:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 0, .9);
+  background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
 }
 
@@ -74,22 +72,19 @@ PAGE LAYOUT
   display: inline-block;
   width: 5%;
   height: 2%;
-  color:rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
   margin: 0 15%;
 }
 
 .footerButton:hover {
-  color: rgba(255, 255, 50, .9);
+  color: rgba(255, 255, 50, 0.9);
   cursor: pointer;
 }
 
 .divider {
   display: inline-block;
-  color:rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
 }
-
-
-
 
 /*
 /////////////////////////////////////
@@ -105,19 +100,16 @@ LOGIN
   transform: translate(-50%, -50%);
   height: 60%;
   width: 60%;
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, 0.4);
   border-radius: 20px;
   text-align: center;
   align-items: center;
-  color: rgba(255, 255, 255, 1)
+  color: rgba(255, 255, 255, 1);
 }
 
 #signup_page {
   display: none;
 }
-
-
-
 
 /*
 /////////////////////////////////////
@@ -143,7 +135,7 @@ SEARCH
   display: inline-block;
   height: 40px;
   width: 60px;
-  background-color: rgba(255, 255, 255, .4);
+  background-color: rgba(255, 255, 255, 0.4);
   border: 1px solid black;
   border-radius: 0 10px 10px 0;
   color: rgba(255, 255, 255, 1);
@@ -151,10 +143,9 @@ SEARCH
 
 #searchButton:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 0, .9);
+  background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
 }
-
 
 /* const styles = StyleSheet.create({
   container: {
@@ -200,11 +191,6 @@ SEARCH
   }
 }); */
 
-
-
-
-
-
 /*
 /////////////////////////////////////
 CAROUSEL
@@ -212,11 +198,11 @@ CAROUSEL
 */
 
 #carousel {
-  background-color: rgba(255, 255, 255, .7);
+  background-color: rgba(255, 255, 255, 0.7);
   display: inline-block;
   height: 400px;
   width: 70%;
-  border: 2px solid rgba(255, 255, 100, .6);
+  border: 2px solid rgba(255, 255, 100, 0.6);
   border-radius: 10px;
   text-align: center;
   align-content: center;
@@ -226,21 +212,11 @@ CAROUSEL
   margin: 100px;
 }
 
-
-
-
-
 /*
 /////////////////////////////////////
 VIDEO CARDS
 /////////////////////////////////////
 */
-
-
-
-
-
-
 
 /*
 /////////////////////////////////////
@@ -248,11 +224,14 @@ WATCHLIST
 /////////////////////////////////////
 */
 
-
-
-
-
-
+/*
+/////////////////////////////////////
+USER SETTINGS
+/////////////////////////////////////
+*/
+.hide {
+  display: none;
+}
 
 /*
 /////////////////////////////////////
