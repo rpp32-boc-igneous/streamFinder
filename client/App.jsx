@@ -12,7 +12,7 @@ import Settings from '../components/Settings.jsx';
 // Graphics + branding
 import banner from '../assets/StreamFinderBanner.png';
 import userIcon from '../assets/userIcon.png';
-import SFicon from '../assets/StreamFinderIcon.png';
+import SFicon from '../assets/StreamFinderIcon_transparent.png';
 
 // Modules
 const { deriveTrending } = require('../modules/deriveTrending.js');
@@ -50,8 +50,9 @@ class App extends React.Component {
 
     var clickType = e.target.innerHTML;
     var parent = e.target.parentNode.id;
+    var clickClass = e.target.className;
 
-    if (clickType !== 'home') {
+    if (clickClass !== 'home') {
       $(`#${clickType}_page`).css({ 'display': 'inline-block' });
       $('#carousel').css({ 'display': 'none' });
       $('#footer').css({ 'display': 'none' });
@@ -82,22 +83,22 @@ class App extends React.Component {
 
           <div id="Login_page">
             <Login_Signup />
-            <button id="home_from_login" onClick={this.showModal}>home</button>
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
           </div>
 
           <div id="Signup_page">
             <Signup />
-            <button id="home_from_signup" onClick={this.showModal}>home</button>
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
           </div>
 
           <div id="Watchlist_page">
             <Watchlist />
-            <button id="home_from_watchlist" onClick={this.showModal}>home</button>
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
           </div>
 
           <div id="Settings_page">
             <Settings />
-            <button id="home_from_settings" onClick={this.showModal}>home</button>
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
           </div>
 
         </div>
