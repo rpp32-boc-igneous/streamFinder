@@ -1,22 +1,38 @@
 import React from 'react';
 import VideoCard from './VideoCard.jsx';
 
-class Carousel extends React.Component {
+var previousResults = null;
 
-  constructor(props) {
-    super(props);
-    this.state = {
+var Carousel = (props) => {
 
-    }
+  var searchResults = props.searchResults;
+  var trending = props.trending;
+  var newResults = false;
+
+  if (JSON.stringify(searchResults) !== JSON.stringify(previousResults)) {
+    previousResults = searchResults;
+    newResults = true;
   }
 
-  render() {
+  if (newResults) {
+    return (
+      <div id="carousel">{newResults.map(item =>
+        <VideoCard program={item} />)
+      }</div>
+    )
+  } else if (trending) {
+    return (
+      <div id="carousel">{trending.map(item =>
+        <VideoCard program={item} />)
+      }</div>
+    )
+  } else {
     return (
       <div id="carousel">
-        <div id="carouselTitle">Carousel / Search Results</div>
+        <div>loading carousel content...</div>
       </div>
     )
-  };
+  }
 
 }
 
