@@ -7,7 +7,10 @@ import SearchResults from '../components/SearchResults.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Signup from '../components/Signup.jsx';
 import Watchlist from '../components/Watchlist.jsx';
+import Settings from '../components/Settings.jsx';
 import banner from '../assets/StreamFinderBanner.png';
+import userIcon from '../assets/userIcon.png';
+import SFicon from '../assets/StreamFinderIcon.png';
 
 class App extends React.Component {
 
@@ -23,20 +26,68 @@ class App extends React.Component {
 
     var clickType = e.target.innerHTML;
     var clickId = e.target.id;
+    var parent = e.target.parentNode.id;
 
-    if (clickType === 'Login') {
-      $('#loginSignup_page').css({ 'display': 'inline-block' });
-      $('#carousel').css({ 'display': 'none' });
-      $('#footer').css({ 'display': 'none' });
-    }
+    console.log(e.target.parentNode)
 
-    if (clickType === 'home') {
-      if (clickId === 'home_from_login') {
-        $('#loginSignup_page').css({ 'display': 'none' });
+    var carouselAndFooter = (boolean) => {
+      if (boolean) {
         $('#carousel').css({ 'display': 'inline-block' });
         $('#footer').css({ 'display': 'flex' });
+      } else {
+        $('#carousel').css({ 'display': 'none' });
+        $('#footer').css({ 'display': 'none' });
       }
     }
+
+    if (clickType !== 'home') {
+      $(`#${clickType}_page`).css({ 'display': 'inline-block' });
+      carouselAndFooter(false);
+    } else {
+      $(`#${parent}`).css({ 'display': 'none' });
+      carouselAndFooter(true);
+    }
+
+
+    // if (clickType === 'Login') {
+    //   $('#loginSignup_page').css({ 'display': 'inline-block' });
+    //   carouselAndFooter(false);
+    // }
+
+    // if (clickType === 'Signup') {
+    //   $('signup_page').css({ 'display': 'inline-block' });
+    //   carouselAndFooter(false);
+    // }
+
+    // if (clickType === 'Watchlist') {
+    //   $('#watchlist_page').css({ 'display': 'inline-block' });
+    //   carouselAndFooter(false);
+    // }
+
+    // if (clickType === 'Settings') {
+    //   $('#settings_page').css({ 'display': 'inline-block' });
+    //   carouselAndFooter(false);
+    // }
+
+
+    // if (clickType === 'home') {
+    //   if (clickId === 'home_from_login') {
+    //     $('#loginSignup_page').css({ 'display': 'none' });
+    //     carouselAndFooter(true);
+    //   }
+    //   if (clickId === 'home_from_signup') {
+    //     $('#signup_page').css({ 'display': 'none' });
+    //     carouselAndFooter(true);
+    //   }
+    //   if (clickId === 'home_from_watchlist') {
+    //     $('#watchlist_page').css({ 'display': 'none' });
+    //     carouselAndFooter(true);
+    //   }
+    //   if (clickId === 'home_from_settings') {
+    //     $('#settings_page').css({ 'display': 'none' });
+    //     carouselAndFooter(true);
+    //   }
+    // }
   }
 
   render() {
@@ -47,25 +98,43 @@ class App extends React.Component {
           <button id="loginButton" onClick={this.changePage}>Login</button>
           <Search changePage={this.changePage}/>
         </div>
+
         <div id="bannerBox">
           <img src={banner} id="banner"></img>
         </div>
+
         <div id="body">
+
           <Carousel />
-          <div id="loginSignup_page">
+
+          <div id="Login_page">
             <Login_Signup />
             <button id="home_from_login" onClick={this.changePage}>home</button>
           </div>
-          <div id="signup_page">
+
+          <div id="Signup_page">
             <Signup />
+            <button id="home_from_signup" onClick={this.changePage}>home</button>
           </div>
+
+          <div id="Watchlist_page">
+            <Watchlist />
+            <button id="home_from_watchlist" onClick={this.changePage}>home</button>
+          </div>
+
+          <div id="Settings_page">
+            <Settings />
+            <button id="home_from_settings" onClick={this.changePage}>home</button>
+          </div>
+
         </div>
+
         <div id="footer">
           <div id="trendingButton" className="footerButton">Trending</div>
           <div className="divider">|</div>
-          <div id="watchlistButton" className="footerButton">Watchlist</div>
+          <div id="watchlistButton" className="footerButton" onClick={this.changePage}>Watchlist</div>
           <div className="divider">|</div>
-          <div id="settingsButton" className="footerButton">Settings</div>
+          <div id="settingsButton" className="footerButton" onClick={this.changePage}>Settings</div>
         </div>
       </div>
     )
