@@ -24,6 +24,7 @@ class Search extends React.Component {
       .then(result => {
         alert(result.data);
         console.log(JSON.stringify(result.data));
+        this.props.cb(result.data);
       })
       .catch(err => {
         console.log(err);

@@ -1,41 +1,67 @@
 import React from 'react';
 import $ from 'jquery';
 
+// Components
 import Login_Signup from '../components/Login_Signup.jsx';
 import Search from '../components/Search.jsx';
-import SearchResults from '../components/SearchResults.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Signup from '../components/Signup.jsx';
 import Watchlist from '../components/Watchlist.jsx';
+import Settings from '../components/Settings.jsx';
+
+// Graphics + branding
+import banner from '../assets/StreamFinderBanner.png';
+import userIcon from '../assets/userIcon.png';
+import SFicon from '../assets/StreamFinderIcon_transparent.png';
+
+// Modules
+const { deriveTrending } = require('../modules/deriveTrending.js');
+
 
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-
+      searchResults: null,
+      trending: null
     }
-    this.changePage = this.changePage.bind(this);
+    this.updateSearchResults = this.updateSearchResults.bind(this);
+    this.loadTrending = this.loadTrending.bind(this);
+    this.showModal = this.showModal.bind(this);
   }
 
-  changePage(e) {
+  updateSearchResults(data) {
+    this.setState({
+      searchResults: data
+    }, () => {
+      console.log('search results updated in App state');
+    })
+  }
+
+  loadTrending() {
+    // axios call to API for movie list
+    // module analyzes to gather trending
+    var trending = deriveTrending(data);
+    // trending is loaded in state
+  }
+
+  showModal(e) {
 
     var clickType = e.target.innerHTML;
-    var clickId = e.target.id;
+    var parent = e.target.parentNode.id;
+    var clickClass = e.target.className;
 
-    if (clickType === 'Login') {
-      $('#loginSignup_page').css({ 'display': 'inline-block' });
+    if (clickClass !== 'home') {
+      $(`#${clickType}_page`).css({ 'display': 'inline-block' });
       $('#carousel').css({ 'display': 'none' });
       $('#footer').css({ 'display': 'none' });
+    } else {
+      $(`#${parent}`).css({ 'display': 'none' });
+      $('#carousel').css({ 'display': 'inline-block' });
+      $('#footer').css({ 'display': 'flex' });
     }
 
-    if (clickType === 'home') {
-      if (clickId === 'home_from_login') {
-        $('#loginSignup_page').css({ 'display': 'none' });
-        $('#carousel').css({ 'display': 'inline-block' });
-        $('#footer').css({ 'display': 'flex' });
-      }
-    }
   }
 
   render() {
@@ -43,28 +69,46 @@ class App extends React.Component {
     return (
       <div>
         <div id="header">
-          <button id="loginButton" onClick={this.changePage}>Login</button>
-          <Search changePage={this.changePage}/>
+          <button id="loginButton" onClick={this.showModal}>Login</button>
+          <Search changePage={this.showModal} cb={this.updateSearchResults}/>
         </div>
+
         <div id="bannerBox">
-          <div id="banner">StreamFinder</div>
+          <img src={banner} id="banner"></img>
         </div>
+
         <div id="body">
-          <Carousel />
-          <div id="loginSignup_page">
+
+          <Carousel searchResults={this.state.searchResults} trending={this.state.trending}/>
+
+          <div id="Login_page">
             <Login_Signup />
-            <button id="home_from_login" onClick={this.changePage}>home</button>
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
           </div>
-          <div id="signup_page">
+
+          <div id="Signup_page">
             <Signup />
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
           </div>
+
+          <div id="Watchlist_page">
+            <Watchlist />
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
+          </div>
+
+          <div id="Settings_page">
+            <Settings />
+            <img src={SFicon} onClick={this.showModal} className="home"></img>
+          </div>
+
         </div>
+
         <div id="footer">
           <div id="trendingButton" className="footerButton">Trending</div>
           <div className="divider">|</div>
-          <div id="watchlistButton" className="footerButton">Watchlist</div>
+          <div id="watchlistButton" className="footerButton" onClick={this.showModal}>Watchlist</div>
           <div className="divider">|</div>
-          <div id="settingsButton" className="footerButton">Settings</div>
+          <div id="settingsButton" className="footerButton" onClick={this.showModal}>Settings</div>
         </div>
       </div>
     )
@@ -74,3 +118,6 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+//<div id="banner">StreamFinder</div>

@@ -1,6 +1,7 @@
 body {
   background-color: rgba(0, 0, 0, 1);
-  font-family: "Dosis", sans-serif;
+  font-family: "Avenir";
+  /* font-family: "Dosis", sans-serif; */
   min-width: 350px;
 }
 
@@ -12,6 +13,19 @@ body {
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;
+}
+
+.home {
+  display: inline-block;
+  position: relative;
+  top: -5px;
+  left: -310px;
+  width: 50px;
+  height: auto;
+}
+
+.home:hover {
+  cursor: pointer;
 }
 
 @-webkit-keyframes glow {
@@ -37,6 +51,7 @@ PAGE LAYOUT
   border: 1px solid black;
   border-radius: 10px;
   color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
 }
 
 #loginButton:hover {
@@ -92,7 +107,7 @@ LOGIN
 /////////////////////////////////////
 */
 
-#loginSignup_page {
+#Login_page {
   display: none;
   position: fixed;
   left: 50%;
@@ -100,16 +115,35 @@ LOGIN
   transform: translate(-50%, -50%);
   height: 60%;
   width: 60%;
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   text-align: center;
   align-items: center;
   color: rgba(255, 255, 255, 1);
 }
 
-#signup_page {
+
+/*
+/////////////////////////////////////
+SIGNUP
+/////////////////////////////////////
+*/
+
+#Signup_page {
   display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1);
 }
+
 
 /*
 /////////////////////////////////////
@@ -125,10 +159,10 @@ SEARCH
   display: inline-block;
   height: 35px;
   width: 200px;
-  /* background-color: rgba(255, 255, 255, .4); */
   border: 1px solid black;
   border-radius: 10px 0 0 10px;
   color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
 }
 
 #searchButton {
@@ -139,6 +173,7 @@ SEARCH
   border: 1px solid black;
   border-radius: 0 10px 10px 0;
   color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
 }
 
 #searchButton:hover {
@@ -146,6 +181,7 @@ SEARCH
   background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
 }
+
 
 /* const styles = StyleSheet.create({
   container: {
@@ -224,6 +260,21 @@ WATCHLIST
 /////////////////////////////////////
 */
 
+#Watchlist_page {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 45%;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1);
+}
+
 /*
 /////////////////////////////////////
 USER SETTINGS
@@ -231,6 +282,21 @@ USER SETTINGS
 */
 .hide {
   display: none;
+}
+
+#Settings_page {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1);
 }
 
 /*
