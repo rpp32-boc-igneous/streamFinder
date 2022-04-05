@@ -5,7 +5,7 @@ import StreamSearch from "./StreamSearch.jsx";
 
 const StreamStore = (props) => {
   return (
-    <div>
+    <div id="store" className="hide">
       <FilterList />
       <StreamSearch />
       <div>Streams</div>

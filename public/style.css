@@ -1,5 +1,6 @@
 body {
   background-color: rgba(0, 0, 0, 1);
+  color: rgba(255, 255, 255, 1);
   font-family: "Dosis", sans-serif;
   min-width: 350px;
 }
@@ -12,6 +13,14 @@ body {
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  background-color: lightgray;
+  border: 1px solid black;
+  border-radius: 20px;
+  color: black;
 }
 
 @-webkit-keyframes glow {
@@ -231,6 +240,60 @@ USER SETTINGS
 */
 .hide {
   display: none;
+}
+
+.settings {
+  height: 400px;
+  width: 80%;
+  margin: auto;
+  /* padding: 0 ; */
+  border: 0.5px solid rgba(255, 255, 255, 1);
+  text-align: center;
+  align-content: center;
+}
+
+.userInfo {
+  text-align: center;
+}
+
+table {
+  margin: 20px auto;
+}
+
+.tableField {
+  text-align: right;
+}
+
+.tableInput {
+  text-align: left;
+}
+
+.add {
+  color: rgba(255, 255, 0, 0.9);
+  margin: 0 20px;
+  font-size: 1.5em;
+}
+
+.streamList {
+  border: 0.5px solid rgba(255, 255, 0, 0.9);
+  text-align: left;
+  margin: 20px auto;
+  width: 90%;
+  height: 9rem;
+}
+
+#streamTitle {
+  margin: 0.2rem 1rem;
+  display: inline-block;
+}
+
+#streamContainer {
+  padding: 1rem 2rem;
+}
+
+.checkbox {
+  padding: 0 2rem;
+  background-color: green;
 }
 
 /*
