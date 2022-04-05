@@ -21,9 +21,18 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
-      }
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ]
   },
+
   performance: {
     maxEntrypointSize: 512000,
     maxAssetSize: 512000

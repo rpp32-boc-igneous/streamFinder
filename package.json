@@ -32,6 +32,7 @@
     "concurrently": "^7.0.0",
     "cors": "^2.8.5",
     "express": "^4.17.3",
+    "file-loader": "^6.2.0",
     "gzip": "^0.1.0",
     "jquery": "^3.6.0",
     "mongo": "^0.1.0",
