@@ -1,12 +1,9 @@
-import React from 'react';
+import React from "react";
 
 class Settings extends React.Component {
-
   constructor(props) {
     super(props);
-    this.state = {
-
-    }
+    this.state = {};
   }
 
   render() {
@@ -14,7 +11,7 @@ class Settings extends React.Component {
       <div>
         <div>Settings</div>
       </div>
-    )
+    );
   }
 }
 
