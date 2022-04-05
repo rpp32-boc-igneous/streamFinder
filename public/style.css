@@ -1,7 +1,6 @@
 body {
   background-color: rgba(0, 0, 0, 1);
   font-family: "Avenir";
-  /* font-family: "Dosis", sans-serif; */
   min-width: 350px;
 }
 
@@ -248,11 +247,67 @@ CAROUSEL
   margin: 100px;
 }
 
+.hero-slide {
+  height: 400px;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  color: white;
+}
+
+.slide-image {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-slider .content {
+  position: relative;
+  z-index: 2;
+}
+
+#swiperBox {
+  display: inline-block;
+  height: 400px;
+  width: 500px;
+}
+
+.swiper-button-prev {
+  color: white;
+  height: 40px;
+  transform: scaleX(-1);
+}
+
+.swiper-button-next {
+  color: white;
+  height: 40px;
+}
+
 /*
 /////////////////////////////////////
 VIDEO CARDS
 /////////////////////////////////////
 */
+
+.videoCard {
+  width: 100%;
+  width: 100%;
+  color: white;
+  border: 1px solid white;
+}
+
+.swiper-slide {
+  height: 80%;
+}
+
 
 /*
 /////////////////////////////////////
@@ -298,6 +353,9 @@ USER SETTINGS
   align-items: center;
   color: rgba(255, 255, 255, 1);
 }
+
+
+
 
 /*
 /////////////////////////////////////
