@@ -1,62 +1,24 @@
-import React, { useState, useEffect } from "react";
-import Stream from "./Stream.jsx";
-import { GrAdd } from "react-icons/gr";
-import { IoAdd } from "react-icons/io5";
+import React, { useState, useEffect } from 'react';
+import Stream from './Stream.jsx';
+import { IoAdd } from 'react-icons/io5';
 
 const StreamList = (props) => {
   return (
-    <div className="streamList">
-      <h1 id="streamTitle">Streams</h1>
-      <IoAdd className="add" />
-      <div id="streamContainer">
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="Netflix"
-          name="stream"
-        />
+    <div className='streamList'>
+      <h1 id='stream'Title>Streams</h1>
+      <IoAdd className='add' />
+      <div id='streamContainer'>
+        <input className='box' type='checkbox' name='Netflix' />
         Netflix
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="Prime"
-          name="stream"
-        />
+        <input className='box' type='checkbox' name='Prime' />
         Prime
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="Hulu"
-          name="stream"
-        />
+        <input className='box' type='checkbox' name='Hulu' />
         Hulu
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="HBOmax"
-          name="stream"
-        />
+        <input className='box' type='checkbox' name='HBOmax' />
         HBOmax
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="AppleTV"
-          name="stream"
-        />
-        AppleTV
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="Vudu"
-          name="stream"
-        />
+        <input className='box' type='checkbox' name='Vudu' />
         Vudu
-        <input
-          className="checkbox"
-          type="checkbox"
-          value="Disney+"
-          name="stream"
-        />
+        <input className='box' type='checkbox' name='Disney+' />
         Disney+
       </div>
     </div>

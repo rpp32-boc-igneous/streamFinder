@@ -1,7 +1,8 @@
-import React from "react";
-import UserInfo from "./UserInfo.jsx";
-import StreamList from "./StreamList.jsx";
-import StreamStore from "./StreamStore.jsx";
+import React from 'react';
+import UserInfo from './UserInfo.jsx';
+import StreamList from './StreamList.jsx';
+import StreamStore from './StreamStore.jsx';
+import { AiOutlineClose } from 'react-icons/ai';
 
 class Settings extends React.Component {
   constructor(props) {
@@ -11,10 +12,11 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <div className="settings">
+      <div id='Settings_page'>
+        <AiOutlineClose id='close' />
         <h1>Account</h1>
         <UserInfo />
-        <button className="button">Sign out</button>
+        <button className='button'>Sign out</button>
         <StreamList />
         <StreamStore />
       </div>

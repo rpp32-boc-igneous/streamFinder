@@ -1,6 +1,7 @@
 body {
   background-color: rgba(0, 0, 0, 1);
   font-family: "Avenir";
+  color: rgba(255, 255, 255, 1);
   /* font-family: "Dosis", sans-serif; */
   min-width: 350px;
 }
@@ -281,14 +282,38 @@ USER SETTINGS
   display: none;
 }
 
-.settings {
+#Settings_page {
+  display: none;
+  /* display: inline-block; */
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 60%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  text-align: center;
+  align-items: center;
+  color: rgba(255, 255, 255, 1);
+}
+
+/* #settings {
   height: 400px;
   width: 80%;
+  position: relative;
   margin: auto;
-  /* padding: 0 ; */
   border: 0.5px solid rgba(255, 255, 255, 1);
   text-align: center;
   align-content: center;
+} */
+
+#close {
+  color: rgba(255, 255, 255, 1);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.3rem;
 }
 
 .userInfo {
@@ -327,12 +352,16 @@ table {
 }
 
 #streamContainer {
-  padding: 1rem 2rem;
+  padding-top: 0.75rem;
+  margin: 0 auto;
 }
 
-.checkbox {
-  padding: 0 2rem;
-  background-color: green;
+.box {
+  margin-left: 1rem;
+}
+
+.box[type="checkbox"]:checked {
+  accent-color: green;
 }
 
 /*
