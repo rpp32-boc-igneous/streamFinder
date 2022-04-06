@@ -105,11 +105,11 @@ class Carousel extends React.Component {
             onSlideChange={() => null}
             onSwiper={((swiper) => console.log(swiper))}
           >
-            <SwiperSlide className="videoCard">Video Card 1</SwiperSlide>
-            <SwiperSlide className="videoCard">Video Card 2</SwiperSlide>
-            <SwiperSlide className="videoCard">Video Card 3</SwiperSlide>
-            <SwiperSlide className="videoCard">Video Card 4</SwiperSlide>
-            <SwiperSlide className="videoCard">Video Card 5</SwiperSlide>
+            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
+            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
+            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
+            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
+            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
           </Swiper>
         </div>
         <img src={arrow} className="swiper-button-next" onClick={this.updateIndex} id="right"></img>
