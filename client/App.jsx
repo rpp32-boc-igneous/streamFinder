@@ -7,7 +7,7 @@ import Search from '../components/Search.jsx';
 import Carousel from '../components/Carousel.jsx';
 import Signup from '../components/Signup.jsx';
 import Watchlist from '../components/Watchlist.jsx';
-import Settings from '../components/Settings.jsx';
+import Settings from '../components/Settings/Settings.jsx';
 
 // Graphics + branding
 import banner from '../assets/StreamFinderBanner.png';
@@ -24,7 +24,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       searchResults: null,
-      trending: null
+      trending: null,
     }
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.loadTrending = this.loadTrending.bind(this);
@@ -33,7 +33,7 @@ class App extends React.Component {
 
   updateSearchResults(data) {
     this.setState({
-      searchResults: data
+      searchResults: data,
     }, () => {
       console.log('search results updated in App state');
     })
@@ -53,13 +53,13 @@ class App extends React.Component {
     var clickClass = e.target.className;
 
     if (clickClass !== 'home') {
-      $(`#${clickType}_page`).css({ 'display': 'inline-block' });
-      $('#carousel').css({ 'display': 'none' });
-      $('#footer').css({ 'display': 'none' });
+      $(`#${clickType}_page`).css({ display: 'inline-block' });
+      $('#carousel').css({ display: 'none' });
+      $('#footer').css({ display: 'none' });
     } else {
-      $(`#${parent}`).css({ 'display': 'none' });
-      $('#carousel').css({ 'display': 'inline-block' });
-      $('#footer').css({ 'display': 'flex' });
+      $(`#${parent}`).css({ display: 'none' });
+      $('#carousel').css({ display: 'inline-block' });
+      $('#footer').css({ display: 'flex' });
     }
 
   }
@@ -68,47 +68,47 @@ class App extends React.Component {
 
     return (
       <div>
-        <div id="header">
-          <button id="loginButton" onClick={this.showModal}>Login</button>
-          <Search changePage={this.showModal} cb={this.updateSearchResults}/>
+        <div id='header'>
+          <button id='loginButton' onClick={this.showModal}>Login</button>
+          <Search changePage={this.showModal} cb={this.updateSearchResults} />
         </div>
 
-        <div id="bannerBox">
-          <img src={banner} id="banner"></img>
+        <div id='bannerBox'>
+          <img src={banner} id='banner'></img>
         </div>
 
-        <div id="body">
+        <div id='body'>
 
-          <Carousel searchResults={this.state.searchResults} trending={this.state.trending}/>
+          <Carousel searchResults={this.state.searchResults} trending={this.state.trending} />
 
-          <div id="Login_page">
+          <div id='Login_page'>
             <Login_Signup />
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
+            <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
-          <div id="Signup_page">
+          <div id='Signup_page'>
             <Signup />
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
+            <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
-          <div id="Watchlist_page">
+          <div id='Watchlist_page'>
             <Watchlist />
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
+            <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
-          <div id="Settings_page">
+          <div id='Settings_page'>
             <Settings />
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
+            <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
         </div>
 
-        <div id="footer">
-          <div id="trendingButton" className="footerButton">Trending</div>
-          <div className="divider">|</div>
-          <div id="watchlistButton" className="footerButton" onClick={this.showModal}>Watchlist</div>
-          <div className="divider">|</div>
-          <div id="settingsButton" className="footerButton" onClick={this.showModal}>Settings</div>
+        <div id='footer'>
+          <div id='trendingButton' className='footerButton'>Trending</div>
+          <div className='divider'>|</div>
+          <div id='watchlistButton' className='footerButton' onClick={this.showModal}>Watchlist</div>
+          <div className='divider' >|</div>
+          <div id='settingsButton' className='footerButton' onClick={this.showModal}>Settings</div>
         </div>
       </div>
     )
