@@ -296,7 +296,7 @@ USER SETTINGS
   color: rgba(255, 255, 255, 1);
 }
 
-#close {
+.close {
   color: rgba(255, 255, 255, 1);
   position: absolute;
   top: 1rem;
@@ -360,12 +360,65 @@ table {
   margin: 0 auto;
 }
 
-.box {
+.checkbox {
   margin-left: 1rem;
 }
 
-.box[type="checkbox"]:checked {
+.checkbox[type="checkbox"]:checked {
   accent-color: green;
+}
+
+#filterList {
+  float: left;
+}
+
+#streamSearch {
+  float: right;
+}
+
+#streamGrid {
+  margin: 3rem 0;
+  padding: 3%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  border: 0.5px solid rgba(255, 255, 0, 0.9);
+  overflow: hidden;
+}
+
+.stream {
+  border: 0.5px solid rgba(255, 255, 255, 0.7);
+  padding: 0.5rem;
+}
+
+.addStream {
+  float: right;
+  color: rgba(255, 255, 0, 0.9);
+}
+
+.streamImg {
+  height: 60px;
+  width: 60px;
+  float: left;
+  /* margin: 0.2rem 0; */
+}
+
+.streamInfo {
+  font-size: 0.3rem;
+  line-height: .5rem;
+  clear: both;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+#store {
+  padding: 7%;
+}
+
+#store:after {
+  clear: both;
+  height: 100%;
 }
 
 /*
