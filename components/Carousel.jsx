@@ -37,9 +37,9 @@ class Carousel extends React.Component {
 
   updateState() {
 
-    var searchResults = this.props.searchResults;
-    var trending = this.props.trending;
-    var newResults = false;
+    let searchResults = this.props.searchResults;
+    let trending = this.props.trending;
+    let newResults = false;
 
     if (JSON.stringify(searchResults) !== JSON.stringify(this.state.searchResults)) {
       this.setState({
@@ -60,9 +60,9 @@ class Carousel extends React.Component {
 
   updateIndex(e) {
 
-    var direction = e.target.id;
-    var currentIndex = this.state.currentSlidesIndex;
-    var currentLength = this.state.currentSlidesLength;
+    let direction = e.target.id;
+    let currentIndex = this.state.currentSlidesIndex;
+    let currentLength = this.state.currentSlidesLength;
 
     if (direction === 'right') {
       if (currentIndex + 1 <= currentLength) {
