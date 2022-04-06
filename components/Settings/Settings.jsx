@@ -12,12 +12,12 @@ class Settings extends React.Component {
 
   render() {
     return (
-      <div id='Settings_page'>
+      <div>
         <AiOutlineClose id='close' />
         <h1>Account</h1>
         <UserInfo />
         <button className='button'>Sign out</button>
-        <StreamList />
+        <StreamList/>
         <StreamStore />
       </div>
     );

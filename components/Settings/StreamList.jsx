@@ -5,7 +5,7 @@ import { IoAdd } from 'react-icons/io5';
 const StreamList = (props) => {
   return (
     <div className='streamList'>
-      <h1 id='stream'Title>Streams</h1>
+      <h1 id='streamTitle'>Streams</h1>
       <IoAdd className='add' />
       <div id='streamContainer'>
         <input className='box' type='checkbox' name='Netflix' />
