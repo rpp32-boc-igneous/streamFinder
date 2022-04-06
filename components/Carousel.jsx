@@ -88,31 +88,33 @@ class Carousel extends React.Component {
 
   render() {
     return (
-      <div id="carouselBox">
-        <CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
-        <img src={arrow} className="swiper-button-prev" onClick={this.updateIndex} id="left"></img>
-        <div id="swiperBox">
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={1}
-            speed={500}
-            loop='true'
-            navigation={{
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }}
-            scrollbar={{ draggable: true }}
-            onSlideChange={() => null}
-            onSwiper={((swiper) => console.log(swiper))}
-          >
-            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
-            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
-            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
-            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
-            <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
-          </Swiper>
+      <div id="carousel">
+        <div id="carouselBox">
+          <CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
+          <img src={arrow} className="swiper-button-prev" onClick={this.updateIndex} id="left"></img>
+          <div id="swiperBox">
+            <Swiper
+              spaceBetween={50}
+              slidesPerView={1}
+              speed={500}
+              loop='true'
+              navigation={{
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+              }}
+              scrollbar={{ draggable: true }}
+              onSlideChange={() => null}
+              onSwiper={((swiper) => console.log(swiper))}
+            >
+              <SwiperSlide><div className="videoCard">Video Card 1</div></SwiperSlide>
+              <SwiperSlide><div className="videoCard">Video Card 2</div></SwiperSlide>
+              <SwiperSlide><div className="videoCard">Video Card 3</div></SwiperSlide>
+              <SwiperSlide><div className="videoCard">Video Card 4</div></SwiperSlide>
+              <SwiperSlide><div className="videoCard">Video Card 5</div></SwiperSlide>
+            </Swiper>
+          </div>
+          <img src={arrow} className="swiper-button-next" onClick={this.updateIndex} id="right"></img>
         </div>
-        <img src={arrow} className="swiper-button-next" onClick={this.updateIndex} id="right"></img>
       </div>
     )
   }

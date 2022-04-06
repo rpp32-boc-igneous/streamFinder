@@ -56,10 +56,12 @@ class App extends React.Component {
       $(`#${clickType}_page`).css({ display: 'inline-block' });
       $('#carousel').css({ display: 'none' });
       $('#footer').css({ display: 'none' });
+      $('#bannerBox').css({ display: 'none' });
     } else {
       $(`#${parent}`).css({ display: 'none' });
       $('#carousel').css({ display: 'inline-block' });
       $('#footer').css({ display: 'flex' });
+      $('#bannerBox').css({ display: 'flex' });
     }
 
   }
