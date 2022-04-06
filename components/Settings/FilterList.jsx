@@ -5,15 +5,15 @@ const FilterList = (props) => {
   return (
     <div>
       <span>
-        <input type="checkbox" />
+        <input type='checkbox' />
         no ads
       </span>
       <span>
-        <input type="checkbox" />
+        <input type='checkbox' />
         free
       </span>
       <span>
-        <input type="checkbox" />
+        <input type='checkbox' />
         monthly subscription
       </span>
     </div>
