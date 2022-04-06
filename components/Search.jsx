@@ -35,12 +35,12 @@ class Search extends React.Component {
       let {text} = this.state;
       return (
         <div id="search">
-          <div id="searchBox">
+          <div id="search-box">
             <input type="text" placeholder="Search for a movie or TV show"
               value={this.state.text}
               onChange={(text) => this.setState({text})}
-              id="searchInput"></input>
-              <button title="search" onClick={this.search} id="searchButton">Search</button>
+              id="search-input"></input>
+              <button title="search" onClick={this.search} id="search-button">Search</button>
           </div>
         </div>
       );

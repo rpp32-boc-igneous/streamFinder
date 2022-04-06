@@ -44,7 +44,7 @@ PAGE LAYOUT
 /////////////////////////////////////
 */
 
-#loginButton {
+#login-button {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -55,7 +55,7 @@ PAGE LAYOUT
   font-family: "Avenir";
 }
 
-#loginButton:hover {
+#login-button:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
@@ -66,7 +66,7 @@ PAGE LAYOUT
   justify-content: space-between;
 }
 
-#bannerBox {
+#banner-box {
   display: flex;
   justify-content: space-around;
   margin-right: 13%;
@@ -84,7 +84,7 @@ PAGE LAYOUT
   margin-top: 4%;
 }
 
-.footerButton {
+.footer-button {
   display: inline-block;
   width: 5%;
   height: 2%;
@@ -92,7 +92,7 @@ PAGE LAYOUT
   margin: 0 15%;
 }
 
-.footerButton:hover {
+.footer-button:hover {
   color: rgba(255, 255, 50, 0.9);
   cursor: pointer;
 }
@@ -108,7 +108,7 @@ LOGIN
 /////////////////////////////////////
 */
 
-#Login_page {
+#Login-page {
   display: none;
   position: fixed;
   left: 50%;
@@ -129,7 +129,7 @@ SIGNUP
 /////////////////////////////////////
 */
 
-#Signup_page {
+#Signup-page {
   display: none;
   position: fixed;
   left: 50%;
@@ -154,7 +154,7 @@ SEARCH
   display: flex;
 }
 
-#searchInput {
+#search-input {
   display: inline-block;
   height: 35px;
   width: 200px;
@@ -164,7 +164,7 @@ SEARCH
   font-family: "Avenir";
 }
 
-#searchButton {
+#search-button {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -175,7 +175,7 @@ SEARCH
   font-family: "Avenir";
 }
 
-#searchButton:hover {
+#search-button:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
@@ -261,7 +261,7 @@ CAROUSEL
 }
 
 
-#swiperBox {
+#swiper-box {
   display: inline-block;
   height: 400px;
   width: 500px;
@@ -304,7 +304,7 @@ CAROUSEL
   margin: 0 0 30% 5px;
 }
 
-#displayIndex {
+#display-index {
   color: rgba(255, 255, 255, 1);
   z-index: 3;
 }
@@ -338,7 +338,7 @@ VIDEO CARDS
 /////////////////////////////////////
 */
 
-.videoCard {
+.video-card {
   display: inline-block;
   height: 97%;
   width: 97%;
@@ -360,7 +360,7 @@ WATCHLIST
 /////////////////////////////////////
 */
 
-#Watchlist_page {
+#Watchlist-page {
   display: none;
   position: fixed;
   left: 50%;
@@ -384,7 +384,7 @@ USER SETTINGS
   display: none;
 }
 
-#Settings_page {
+#Settings-page {
   display: none;
   position: fixed;
   left: 50%;

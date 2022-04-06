@@ -53,7 +53,7 @@ class App extends React.Component {
     var clickClass = e.target.className;
 
     if (clickClass !== 'home') {
-      $(`#${clickType}_page`).css({ display: 'inline-block' });
+      $(`#${clickType}-page`).css({ display: 'inline-block' });
       $('#carousel').css({ display: 'none' });
       $('#footer').css({ display: 'none' });
       $('#bannerBox').css({ display: 'none' });
@@ -71,11 +71,11 @@ class App extends React.Component {
     return (
       <div>
         <div id='header'>
-          <button id='loginButton' onClick={this.showModal}>Login</button>
+          <button id='login-button' onClick={this.showModal}>Login</button>
           <Search changePage={this.showModal} cb={this.updateSearchResults} />
         </div>
 
-        <div id='bannerBox'>
+        <div id='banner-box'>
           <img src={banner} id='banner'></img>
         </div>
 
@@ -83,22 +83,22 @@ class App extends React.Component {
 
           <Carousel searchResults={this.state.searchResults} trending={this.state.trending} />
 
-          <div id='Login_page'>
+          <div id='Login-page'>
             <Login_Signup />
             <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
-          <div id='Signup_page'>
+          <div id='Signup-page'>
             <Signup />
             <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
-          <div id='Watchlist_page'>
+          <div id='Watchlist-page'>
             <Watchlist />
             <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
 
-          <div id='Settings_page'>
+          <div id='Settings-page'>
             <Settings />
             <img src={SFicon} onClick={this.showModal} className='home'></img>
           </div>
@@ -106,11 +106,11 @@ class App extends React.Component {
         </div>
 
         <div id='footer'>
-          <div id='trendingButton' className='footerButton'>Trending</div>
+          <div id='trending-button' className='footer-button'>Trending</div>
           <div className='divider'>|</div>
-          <div id='watchlistButton' className='footerButton' onClick={this.showModal}>Watchlist</div>
+          <div id='watchlist-button' className='footer-button' onClick={this.showModal}>Watchlist</div>
           <div className='divider' >|</div>
-          <div id='settingsButton' className='footerButton' onClick={this.showModal}>Settings</div>
+          <div id='settings-button' className='footer-button' onClick={this.showModal}>Settings</div>
         </div>
       </div>
     )

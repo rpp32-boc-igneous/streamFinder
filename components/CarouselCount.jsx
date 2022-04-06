@@ -2,7 +2,7 @@ import React from 'react';
 
 var CarouselCount = (props) => {
   return (
-    <div id="displayIndex">Showing {props.index} out of {props.length} results</div>
+    <div id="display-index">Showing {props.index} out of {props.length} results</div>
   )
 }
 
