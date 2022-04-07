@@ -44,7 +44,7 @@ PAGE LAYOUT
 /////////////////////////////////////
 */
 
-#loginButton {
+#login-button {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -55,7 +55,7 @@ PAGE LAYOUT
   font-family: "Avenir";
 }
 
-#loginButton:hover {
+#login-button:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
@@ -66,7 +66,7 @@ PAGE LAYOUT
   justify-content: space-between;
 }
 
-#bannerBox {
+#banner-box {
   display: flex;
   justify-content: space-around;
   margin-right: 13%;
@@ -84,7 +84,7 @@ PAGE LAYOUT
   margin-top: 4%;
 }
 
-.footerButton {
+.footer-button {
   display: inline-block;
   width: 5%;
   height: 2%;
@@ -92,7 +92,7 @@ PAGE LAYOUT
   margin: 0 15%;
 }
 
-.footerButton:hover {
+.footer-button:hover {
   color: rgba(255, 255, 50, 0.9);
   cursor: pointer;
 }
@@ -108,7 +108,7 @@ LOGIN
 /////////////////////////////////////
 */
 
-#Login_page {
+#Login-page {
   display: none;
   position: fixed;
   left: 50%;
@@ -129,7 +129,7 @@ SIGNUP
 /////////////////////////////////////
 */
 
-#Signup_page {
+#Signup-page {
   display: none;
   position: fixed;
   left: 50%;
@@ -154,7 +154,7 @@ SEARCH
   display: flex;
 }
 
-#searchInput {
+#search-input {
   display: inline-block;
   height: 35px;
   width: 200px;
@@ -164,7 +164,7 @@ SEARCH
   font-family: "Avenir";
 }
 
-#searchButton {
+#search-button {
   display: inline-block;
   height: 40px;
   width: 60px;
@@ -175,7 +175,7 @@ SEARCH
   font-family: "Avenir";
 }
 
-#searchButton:hover {
+#search-button:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 0, 0.9);
   color: rgba(0, 0, 0, 1);
@@ -232,19 +232,105 @@ CAROUSEL
 */
 
 #carousel {
-  background-color: rgba(255, 255, 255, 0.7);
+  /* background-color: rgba(255, 255, 255, 0.7); */
   display: inline-block;
-  height: 400px;
+  /* height: 400px;
   width: 70%;
   border: 2px solid rgba(255, 255, 100, 0.6);
   border-radius: 10px;
   text-align: center;
-  align-content: center;
+  align-content: center; */
 }
 
 #carouselTitle {
   margin: 100px;
 }
+
+.slide-image {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#swiper-box {
+  display: inline-block;
+  height: 400px;
+  width: 500px;
+}
+
+.swiper-container {
+  height: 95%;
+}
+
+.swiper-pagination {
+  width: 200px;
+  height: 20px;
+  color: rgba(0, 0, 0, 1);
+  display: flex;
+  /* background-color: white; */
+}
+
+.swiper-pagination-bullet {
+  width: 5px;
+  height: 5px;
+  color: white;
+  border: 1px solid white;
+}
+
+.swiper-pagination-bullet:active {
+  width: 10px;
+  height: 10px;
+}
+
+.swiper-button-prev {
+  color: white;
+  height: 40px;
+  transform: scaleX(-1);
+  margin: 0 5px 30% 0;
+}
+
+.swiper-button-next {
+  color: white;
+  height: 40px;
+  margin: 0 0 30% 5px;
+}
+
+#display-index {
+  color: rgba(255, 255, 255, 1);
+  z-index: 3;
+}
+
+@keyframes glowing {
+
+  0% {
+    box-shadow: 0 0 5px #fcf003;
+  }
+  50% {
+    box-shadow: 0 0 20px #fcf003;
+  }
+  100% {
+    box-shadow: 0 0 5px #fcf003;
+  }
+
+}
+
+.swiper-button-prev:active {
+  animation: glowing 800ms infinite;
+}
+
+.swiper-button-next:active {
+  animation: glowing 500ms infinite;
+}
+
 
 /*
 /////////////////////////////////////
@@ -252,13 +338,29 @@ VIDEO CARDS
 /////////////////////////////////////
 */
 
+.video-card {
+  display: inline-block;
+  height: 97%;
+  width: 97%;
+  color: white;
+  border: 1px solid rgba(255, 255, 0, 0.7);
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin-left: 6px;
+}
+
+.swiper-slide {
+  height: 80%;
+}
+
+
 /*
 /////////////////////////////////////
 WATCHLIST
 /////////////////////////////////////
 */
 
-#Watchlist_page {
+#Watchlist-page {
   display: none;
   position: fixed;
   left: 50%;
@@ -282,7 +384,7 @@ USER SETTINGS
   display: none;
 }
 
-#Settings_page {
+#Settings-page {
   display: none;
   position: fixed;
   left: 50%;
