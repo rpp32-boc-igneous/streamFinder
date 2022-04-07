@@ -8,7 +8,6 @@ mongoose.connect(`mongodb://localhost/streamFinder`, { useUnifiedTopology: true,
   } else {
     console.log('db connection success');
   }
-
 });
 
 //based on Watchmode Title Details API
@@ -29,9 +28,6 @@ const titleSchema = new mongoose.Schema({
   similar_titles: Array,
   sources: Array,
 });
-
-
-
 
 
 
