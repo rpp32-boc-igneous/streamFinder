@@ -2,10 +2,10 @@ import React from 'react';
 import $ from 'jquery';
 
 // Components
-import Login_Signup from '../components/Login_Signup.jsx';
+import Login_Signup from '../components/Login_Signup/Login_Signup.jsx';
 import Search from '../components/Search.jsx';
 import Carousel from '../components/Carousel.jsx';
-import Signup from '../components/Signup.jsx';
+import Signup from '../components/Login_Signup/Signup.jsx';
 import Watchlist from '../components/Watchlist.jsx';
 import Settings from '../components/Settings/Settings.jsx';
 
