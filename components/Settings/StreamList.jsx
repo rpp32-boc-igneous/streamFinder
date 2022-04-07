@@ -1,24 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import $ from 'jquery';
 import Stream from './Stream.jsx';
 import { IoAdd } from 'react-icons/io5';
 
 const StreamList = (props) => {
+
+  const openStore = () => {
+    $('#account').addClass('hide');
+    $('#store').removeClass('hide');
+  }
+
   return (
     <div className='streamList'>
       <h1 id='streamTitle'>Streams</h1>
-      <IoAdd className='add' />
+      <IoAdd className='add' onClick={openStore}/>
       <div id='streamContainer'>
-        <input className='box' type='checkbox' name='Netflix' />
+        <input className='checkbox' type='checkbox' name='Netflix' />
         Netflix
-        <input className='box' type='checkbox' name='Prime' />
+        <input className='checkbox' type='checkbox' name='Prime' />
         Prime
-        <input className='box' type='checkbox' name='Hulu' />
+        <input className='checkbox' type='checkbox' name='Hulu' />
         Hulu
-        <input className='box' type='checkbox' name='HBOmax' />
+        <input className='checkbox' type='checkbox' name='HBOmax' />
         HBOmax
-        <input className='box' type='checkbox' name='Vudu' />
+        <input className='checkbox' type='checkbox' name='Vudu' />
         Vudu
-        <input className='box' type='checkbox' name='Disney+' />
+        <input className='checkbox' type='checkbox' name='Disney+' />
         Disney+
       </div>
     </div>

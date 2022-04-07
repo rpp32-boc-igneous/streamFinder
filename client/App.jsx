@@ -116,10 +116,8 @@ class App extends React.Component {
     )
 
   }
-
 }
 
 export default App;
-
 
 //<div id="banner">StreamFinder</div>

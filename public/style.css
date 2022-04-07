@@ -221,7 +221,6 @@ SEARCH
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
-
   }
 }); */
 
@@ -399,7 +398,7 @@ USER SETTINGS
   color: rgba(255, 255, 255, 1);
 }
 
-#close {
+.close {
   color: rgba(255, 255, 255, 1);
   position: absolute;
   top: 1rem;
@@ -416,7 +415,6 @@ USER SETTINGS
   background-color: rgb(199, 199, 199);
   border: 1px solid black;
   border-radius: 12px;
-  /* color: rgba(255, 255, 255, 1); */
   font-family: "Avenir";
   font-weight: 500;
 }
@@ -463,12 +461,130 @@ table {
   margin: 0 auto;
 }
 
-.box {
+.checkbox {
   margin-left: 1rem;
 }
 
-.box[type="checkbox"]:checked {
+.checkbox[type="checkbox"]:checked {
   accent-color: green;
+}
+
+ #filterList {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
+}
+
+#streamSearch {
+  position: absolute;
+  top: 3rem;
+  right: 3%;
+}
+
+#searchBox {
+  color:rgb(199, 199, 199);
+  padding-left: 0.5rem;
+  border: 0;
+  border-bottom: 0.5px solid rgba(255, 255, 0, 0.9);
+  outline: 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+#searchBox::placeholder {
+  color: rgb(255, 255, 255);
+  opacity: 0.75;
+}
+
+#searchBox:hover::placeholder {
+  color: black;
+  opacity: 0.8;
+}
+
+#searchBox:hover {
+  background-color: #c4c4c4;
+  color: black;
+}
+
+#searchButton {
+  color: rgba(255, 255, 0, 0.6);
+  font-weight:lighter;
+  padding-left: 4px;
+  transition: .2s transform ease-in-out;
+}
+
+#searchButton:hover {
+  color: rgb(255, 255, 81);
+  filter: blur(0.5px);
+  transform: translate(0, 2px);
+}
+
+#streamGrid {
+  margin: 40px auto;
+  padding: 10px;
+  height: 275px;
+  max-width: 500px;
+  border: 0.5px solid rgba(255, 255, 0, 0.9);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  justify-items: center;
+  grid-gap: 0.5rem;
+  overflow: hidden;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: start;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0.5rem;
+}
+
+.stream {
+  border: 0.5px solid rgba(255, 255, 255, 0.7);
+  padding: 0.2rem;
+  height: 80px;
+  width: 67px;
+}
+
+.addStream {
+  float: right;
+  color: rgba(255, 255, 0, 0.9);
+  font-size: 0.85rem;
+}
+
+.streamImg {
+  height: 50px;
+  width: 50px;
+  float: left;
+}
+
+.streamInfo {
+  font-size: 0.3rem;
+  line-height: .5rem;
+  clear: both;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+#pages {
+  position: absolute;
+  left: 45%;
+  bottom: 2%;
+  font-size: 0.65rem;
+}
+
+#store {
+  padding: 50px 10px;
+  height: 100%;
+  overflow: hidden;
 }
 
 /*
