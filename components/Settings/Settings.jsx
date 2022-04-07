@@ -18,9 +18,10 @@ class Settings extends React.Component {
   }
 
   close = () => {
-    $('#Settings_page').css({ display: 'none' })
+    $(`#Settings-page`).css({ display: 'none' });
     $('#carousel').css({ display: 'inline-block' });
     $('#footer').css({ display: 'flex' });
+    $('#banner-box').css({ display: 'flex' });
   }
 
   render() {
