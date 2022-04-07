@@ -368,40 +368,64 @@ table {
   accent-color: green;
 }
 
-#filterList {
-  float: left;
+ #filterList {
+  position: absolute;
+  top: 3rem;
+  left: 1rem;
 }
 
 #streamSearch {
-  float: right;
+  position: absolute;
+  top: 3rem;
+  right: 3%;
 }
 
 #streamGrid {
-  margin: 3rem 0;
-  padding: 3%;
+  margin: 40px auto;
+  padding: 10px;
+  height: 275px;
+  max-width: 500px;
+  border: 0.5px solid rgba(255, 255, 0, 0.9);
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  justify-items: center;
+  /* justify-content: space-evenly; */
+  grid-gap: 0.5rem;
+  overflow: hidden;
+}
+
+.flex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  align-items: start;
   flex-wrap: wrap;
   gap: 0.5rem;
-  border: 0.5px solid rgba(255, 255, 0, 0.9);
-  overflow: hidden;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 0.5rem;
 }
 
 .stream {
   border: 0.5px solid rgba(255, 255, 255, 0.7);
-  padding: 0.5rem;
+  padding: 0.2rem;
+  height: 80px;
+  width: 67px;
 }
 
 .addStream {
   float: right;
   color: rgba(255, 255, 0, 0.9);
+  font-size: 0.85rem;
 }
 
 .streamImg {
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   float: left;
-  /* margin: 0.2rem 0; */
 }
 
 .streamInfo {
@@ -412,13 +436,17 @@ table {
   vertical-align: bottom;
 }
 
-#store {
-  padding: 7%;
+#pages {
+  position: absolute;
+  left: 45%;
+  bottom: 2%;
+  font-size: 0.65rem;
 }
 
-#store:after {
-  clear: both;
+#store {
+  padding: 50px 10px;
   height: 100%;
+  overflow: hidden;
 }
 
 /*

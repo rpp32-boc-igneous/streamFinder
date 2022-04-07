@@ -12,7 +12,7 @@ class Settings extends React.Component {
       streams: [
         'stream1', 'stream2', 'stream3', 'stream4', 'stream5', 'stream6',
         'stream7', 'stream8', 'stream9', 'stream10', 'stream11', 'stream12',
-        'stream13', 'stream14', 'stream15'
+        'stream13', 'stream14', 'stream15', 'stream16', 'stream17', 'stream18'
       ]
     };
   }

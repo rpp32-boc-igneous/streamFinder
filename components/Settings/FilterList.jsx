@@ -12,10 +12,6 @@ const FilterList = (props) => {
         <input className='checkbox' type='checkbox' />
         free
       </span>
-      <span>
-        <input className='checkbox' type='checkbox' />
-        monthly subscription
-      </span>
     </div>
   );
 };

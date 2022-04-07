@@ -17,11 +17,12 @@ const StreamStore = (props) => {
       <span onClick={closeStore}><AiOutlineClose class='close'/></span>
       <FilterList />
       <StreamSearch />
-      <div id='streamGrid'>
+      <div id='streamGrid' className='grid'>
       {props.streams.map((stream, i) => (
         <Stream key={i} name={stream}/>
       ))}
         </div>
+        <div id='pages'>1 2 3 4 ></div>
     </div>
   );
 };
