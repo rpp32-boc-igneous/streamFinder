@@ -5,6 +5,8 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
+const { getTitleIds, getTitleDetails, getRelated } = require('./apiMethods/search.js');
+
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'))
@@ -13,9 +15,51 @@ app.listen(port, () => {
   console.log('listening on port ', port);
 });
 
-app.get('/search', (req, res) => {
-  console.log('get request search button');
-  res.send('get request search button');
+
+
+///////////////////////
+// Search
+///////////////////////
+
+// given an title string from the search component, this sends back all title detail objects
+app.post('/search', (req, res) => {
+  var searchTerm = req.body.query;
+  getTitleIds(searchTerm)
+  .then(ids => getTitleDetails(ids))
+  .then(data => {
+    res.send(data)
+  })
+  .catch(err => {
+    console.log('error retrieving search results => ', err)
+  });
 });
+
+app.post('/related', (req, res) => {
+  var id = req.body.query;
+  getRelated(id)
+  .then(data => res.send(data));
+});
+
+
+
+///////////////////////
+// Login / Signup
+///////////////////////
+
+app.get('/login', (req, res) => {})
+app.get('/signup', (req, res) => {})
+
+
+
+///////////////////////
+// Watchlist
+///////////////////////
+
+
+
+///////////////////////
+// Settings
+///////////////////////
+
 
 

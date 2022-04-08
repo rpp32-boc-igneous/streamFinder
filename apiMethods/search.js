@@ -3,42 +3,58 @@ const key = process.env.API_KEY;
 const axios = require('axios');
 const Promise = require('bluebird');
 
-var getTitleId = (string) => {
+
+// uses query string to retrieve available titles from API
+var getTitleIds = (string) => {
   return new Promise((resolve, reject) => {
-    if (err) {
-      reject('error retrieving title id')
-    }
-    resolve(axios.get(`https://api.watchmode.com/v1/search/?apiKey=${key}&search_field=name&search_value=${string}`))
-  }).then(data => data.title_results.id).catch(err => {
-    console.log('error retrieving title id', err);
+      resolve(axios.get(`https://api.watchmode.com/v1/search/?apiKey=${key}&search_field=name&search_value=${string}`))
+  }).then(res => {
+    let results = res.data.title_results;
+    let ids = results.map(obj => obj.id);
+    return ids;
   });
 }
 
-var getTitleDetail = (id) => {
-  return new Promise((resolve, reject) => {
-    resolve(axios.get(`https://api.watchmode.com/v1/title/${id}/details/?apiKey=${key}&append_to_response=sources`))
-  }).catch(err => {
-    console.log('error retrieving title detail', err);
+
+// uses array of ids to gather all title detail objects from API
+var getTitleDetails = (ids) => {
+
+  var promises = [];
+
+  for (let i = 0; i < ids.length; i++) {
+    var id = Number(ids[i]);
+    promises.push(new Promise((resolve, reject) => {
+      resolve(axios.get(`https://api.watchmode.com/v1/title/${id}/details/?apiKey=${key}&append_to_response=sources`))
+    }))
+  }
+
+  return Promise.all(promises).then(data => data.map(obj => obj.data)).catch(err => {
+    console.log('error completing all promises for related titles')
   })
+
 }
 
-var getRelated = (array) => {
+
+// uses id to retrieve all related title detail objects
+var getRelated = (id) => {
+
   var promises = [];
+
   for (let i = 0; i < array.length; i++) {
     var id = Number(array[i]);
     promises.push(new Promise((resolve, reject) => {
       resolve(axios.get(`https://api.watchmode.com/v1/title/${id}/details/?apiKey=${key}&append_to_response=sources`))
-    })).catch(err => {
-      console.log(`error retrieving related using id#${id}`, err);
-    })
+    }));
   }
-  return Promise.all(promises).then(data => data).catch(err => {
+
+  return Promise.all(promises).then(data => data.map(obj => obj.data)).catch(err => {
     console.log('error completing all promises for related titles')
   })
 }
 
-var search = () =>
 
 module.exports = {
-  searchTitle: searchTitle
+  getTitleIds: getTitleIds,
+  getTitleDetails: getTitleDetails,
+  getRelated: getRelated
 }
