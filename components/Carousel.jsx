@@ -90,7 +90,6 @@ class Carousel extends React.Component {
     return (
       <div id='carousel'>
         <div id='carousel-box'>
-          <CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
           <img src={arrow} className='swiper-button-prev' onClick={this.updateIndex} id='left'></img>
           <div id='swiper-box'>
             <Swiper
@@ -126,6 +125,7 @@ class Carousel extends React.Component {
 
 export default Carousel;
 
+//<CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
 
 // pagination={{
 //   clickable: true,
