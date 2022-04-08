@@ -1,5 +1,3 @@
-
-
 // Format object for DB record creation
 
 var formatTitleObj = (obj) => {
@@ -22,6 +20,29 @@ var formatTitleObj = (obj) => {
   }
 }
 
+
+// Format object for DB record creation
+
+var formatUserObj = (obj) => {
+  return {
+    'user_name': obj.user_name,
+    'email': obj.email,
+    'watch_list': {
+      'movies': obj.watch_list.movies,
+      'shows': obj.watch_list.shows
+    },
+    watch_history: {
+      'movies': obj.watch_history.movies,
+      'shows': obj.watch_history.shows
+    }
+  }
+}
+
+
+
 module.exports = {
-  formatTitleObj: formatTitleObj
+
+  formatTitleObj: formatTitleObj,
+  formatUserObj: formatUserObj
+
 }

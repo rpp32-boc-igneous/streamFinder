@@ -6,6 +6,7 @@ const path = require('path');
 const port = 3000;
 
 const { getTitleIds, getTitleDetails, getRelated } = require('./apiMethods/search.js');
+const { insertTitle, insertUser } = require('./database/dbMethods.js');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -34,6 +35,8 @@ app.post('/search', (req, res) => {
   });
 });
 
+
+// given an id, this sends back all related title detail objects
 app.post('/related', (req, res) => {
   var id = req.body.query;
   getRelated(id)
@@ -47,7 +50,17 @@ app.post('/related', (req, res) => {
 ///////////////////////
 
 app.get('/login', (req, res) => {})
-app.get('/signup', (req, res) => {})
+
+app.get('/signup', (req, res) => {
+  var user = req.body.user;
+  insertUser(user)
+  .then(data => {
+    console.log('user creation success')
+    res.send(data);
+  })
+})
+
+
 
 
 
@@ -55,6 +68,9 @@ app.get('/signup', (req, res) => {})
 // Watchlist
 ///////////////////////
 
+app.get('/watchlist/:userID', (req, res) => {
+
+})
 
 
 ///////////////////////

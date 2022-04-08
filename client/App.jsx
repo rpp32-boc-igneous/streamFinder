@@ -25,6 +25,9 @@ class App extends React.Component {
     this.state = {
       searchResults: null,
       trending: null,
+      user: {},
+      watch_list: [],
+      watch_history: []
     }
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.loadTrending = this.loadTrending.bind(this);

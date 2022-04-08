@@ -94,8 +94,8 @@ class Carousel extends React.Component {
           <img src={arrow} className='swiper-button-prev' onClick={this.updateIndex} id='left'></img>
           <div id='swiper-box'>
             <Swiper
-              spaceBetween={50}
-              slidesPerView={1}
+              spaceBetween={5}
+              slidesPerView={4}
               speed={500}
               loop='true'
               navigation={{

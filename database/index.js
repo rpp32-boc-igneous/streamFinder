@@ -1,4 +1,5 @@
 require('dotenv').config();
+// db key for future deployment db security (non-localhost in connection string)
 const key = process.env.DB_KEY;
 const mongoose = require('mongoose');
 
@@ -30,12 +31,30 @@ const titleSchema = new mongoose.Schema({
 });
 
 
+// not sure if user settings will be a part of this - if so, will refactor
+const userSchema = new mongoose.Schema({
+  user_name: String,
+  email: String,
+  watch_list: {
+    movies: Array,
+    shows: Array
+  },
+  watch_history: {
+    movies: Array,
+    shows: Array
+  }
+});
+
 
 
 const Title = mongoose.model('Title', titleSchema);
+const User = mongoose.model('User', userSchema);
+
+
 
 module.exports = {
 
-  Title: Title
+  Title: Title,
+  User: User
 
 }
