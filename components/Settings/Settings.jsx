@@ -15,12 +15,12 @@ class Settings extends React.Component {
         'stream13', 'stream14', 'stream15', 'stream16', 'stream17', 'stream18'
       ],
       streams: [
-        {name: 'Netflix', subbed: true, default: true},
-        {name:'Prime', subbed: false, default: true},
-        {name:'Hulu', subbed: false, default: true},
-        {name:'HBOmax', subbed: false, default: true},
-        {name:'Vudu', subbed: false, default: true},
-        {name:'Disney', subbed: false, default: true}
+        {name: 'Netflix', subbed: true},
+        {name:'Prime', subbed: false},
+        {name:'Hulu', subbed: false},
+        {name:'HBOmax', subbed: false},
+        {name:'Vudu', subbed: false},
+        {name:'Disney', subbed: false}
       ]
     };
   }
@@ -33,15 +33,10 @@ class Settings extends React.Component {
   }
 
   addStream = (name) => {
-    console.log($(`#check-${name}`));
     let index = this.state.streams.findIndex(stream => stream.name === name);
     if (index < 0) {
-      $(`#store-${name}`).addClass('subscribed');
-      $(`#sub-${name}`).addClass('hide');
-      $(`#unsub-${name}`).removeClass('hide');
-      console.log(`${name} not on list`);
       this.setState( state => (
-        { streams: [...state.streams, {name: name, subbed: true, default: false}]}
+        { streams: [...state.streams, {name: name, subbed: true}]}
       ));
     }
   }
@@ -51,11 +46,11 @@ class Settings extends React.Component {
     if (index >= 0) {
       let newStreams = this.state.streams;
       newStreams.splice(index, 1);
+      this.setState({streams: newStreams});
+      $(`#remove-${name}`).addClass('hide');
       $(`#store-${name}`).removeClass('subscribed');
       $(`#sub-${name}`).removeClass('hide');
       $(`#unsub-${name}`).addClass('hide');
-      this.setState({streams: newStreams});
-      $(`#remove-${name}`).addClass('hide');
     }
   }
 
