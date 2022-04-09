@@ -9,35 +9,35 @@ const Stream = (props) => {
       $(id).addClass('hide')
   };
 
-  const changeCheck = () => {
-    if ($(`#store-${props.stream}`).hasClass('subscribed')) {
-      $(`#store-${props.stream}`).removeClass('subscribed')
-    } else {
-      $(`#store-${props.stream}`).addClass('subscribed')
-    }
+  // const changeCheck = () => {
+  //   if ($(`#store-${props.stream}`).hasClass('subscribed')) {
+  //     $(`#store-${props.stream}`).removeClass('subscribed')
+  //   } else {
+  //     $(`#store-${props.stream}`).addClass('subscribed')
+  //   }
 
-    if ( $(`#sub-${props.stream}`).hasClass('hide')) {
-      $(`#sub-${props.stream}`).removeClass('hide');
-    } else {
-      $(`#sub-${props.stream}`).addClass('hide');
-    }
+  //   if ( $(`#sub-${props.stream}`).hasClass('hide')) {
+  //     $(`#sub-${props.stream}`).removeClass('hide');
+  //   } else {
+  //     $(`#sub-${props.stream}`).addClass('hide');
+  //   }
 
-    if ($(`#unsub-${props.stream}`).hasClass('hide')) {
-      $(`#unsub-${props.stream}`).removeClass('hide');
-    } else {
-      $(`#unsub-${props.stream}`).addClass('hide');
-    }
-
-  }
+  //   if ($(`#unsub-${props.stream}`).hasClass('hide')) {
+  //     $(`#unsub-${props.stream}`).removeClass('hide');
+  //   } else {
+  //     $(`#unsub-${props.stream}`).addClass('hide');
+  //   }
+  // }
 
   return (
     <div style={{display: 'inline-block'}}>
         <input
           className='checkbox'
+          id={`check-${props.stream}`}
           type='checkbox'
           name={props.stream}
-          defaultChecked={props.subbed}
-          onChange={() => changeCheck()}
+          checked={!props.default}
+          // onChange={() => changeCheck()}
         />
         <span
           className='streamLabel'
