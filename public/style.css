@@ -160,7 +160,7 @@ SEARCH
   width: 200px;
   border: 1px solid black;
   border-radius: 10px 0 0 10px;
-  color: rgba(255, 255, 255, 1);
+  color: black;
   font-family: "Avenir";
 }
 
@@ -263,7 +263,7 @@ CAROUSEL
 #swiper-box {
   display: inline-block;
   height: 400px;
-  width: 500px;
+  width: 700px;
 }
 
 .swiper-container {
@@ -343,9 +343,9 @@ VIDEO CARDS
   width: 97%;
   color: white;
   border: 1px solid rgba(255, 255, 0, 0.7);
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: rgba(255, 255, 255, 0.2);
-  margin-left: 6px;
+  margin-left: 2px;
 }
 
 .swiper-slide {
