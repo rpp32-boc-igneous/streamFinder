@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import { AiOutlineClose } from 'react-icons/ai';
 import FilterList from './FilterList.jsx';
-import Stream from './Stream.jsx';
+import StreamCard from './StreamCard.jsx';
 import StreamSearch from './StreamSearch.jsx';
 
 const StreamStore = (props) => {
-
   const closeStore = () => {
     $('#store').addClass('hide');
     $('#account').removeClass('hide');
@@ -18,11 +17,16 @@ const StreamStore = (props) => {
       <FilterList />
       <StreamSearch />
       <div id='streamGrid' className='grid'>
-      {props.streams.map((stream, i) => (
-        <Stream key={i} name={stream}/>
-      ))}
-        </div>
-        <div id='pages'>1 2 3 4 ></div>
+        {props.streams.map((stream, i) => (
+          <StreamCard
+            key={i}
+            name={stream}
+            addStream={props.addStream}
+            removeStream={props.removeStream}
+          />
+        ))}
+      </div>
+      <div id='pages'>1 2 3 4 ></div>
     </div>
   );
 };
