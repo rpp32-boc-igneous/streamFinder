@@ -33,7 +33,6 @@ const StreamList = (props) => {
          key={i}
          stream={stream.name}
          subbed={stream.subbed}
-         default={stream.default}
          removeStream={props.removeStream}
          />
         ))}

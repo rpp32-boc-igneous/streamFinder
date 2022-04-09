@@ -9,6 +9,9 @@ const StreamCard = (props) => {
   const streamSub = () => {
     if(!$(`#store-${props.name}`).hasClass('subscribed')) {
       props.addStream(props.name);
+      $(`#store-${props.name}`).addClass('subscribed');
+      $(`#sub-${props.name}`).addClass('hide');
+      $(`#unsub-${props.name}`).removeClass('hide');
     } else {
       props.removeStream(props.name);
     }
