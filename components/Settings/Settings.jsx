@@ -9,10 +9,18 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      streams: [
+      streamCards: [
         'stream1', 'stream2', 'stream3', 'stream4', 'stream5', 'stream6',
         'stream7', 'stream8', 'stream9', 'stream10', 'stream11', 'stream12',
         'stream13', 'stream14', 'stream15', 'stream16', 'stream17', 'stream18'
+      ],
+      streams: [
+        {name: 'Netflix', subbed: true},
+        {name:'Prime', subbed: false},
+        {name:'Hulu', subbed: false},
+        {name:'HBOmax', subbed: false},
+        {name:'Vudu', subbed: false},
+        {name:'Disney', subbed: false}
       ]
     };
   }
@@ -24,6 +32,28 @@ class Settings extends React.Component {
     $('#banner-box').css({ display: 'flex' });
   }
 
+  addStream = (name) => {
+    let index = this.state.streams.findIndex(stream => stream.name === name);
+    if (index < 0) {
+      this.setState( state => (
+        { streams: [...state.streams, {name: name, subbed: true}]}
+      ));
+    }
+  }
+
+  removeStream = (name) => {
+    let index = this.state.streams.findIndex(stream => stream.name === name);
+    if (index >= 0) {
+      let newStreams = this.state.streams;
+      newStreams.splice(index, 1);
+      this.setState({streams: newStreams});
+      $(`#remove-${name}`).addClass('hide');
+      $(`#store-${name}`).removeClass('subscribed');
+      $(`#sub-${name}`).removeClass('hide');
+      $(`#unsub-${name}`).addClass('hide');
+    }
+  }
+
   render() {
     return (
       <div>
@@ -32,9 +62,16 @@ class Settings extends React.Component {
             <h1>Account</h1>
             <UserInfo />
             <button className='button'>Sign out</button>
-            <StreamList/>
+            <StreamList
+              streams={this.state.streams}
+              removeStream={this.removeStream}
+            />
         </div>
-        <StreamStore streams={this.state.streams}/>
+        <StreamStore
+          streams={this.state.streamCards}
+          addStream={this.addStream}
+          removeStream={this.removeStream}
+        />
       </div>
     );
   }

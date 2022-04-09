@@ -1,20 +1,61 @@
-import React, { useState, useEffect } from "react";
-import { IoAdd } from 'react-icons/io5';
+import React, {Fragment} from 'react';
+import $ from 'jquery';
+import { IoRemoveSharp } from 'react-icons/io5';
 
 const Stream = (props) => {
+  const showRemove = (id) => {
+    $(id).hasClass('hide') ?
+      $(id).removeClass('hide') :
+      $(id).addClass('hide')
+  };
+
+  const changeCheck = () => {
+    if ($(`#store-${props.stream}`).hasClass('subscribed')) {
+      $(`#store-${props.stream}`).removeClass('subscribed')
+    } else {
+      $(`#store-${props.stream}`).addClass('subscribed')
+    }
+
+    if ( $(`#sub-${props.stream}`).hasClass('hide')) {
+      $(`#sub-${props.stream}`).removeClass('hide');
+    } else {
+      $(`#sub-${props.stream}`).addClass('hide');
+    }
+
+    if ($(`#unsub-${props.stream}`).hasClass('hide')) {
+      $(`#unsub-${props.stream}`).removeClass('hide');
+    } else {
+      $(`#unsub-${props.stream}`).addClass('hide');
+    }
+
+  }
+
   return (
-    <div className='stream'>
-      <IoAdd className='addStream'/>
-      <img src='https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg'
-        className='streamImg'
-      />
-      <div className='streamInfo'>
-        <div>{props.name}</div>
-        <div>watch with Ads</div>
-        <div>Free</div>
-      </div>
+    <div style={{display: 'inline-block'}}>
+        <input
+          className='checkbox'
+          type='checkbox'
+          name={props.stream}
+          defaultChecked={props.subbed}
+          onChange={() => changeCheck()}
+        />
+        <span
+          className='streamLabel'
+          id={props.stream}
+          onClick={() => showRemove(`#remove-${props.stream}`)}
+        >
+          {props.stream}
+        </span>
+        <span
+          className='remove-stream'
+          onClick={() => props.removeStream(props.stream)}>
+          <IoRemoveSharp
+            className='remove-stream hide'
+            id={`remove-${props.stream}`}
+          />
+        </span>
     </div>
-  );
-};
+  )
+}
 
 export default Stream;
