@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
+    "start": "nodemon ./server/index.js",
     "build": "webpack --watch"
   },
   "repository": {
@@ -35,6 +35,7 @@
     "express": "^4.17.3",
     "file-loader": "^6.2.0",
     "gzip": "^0.1.0",
+    "jest": "^27.5.1",
     "jquery": "^3.6.0",
     "laravel-mix": "^6.0.43",
     "mongo": "^0.1.0",

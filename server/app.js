@@ -5,16 +5,16 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
-const { getTitleIds, getTitleDetails, getRelated } = require('./apiMethods/search.js');
-const { insertTitle, insertUser } = require('./database/dbMethods.js');
+const { getTitleIds, getTitleDetails, getRelated } = require('../apiMethods/search.js');
+const { insertTitle, insertUser, updateUser } = require('../database/dbMethods.js');
 
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'))
 
-app.listen(port, () => {
-  console.log('listening on port ', port);
-});
+// app.listen(port, () => {
+//   console.log('listening on port ', port);
+// });
 
 
 
@@ -63,13 +63,19 @@ app.get('/signup', (req, res) => {
 
 
 
-
 ///////////////////////
 // Watchlist
 ///////////////////////
 
-app.get('/watchlist/:userID', (req, res) => {
-
+app.put('/update_user', (req, res) => {
+  let user = req.body.user;
+  updateUser(user)
+  .then(res => {
+    console.log('user update successful')
+  })
+  .catch(err => {
+    console.log('error updating user => ', err)
+  })
 })
 
 
@@ -79,3 +85,4 @@ app.get('/watchlist/:userID', (req, res) => {
 
 
 
+module.exports = app;
