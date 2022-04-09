@@ -9,7 +9,8 @@ module.exports = {
     filename: 'bundle.js'
   },
   devtool: 'source-map',
-  mode: 'production',
+  // mode: 'production',
+  mode: 'development',
   optimization: {
     usedExports: true
   },
