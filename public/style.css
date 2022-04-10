@@ -398,6 +398,11 @@ USER SETTINGS
   color: rgba(255, 255, 255, 1);
 }
 
+/*
+ACCOUNT
+--------------------------------------
+*/
+
 .close {
   color: rgba(255, 255, 255, 1);
   position: absolute;
@@ -405,6 +410,7 @@ USER SETTINGS
   right: 1rem;
   font-size: 1.3rem;
 }
+
 
 .userInfo {
   text-align: center;
@@ -436,13 +442,10 @@ table {
   text-align: left;
 }
 
-.add {
-  display: inline-block;
-  color: rgba(255, 255, 0, 0.9);
-  margin: 0 20px;
-  font-size: 1.5em;
-}
-
+/*
+STREAM_LIST
+--------------------------------------
+*/
 .streamList {
   border: 0.5px solid rgba(255, 255, 0, 0.9);
   text-align: left;
@@ -456,10 +459,22 @@ table {
   display: inline-block;
 }
 
+.add {
+  display: inline-block;
+  color: rgba(255, 255, 0, 0.9);
+  margin: 0 20px;
+  font-size: 1.5em;
+}
+
 #streamContainer {
   padding-top: 0.75rem;
   margin: 0 auto;
 }
+
+/*
+STREAM_CHEKBOXES
+--------------------------------------
+*/
 
 .checkbox {
   margin-left: 1rem;
@@ -468,6 +483,37 @@ table {
 .checkbox[type="checkbox"]:checked {
   accent-color: rgba(159, 252, 83, 0.9);;
 }
+
+.streamLabel {
+  position: relative;
+}
+
+.streamLabel .hover-text {
+  visibility: hidden;
+  position: absolute;
+  padding: 0.1rem 0.3rem;
+  top: 17px;
+  left: 15px;
+  font-size: 0.7rem;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.streamLabel:hover {
+  cursor: pointer;
+}
+
+.streamLabel:hover .hover-text {
+  cursor: pointer;
+  visibility: visible;
+}
+
+/*
+STREAM_STORE
+-------------------------------------
+*/
 
  #filterList {
   position: absolute;
@@ -533,20 +579,6 @@ table {
   overflow: hidden;
 }
 
-.flex {
-  display: flex;
-  justify-content: flex-start;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 0.5rem;
-}
-
 .stream {
   border: 0.5px solid rgba(255, 255, 255, 0.7);
   padding: 0.2rem;
@@ -554,20 +586,10 @@ table {
   width: 67px;
 }
 
-.remove-stream {
-  color: rgba(255, 255, 0, 0.9);
-  font-size: 0.7rem;
-  transform: translate(0, -4px);
-}
-
 .card-icon {
   float: right;
   color: rgba(255, 255, 0, 0.9);
   font-size: 0.6rem;
-}
-
-.subscribed {
-  border: 1.5px solid rgba(159, 252, 83, 0.9);
 }
 
 .stream-img {
@@ -584,6 +606,16 @@ table {
   vertical-align: bottom;
 }
 
+.remove-stream {
+  color: rgba(255, 255, 0, 0.9);
+  font-size: 0.7rem;
+  transform: translate(0, -4px);
+}
+
+.subscribed {
+  border: 1.5px solid rgba(159, 252, 83, 0.9);
+}
+
 #pages {
   position: absolute;
   left: 45%;
@@ -595,10 +627,6 @@ table {
   padding: 50px 10px;
   height: 100%;
   overflow: hidden;
-}
-
-h2 {
-  color: white;
 }
 
 /*

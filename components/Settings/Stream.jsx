@@ -9,51 +9,49 @@ const Stream = (props) => {
       $(id).addClass('hide')
   };
 
-  const changeCheck = () => {
-    if ($(`#store-${props.stream}`).hasClass('subscribed')) {
-      $(`#store-${props.stream}`).removeClass('subscribed')
-    } else {
-      $(`#store-${props.stream}`).addClass('subscribed')
-    }
+  let Checkbox;
 
-    if ( $(`#sub-${props.stream}`).hasClass('hide')) {
-      $(`#sub-${props.stream}`).removeClass('hide');
-    } else {
-      $(`#sub-${props.stream}`).addClass('hide');
-    }
-
-    if ($(`#unsub-${props.stream}`).hasClass('hide')) {
-      $(`#unsub-${props.stream}`).removeClass('hide');
-    } else {
-      $(`#unsub-${props.stream}`).addClass('hide');
-    }
-
+  if (props.default) {
+   Checkbox = (
+      <input
+          className='checkbox'
+          id={`check-${props.stream}`}
+          type='checkbox'
+          name={props.stream}
+          defaultChecked={props.subbed}
+        />
+    );
+  } else {
+   Checkbox = (
+      <input
+      className='checkbox'
+      id={`check-${props.stream}`}
+      type='checkbox'
+      name={props.stream}
+      checked='true'
+      />
+    )
   }
 
   return (
     <div style={{display: 'inline-block'}}>
-        <input
-          className='checkbox'
-          type='checkbox'
-          name={props.stream}
-          defaultChecked={props.subbed}
-          onChange={() => changeCheck()}
+      {Checkbox}
+      <span
+        className='streamLabel'
+        id={props.stream}
+        onClick={() => showRemove(`#remove-${props.stream}`)}
+      >
+        {props.stream}
+        <span className='hover-text'>Delete</span>
+      </span>
+      <span
+        className='remove-stream'
+        onClick={() => props.removeStream(props.stream)}>
+        <IoRemoveSharp
+          className='remove-stream hide'
+          id={`remove-${props.stream}`}
         />
-        <span
-          className='streamLabel'
-          id={props.stream}
-          onClick={() => showRemove(`#remove-${props.stream}`)}
-        >
-          {props.stream}
-        </span>
-        <span
-          className='remove-stream'
-          onClick={() => props.removeStream(props.stream)}>
-          <IoRemoveSharp
-            className='remove-stream hide'
-            id={`remove-${props.stream}`}
-          />
-        </span>
+      </span>
     </div>
   )
 }

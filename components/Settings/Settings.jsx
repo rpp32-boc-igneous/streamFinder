@@ -15,12 +15,12 @@ class Settings extends React.Component {
         'stream13', 'stream14', 'stream15', 'stream16', 'stream17', 'stream18'
       ],
       streams: [
-        {name: 'Netflix', subbed: true},
-        {name:'Prime', subbed: false},
-        {name:'Hulu', subbed: false},
-        {name:'HBOmax', subbed: false},
-        {name:'Vudu', subbed: false},
-        {name:'Disney', subbed: false}
+        {name: 'Netflix', subbed: false, default: true},
+        {name:'Prime', subbed: false, default: true},
+        {name:'Hulu', subbed: false, default: true},
+        {name:'HBOmax', subbed: false, default: true},
+        {name:'Vudu', subbed: false, default: true},
+        {name:'Disney', subbed: false, default: true}
       ]
     };
   }
@@ -36,7 +36,7 @@ class Settings extends React.Component {
     let index = this.state.streams.findIndex(stream => stream.name === name);
     if (index < 0) {
       this.setState( state => (
-        { streams: [...state.streams, {name: name, subbed: true}]}
+        { streams: [...state.streams, {name: name, subbed: true, default: false}]}
       ));
     }
   }
