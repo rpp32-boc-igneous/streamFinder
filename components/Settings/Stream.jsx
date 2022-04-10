@@ -37,7 +37,7 @@ const Stream = (props) => {
     <div style={{display: 'inline-block'}}>
       {Checkbox}
       <span
-        className='streamLabel'
+        className='stream-label'
         id={props.stream}
         onClick={() => showRemove(`#remove-${props.stream}`)}
       >

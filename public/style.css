@@ -410,7 +410,7 @@ ACCOUNT
 .close {
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: 1rem;
+  /* top: 0.2rem; */
   right: 1rem;
   font-size: 1.3rem;
 }
@@ -528,15 +528,16 @@ input:focus {
 STREAM_LIST
 --------------------------------------
 */
-.streamList {
+.stream-list {
   border: 0.5px solid rgba(255, 255, 0, 0.9);
   text-align: left;
   margin: 20px auto;
+  padding: 3px;
   width: 90%;
   height: 10.5rem;
 }
 
-#streamTitle {
+#stream-title {
   margin: 0.2rem 1rem;
   display: inline-block;
 }
@@ -548,7 +549,7 @@ STREAM_LIST
   font-size: 1.5em;
 }
 
-#streamContainer {
+#stream-container {
   padding-top: 0.75rem;
   margin: 0 auto;
 }
@@ -566,11 +567,11 @@ STREAM_CHECKBOXES
   accent-color: rgba(159, 252, 83, 0.9);;
 }
 
-.streamLabel {
+.stream-label {
   position: relative;
 }
 
-.streamLabel .hover-text {
+.stream-label .hover-text {
   visibility: hidden;
   position: absolute;
   padding: 0.1rem 0.3rem;
@@ -583,11 +584,11 @@ STREAM_CHECKBOXES
   z-index: 1;
 }
 
-.streamLabel:hover {
+.stream-label:hover {
   cursor: pointer;
 }
 
-.streamLabel:hover .hover-text {
+.stream-label:hover .hover-text {
   cursor: pointer;
   visibility: visible;
 }
@@ -596,6 +597,9 @@ STREAM_CHECKBOXES
 STREAM_STORE
 -------------------------------------
 */
+#close-store {
+  top: 1rem;
+}
 
  #filterList {
   position: absolute;

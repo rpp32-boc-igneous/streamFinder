@@ -33,6 +33,9 @@ class Settings extends React.Component {
     $('#banner-box').css({ display: 'flex' });
   }
 
+  // signOut = () => {
+  // }
+
   addStream = (name) => {
     let index = this.state.streams.findIndex(stream => stream.name === name);
     if (index < 0) {
@@ -62,7 +65,7 @@ class Settings extends React.Component {
           <span onClick={this.close}><AiOutlineClose class='close icon'/></span>
           <h1>Account</h1>
           <UserInfo />
-          <button className='button'>Sign out</button>
+          <button className='button' onClick={this.signOut}>Sign out</button>
           <StreamList
             streams={this.state.streams}
             removeStream={this.removeStream}
