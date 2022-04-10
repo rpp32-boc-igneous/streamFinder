@@ -3,6 +3,7 @@ import $ from 'jquery';
 import UserInfo from './UserInfo.jsx';
 import StreamList from './StreamList.jsx';
 import StreamStore from './StreamStore.jsx';
+import EditUser from './EditUser.jsx';
 import { AiOutlineClose } from 'react-icons/ai';
 
 class Settings extends React.Component {
@@ -57,16 +58,17 @@ class Settings extends React.Component {
   render() {
     return (
       <div>
-          <div id='account'>
-            <span onClick={this.close}><AiOutlineClose class='close'/></span>
-            <h1>Account</h1>
-            <UserInfo />
-            <button className='button'>Sign out</button>
-            <StreamList
-              streams={this.state.streams}
-              removeStream={this.removeStream}
-            />
+        <div id='account'>
+          <span onClick={this.close}><AiOutlineClose class='close icon'/></span>
+          <h1>Account</h1>
+          <UserInfo />
+          <button className='button'>Sign out</button>
+          <StreamList
+            streams={this.state.streams}
+            removeStream={this.removeStream}
+          />
         </div>
+        <EditUser/>
         <StreamStore
           streams={this.state.streamCards}
           addStream={this.addStream}

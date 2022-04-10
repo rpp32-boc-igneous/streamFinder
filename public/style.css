@@ -383,6 +383,10 @@ USER SETTINGS
   display: none;
 }
 
+.icon:hover {
+  cursor: pointer;
+}
+
 #Settings-page {
   display: none;
   position: fixed;
@@ -411,9 +415,23 @@ ACCOUNT
   font-size: 1.3rem;
 }
 
+#account {
+  position: relative;
+}
 
-.userInfo {
+#user-info {
   text-align: center;
+}
+
+.edit-account {
+  font-size: 0.75rem;
+  padding: 0.4rem;
+  color: rgba(255, 255, 0, 0.9);
+}
+
+.edit-account:hover {
+  transform: translate(0, -1px);
+  cursor: pointer;
 }
 
 .button {
@@ -428,18 +446,82 @@ ACCOUNT
 .button:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 0, 0.9);
+  transform: translate(0, -1px);
 }
 
 table {
   margin: 20px auto;
 }
 
-.tableField {
+.table-field {
   text-align: right;
 }
 
-.tableInput {
+.table-input {
   text-align: left;
+}
+
+/*
+EDIT_USER
+--------------------------------------
+*/
+#update-box {
+  height: 55%;
+  width: 90%;
+  max-width: 450px;
+  z-index: 2;
+  background-color: #c4c4c4;
+  color:rgba(0, 0, 0, 1);
+  position: relative;
+  margin: 50px auto;
+  padding: 7px;
+  border-radius: 4px;
+}
+
+#update-close {
+  color:rgba(0, 0, 0, 1);
+}
+
+.update-form {
+  margin: 10% auto;
+}
+
+.update-label {
+  font-family: inherit;
+  display: block;
+  margin: 5px auto;
+}
+
+.update-input {
+  margin: 7px auto;
+  width: 75%;
+  height: 1.7rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+input:focus {
+  outline: none !important;
+  border:1px solid rgba(255, 255, 0, 0.9);
+  box-shadow: 0 0 2px #dcdddf;
+}
+
+#update-btn {
+  color: rgba(255, 255, 0, 0.9);
+  background-color: rgb(62, 62, 62);
+  border: 0.5px solid rgb(62, 62, 62);
+  border-radius: 10px;
+  height: 2.5rem;
+  font: inherit;
+  padding: 5px;
+  margin: auto;
+  display: block;
+}
+
+#update-btn:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 0, 0.6);
+  color: rgb(62, 62, 62);
 }
 
 /*
@@ -472,7 +554,7 @@ STREAM_LIST
 }
 
 /*
-STREAM_CHEKBOXES
+STREAM_CHECKBOXES
 --------------------------------------
 */
 
@@ -492,7 +574,7 @@ STREAM_CHEKBOXES
   visibility: hidden;
   position: absolute;
   padding: 0.1rem 0.3rem;
-  top: 17px;
+  top: 18px;
   left: 15px;
   font-size: 0.7rem;
   color: black;

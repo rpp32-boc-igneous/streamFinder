@@ -26,7 +26,7 @@ const StreamList = (props) => {
   return (
     <div className='streamList'>
       <h1 id='streamTitle'>Streams</h1>
-      <IoAdd className='add' onClick={openStore}/>
+      <IoAdd className='add icon' onClick={openStore}/>
       <div id='streamContainer'>
         {props.streams.map((stream, i) => (
          <Stream
