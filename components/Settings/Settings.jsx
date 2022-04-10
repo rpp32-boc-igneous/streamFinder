@@ -22,7 +22,8 @@ class Settings extends React.Component {
         {name:'HBOmax', subbed: false, default: true},
         {name:'Vudu', subbed: false, default: true},
         {name:'Disney', subbed: false, default: true}
-      ]
+      ],
+      updateField: null
     };
   }
 
@@ -58,20 +59,24 @@ class Settings extends React.Component {
     }
   }
 
+  setUpdateField = (field) => {
+    this.setState({updateField: field});
+  }
+
   render() {
     return (
       <div>
         <div id='account'>
           <span onClick={this.close}><AiOutlineClose class='close icon'/></span>
           <h1>Account</h1>
-          <UserInfo />
+          <UserInfo setField={this.setUpdateField}/>
           <button className='button' onClick={this.signOut}>Sign out</button>
           <StreamList
             streams={this.state.streams}
             removeStream={this.removeStream}
           />
         </div>
-        <EditUser/>
+        <EditUser field={this.state.updateField}/>
         <StreamStore
           streams={this.state.streamCards}
           addStream={this.addStream}
