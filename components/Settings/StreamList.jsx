@@ -24,15 +24,18 @@ const StreamList = (props) => {
   }
 
   return (
-    <div className='streamList'>
-      <h1 id='streamTitle'>Streams</h1>
-      <IoAdd className='add' onClick={openStore}/>
-      <div id='streamContainer'>
+    <div className='stream-list'>
+      <div id='list-header'>
+        <h1 id='stream-title'>Streams</h1>
+        <IoAdd className='add icon' onClick={openStore}/>
+      </div>
+      <div id='stream-container'>
         {props.streams.map((stream, i) => (
          <Stream
          key={i}
          stream={stream.name}
          subbed={stream.subbed}
+         default={stream.default}
          removeStream={props.removeStream}
          />
         ))}

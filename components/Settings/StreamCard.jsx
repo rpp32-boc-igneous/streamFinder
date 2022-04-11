@@ -8,10 +8,10 @@ const StreamCard = (props) => {
 
   const streamSub = () => {
     if(!$(`#store-${props.name}`).hasClass('subscribed')) {
-      props.addStream(props.name);
       $(`#store-${props.name}`).addClass('subscribed');
       $(`#sub-${props.name}`).addClass('hide');
       $(`#unsub-${props.name}`).removeClass('hide');
+      props.addStream(props.name);
     } else {
       props.removeStream(props.name);
     }
@@ -19,10 +19,10 @@ const StreamCard = (props) => {
   }
 
   return (
-    <div className='stream' id={`store-${props.name}`}>
+    <div className='stream' id={`store-${props.name}`} onClick={() => streamSub()} >
       <span
         className='card-icon'
-        onClick={() => streamSub()}
+        // onClick={() => streamSub()}
       >
         <IoAdd className='card-icon ' id={`sub-${props.name}`}/>
         <AiOutlineClose className='card-icon hide' id={`unsub-${props.name}`}/>

@@ -383,6 +383,10 @@ USER SETTINGS
   display: none;
 }
 
+.icon:hover {
+  cursor: pointer;
+}
+
 #Settings-page {
   display: none;
   position: fixed;
@@ -398,16 +402,36 @@ USER SETTINGS
   color: rgba(255, 255, 255, 1);
 }
 
+/*
+ACCOUNT
+--------------------------------------
+*/
+
 .close {
   color: rgba(255, 255, 255, 1);
   position: absolute;
-  top: 1rem;
+  /* top: 0.2rem; */
   right: 1rem;
   font-size: 1.3rem;
 }
 
-.userInfo {
+#account {
+  position: relative;
+}
+
+#user-info {
   text-align: center;
+}
+
+.edit-account {
+  font-size: 0.75rem;
+  padding: 0.4rem;
+  color: rgba(255, 255, 0, 0.9);
+}
+
+.edit-account:hover {
+  transform: translate(0, -1px);
+  cursor: pointer;
 }
 
 .button {
@@ -416,50 +440,126 @@ USER SETTINGS
   border: 1px solid black;
   border-radius: 12px;
   font-family: "Avenir";
-  font-weight: 500;
 }
 
 .button:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 0, 0.9);
+  background-color: rgba(255, 255, 81, 0.9);
+  color: rgb(62, 62, 62);
+  font-weight: 500;
+  transform: translate(0, -1px);
 }
 
 table {
   margin: 20px auto;
 }
 
-.tableField {
+.table-field {
   text-align: right;
 }
 
-.tableInput {
+.table-input {
   text-align: left;
+}
+
+/*
+EDIT_USER
+--------------------------------------
+*/
+#update-box {
+  height: 55%;
+  width: 90%;
+  max-width: 450px;
+  z-index: 2;
+  background-color: #c4c4c4;
+  color:rgba(0, 0, 0, 1);
+  position: relative;
+  margin: 50px auto;
+  padding: 7px;
+  border-radius: 4px;
+}
+
+#update-close {
+  color:rgba(0, 0, 0, 1);
+}
+
+.update-form {
+  margin: 10% auto;
+}
+
+.update-label {
+  font-family: inherit;
+  display: block;
+  margin: 5px auto;
+}
+
+.update-input {
+  margin: 7px auto;
+  width: 75%;
+  height: 1.7rem;
+  padding: 0.5rem;
+  font-size: 1.25rem;
+}
+
+input:focus {
+  outline: none !important;
+  border:1px solid rgba(255, 255, 0, 0.9);
+  box-shadow: 0 0 2px #dcdddf;
+}
+
+#update-btn {
+  color: rgba(255, 255, 0, 0.9);
+  background-color: rgb(62, 62, 62);
+  border: 0.5px solid rgb(62, 62, 62);
+  border-radius: 10px;
+  height: 2.5rem;
+  font: inherit;
+  padding: 5px;
+  margin: auto;
+  display: block;
+}
+
+#update-btn:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 0, 0.6);
+  color: rgb(62, 62, 62);
+}
+
+/*
+STREAM_LIST
+--------------------------------------
+*/
+.stream-list {
+  border: 0.5px solid rgba(255, 255, 0, 0.9);
+  text-align: left;
+  margin: 3% auto;
+  padding: 3px;
+  width: 90%;
+  height: 10rem;
+  overflow-y: auto;
+}
+
+#stream-title {
+  margin: 0.2rem 1rem;
+  display: inline-block;
 }
 
 .add {
   display: inline-block;
   color: rgba(255, 255, 0, 0.9);
-  margin: 0 20px;
+  margin: 0 3%;
   font-size: 1.5em;
 }
 
-.streamList {
-  border: 0.5px solid rgba(255, 255, 0, 0.9);
-  text-align: left;
-  margin: 20px auto;
-  width: 90%;
-  height: 10.5rem;
-}
-
-#streamTitle {
-  margin: 0.2rem 1rem;
-  display: inline-block;
-}
-
-#streamContainer {
+#stream-container {
   padding-top: 0.75rem;
   margin: 0 auto;
 }
+
+/*
+STREAM_CHECKBOXES
+--------------------------------------
+*/
 
 .checkbox {
   margin-left: 1rem;
@@ -469,19 +569,58 @@ table {
   accent-color: rgba(159, 252, 83, 0.9);;
 }
 
- #filterList {
-  position: absolute;
-  top: 3rem;
-  left: 1rem;
+.stream-label {
+  position: relative;
 }
 
-#streamSearch {
+.stream-label .hover-text {
+  visibility: hidden;
   position: absolute;
-  top: 3rem;
-  right: 3%;
+  padding: 0.1rem 0.3rem;
+  top: 18px;
+  left: 15px;
+  font-size: 0.7rem;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  z-index: 1;
 }
 
-#searchBox {
+.stream-label:hover {
+  cursor: pointer;
+}
+
+.stream-label:hover .hover-text {
+  cursor: pointer;
+  visibility: visible;
+}
+
+/*
+STREAM_STORE
+-------------------------------------
+*/
+#close-store {
+  top: 1rem;
+}
+
+ #filter-list {
+  position: relative;
+  display: inline-block;
+  justify-content: left;
+  margin-right: 15%;
+  margin-bottom: 3%;
+  font-size: 90%;
+}
+
+#stream-search {
+  position: relative;
+  display: inline-block;
+  justify-content: right;
+  margin-left: 15%;
+  margin-bottom: 5%;
+}
+
+#search-bar {
   color:rgb(199, 199, 199);
   padding-left: 0.5rem;
   border: 0;
@@ -491,83 +630,58 @@ table {
   transition: border-color 0.2s;
 }
 
-#searchBox::placeholder {
+#search-bar::placeholder {
   color: rgb(255, 255, 255);
   opacity: 0.75;
 }
 
-#searchBox:hover::placeholder {
+#search-bar:hover::placeholder {
   color: black;
   opacity: 0.8;
 }
 
-#searchBox:hover {
+#search-bar:hover {
   background-color: #c4c4c4;
   color: black;
 }
 
-#searchButton {
+#search-btn {
   color: rgba(255, 255, 0, 0.6);
   font-weight:lighter;
   padding-left: 4px;
   transition: .2s transform ease-in-out;
 }
 
-#searchButton:hover {
+#search-btn:hover {
   color: rgb(255, 255, 81);
   filter: blur(0.5px);
   transform: translate(0, 2px);
 }
 
-#streamGrid {
-  margin: 40px auto;
-  padding: 10px;
+#stream-grid {
+  margin: 2px auto;
+  padding: 0.5rem;
   height: 275px;
   max-width: 500px;
   border: 0.5px solid rgba(255, 255, 0, 0.9);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
-  justify-items: center;
-  grid-gap: 7px;
+  grid-template-columns: repeat(auto-fill, minmax(67px, 1fr));
+    grid-gap: 2% 5%;
   overflow: hidden;
-}
-
-.flex {
-  display: flex;
-  justify-content: flex-start;
-  align-items: start;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 0.5rem;
 }
 
 .stream {
   border: 0.5px solid rgba(255, 255, 255, 0.7);
-  padding: 0.2rem;
+  padding: 0.3rem;
   height: 80px;
-  width: 67px;
-}
-
-.remove-stream {
-  color: rgba(255, 255, 0, 0.9);
-  font-size: 0.7rem;
-  transform: translate(0, -4px);
+  width: 70px;
+  margin: 0 auto;
 }
 
 .card-icon {
   float: right;
   color: rgba(255, 255, 0, 0.9);
   font-size: 0.6rem;
-}
-
-.subscribed {
-  border: 1.5px solid rgba(159, 252, 83, 0.9);
 }
 
 .stream-img {
@@ -584,10 +698,20 @@ table {
   vertical-align: bottom;
 }
 
+.remove-stream {
+  color: rgba(255, 255, 0, 0.9);
+  font-size: 0.7rem;
+  transform: translate(0, -4px);
+}
+
+.subscribed {
+  border: 1.5px solid rgba(159, 252, 83, 0.9);
+}
+
 #pages {
-  position: absolute;
-  left: 45%;
-  bottom: 2%;
+  position: relative;
+  margin: 2px auto;
+  vertical-align: bottom;
   font-size: 0.65rem;
 }
 
@@ -595,10 +719,6 @@ table {
   padding: 50px 10px;
   height: 100%;
   overflow: hidden;
-}
-
-h2 {
-  color: white;
 }
 
 /*
