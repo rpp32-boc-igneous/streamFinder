@@ -11,9 +11,9 @@ class Settings extends React.Component {
     super(props);
     this.state = {
       streamCards: [
-        'stream1', 'stream2', 'stream3', 'stream4', 'stream5', 'stream6',
-        'stream7', 'stream8', 'stream9', 'stream10', 'stream11', 'stream12',
-        'stream13', 'stream14', 'stream15', 'stream16', 'stream17', 'stream18'
+        {name:'movie1'}, {name:'stream2'}, {name:'stream3'}, {name:'show4'}, {name:'movie5'}, {name:'show6'},
+        {name:'stream7'}, {name:'movie8'}, {name:'show9'}, {name:'movie10'}, {name:'show11'}, {name:'stream12'},
+        {name:'stream13'}, {name:'show14'}, {name:'movie15'}, {name:'stream16'}, {name:'stream17'}, {name:'movie18'}
       ],
       streams: [
         {name: 'Netflix', subbed: false, default: true},

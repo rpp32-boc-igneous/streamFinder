@@ -603,19 +603,24 @@ STREAM_STORE
   top: 1rem;
 }
 
- #filterList {
-  position: absolute;
-  top: 3rem;
-  left: 1rem;
+ #filter-list {
+  position: relative;
+  display: inline-block;
+  justify-content: left;
+  margin-right: 15%;
+  margin-bottom: 5%;
+  font-size: 0.95rem;
 }
 
-#streamSearch {
-  position: absolute;
-  top: 3rem;
-  right: 3%;
+#stream-search {
+  position: relative;
+  display: inline-block;
+  justify-content: right;
+  margin-left: 15%;
+  margin-bottom: 5%;
 }
 
-#searchBox {
+#search-bar {
   color:rgb(199, 199, 199);
   padding-left: 0.5rem;
   border: 0;
@@ -625,45 +630,43 @@ STREAM_STORE
   transition: border-color 0.2s;
 }
 
-#searchBox::placeholder {
+#search-bar::placeholder {
   color: rgb(255, 255, 255);
   opacity: 0.75;
 }
 
-#searchBox:hover::placeholder {
+#search-bar:hover::placeholder {
   color: black;
   opacity: 0.8;
 }
 
-#searchBox:hover {
+#search-bar:hover {
   background-color: #c4c4c4;
   color: black;
 }
 
-#searchButton {
+#search-btn {
   color: rgba(255, 255, 0, 0.6);
   font-weight:lighter;
   padding-left: 4px;
   transition: .2s transform ease-in-out;
 }
 
-#searchButton:hover {
+#search-btn:hover {
   color: rgb(255, 255, 81);
   filter: blur(0.5px);
   transform: translate(0, 2px);
 }
 
-#streamGrid {
-  margin: 40px auto;
-  padding: 10px;
+#stream-grid {
+  margin: 2px auto;
+  padding: 0.5rem;
   height: 275px;
   max-width: 500px;
   border: 0.5px solid rgba(255, 255, 0, 0.9);
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
-  justify-items: center;
   grid-gap: 7px;
+  grid-template-columns: repeat(auto-fit, minmax(67px, 1fr));
   overflow: hidden;
 }
 
@@ -672,6 +675,7 @@ STREAM_STORE
   padding: 0.2rem;
   height: 80px;
   width: 67px;
+  margin: 0 auto;
 }
 
 .card-icon {
