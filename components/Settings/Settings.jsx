@@ -3,6 +3,7 @@ import $ from 'jquery';
 import UserInfo from './UserInfo.jsx';
 import StreamList from './StreamList.jsx';
 import StreamStore from './StreamStore.jsx';
+import EditUser from './EditUser.jsx';
 import { AiOutlineClose } from 'react-icons/ai';
 
 class Settings extends React.Component {
@@ -15,13 +16,14 @@ class Settings extends React.Component {
         'stream13', 'stream14', 'stream15', 'stream16', 'stream17', 'stream18'
       ],
       streams: [
-        {name: 'Netflix', subbed: true},
-        {name:'Prime', subbed: false},
-        {name:'Hulu', subbed: false},
-        {name:'HBOmax', subbed: false},
-        {name:'Vudu', subbed: false},
-        {name:'Disney', subbed: false}
-      ]
+        {name: 'Netflix', subbed: false, default: true},
+        {name:'Prime', subbed: false, default: true},
+        {name:'Hulu', subbed: false, default: true},
+        {name:'HBOmax', subbed: false, default: true},
+        {name:'Vudu', subbed: false, default: true},
+        {name:'Disney', subbed: false, default: true}
+      ],
+      updateField: null
     };
   }
 
@@ -32,11 +34,14 @@ class Settings extends React.Component {
     $('#banner-box').css({ display: 'flex' });
   }
 
+  // signOut = () => {
+  // }
+
   addStream = (name) => {
     let index = this.state.streams.findIndex(stream => stream.name === name);
     if (index < 0) {
       this.setState( state => (
-        { streams: [...state.streams, {name: name, subbed: true}]}
+        { streams: [...state.streams, {name: name, subbed: true, default: false}]}
       ));
     }
   }
@@ -54,19 +59,24 @@ class Settings extends React.Component {
     }
   }
 
+  setUpdateField = (field) => {
+    this.setState({updateField: field});
+  }
+
   render() {
     return (
       <div>
-          <div id='account'>
-            <span onClick={this.close}><AiOutlineClose class='close'/></span>
-            <h1>Account</h1>
-            <UserInfo />
-            <button className='button'>Sign out</button>
-            <StreamList
-              streams={this.state.streams}
-              removeStream={this.removeStream}
-            />
+        <div id='account'>
+          <span onClick={this.close}><AiOutlineClose class='close icon'/></span>
+          <h1>Account</h1>
+          <UserInfo setField={this.setUpdateField}/>
+          <button className='button' onClick={this.signOut}>Sign out</button>
+          <StreamList
+            streams={this.state.streams}
+            removeStream={this.removeStream}
+          />
         </div>
+        <EditUser field={this.state.updateField}/>
         <StreamStore
           streams={this.state.streamCards}
           addStream={this.addStream}

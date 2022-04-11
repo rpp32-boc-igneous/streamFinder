@@ -13,7 +13,11 @@ const StreamStore = (props) => {
 
   return (
     <div id='store' className='hide'>
-      <span onClick={closeStore}><AiOutlineClose class='close'/></span>
+      <span
+        onClick={closeStore}>
+          <AiOutlineClose
+        class='close'
+        id='close-store'/></span>
       <FilterList />
       <StreamSearch />
       <div id='streamGrid' className='grid'>
