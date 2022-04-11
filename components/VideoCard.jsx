@@ -18,4 +18,5 @@ class VideoCard extends React.Component {
   }
 }
 
+
 export default VideoCard;
