@@ -25,13 +25,53 @@ class App extends React.Component {
     this.state = {
       searchResults: null,
       trending: null,
-      user: {},
+      user_id: null,
+      user_name: null,
+      user_email: null,
       watch_list: [],
-      watch_history: []
+      watch_history: [],
+      subscriptions: []
     }
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.loadTrending = this.loadTrending.bind(this);
     this.showModal = this.showModal.bind(this);
+    this.updateUser = this.updateUser.bind(this);
+    this.updateState = this.updateState.bind(this);
+  }
+
+  updateState(key, value) {
+    this.setState({
+      ...this.state,
+      key: value
+    }, () => {
+      this.updateUser();
+    })
+  }
+
+  updateUser() {
+    let options = {
+      method: 'post',
+      url: '/update_user',
+      data: {
+        user_id: this.state.user_id,
+        user_name: this.state.user_name,
+        user_email: this.state.user_email,
+        watch_list: this.state.watch_list,
+        watch_history: this.state.watch_history,
+        subscriptions: this.state.subscriptions,
+      },
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+    axios(options)
+      .then(result => {
+        console.log(result.data);
+      })
+      .catch(err => {
+        console.log('error updating user', err);
+      })
   }
 
   updateSearchResults(data) {
@@ -122,5 +162,6 @@ class App extends React.Component {
 }
 
 export default App;
+
 
 //<div id="banner">StreamFinder</div>

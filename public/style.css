@@ -330,6 +330,29 @@ CAROUSEL
   animation: glowing 500ms infinite;
 }
 
+#search-card-img {
+  margin-top: 10px;
+  margin-left: 33px;
+  height: 150px;
+  width: auto;
+}
+
+#search-text-detail {
+  text-align: center;
+}
+
+a:link {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: rgba(255, 255, 50, 0.9);
+}
 
 /*
 /////////////////////////////////////

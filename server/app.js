@@ -12,10 +12,13 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static('public'))
 
-app.listen(port, () => {
-  console.log('listening on port ', port);
-});
+///////////////////////
+// Test
+///////////////////////
 
+app.get('/test', (req, res) => {
+  res.sendStatus(200);
+})
 
 
 ///////////////////////
@@ -61,15 +64,19 @@ app.get('/signup', (req, res) => {
 })
 
 
-
-
-
 ///////////////////////
 // Watchlist
 ///////////////////////
 
-app.get('/watchlist/:userID', (req, res) => {
-
+app.put('/update_user', (req, res) => {
+  let user = req.body.user;
+  updateUser(user)
+  .then(res => {
+    console.log('user update successful')
+  })
+  .catch(err => {
+    console.log('error updating user => ', err)
+  })
 })
 
 
@@ -100,3 +107,4 @@ app.post('/streams', (req, res) => {
 
 })
 
+module.exports = app;
