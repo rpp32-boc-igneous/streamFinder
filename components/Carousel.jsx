@@ -286,6 +286,7 @@ class Carousel extends React.Component {
     }
     this.updateState = this.updateState.bind(this);
     this.updateIndex = this.updateIndex.bind(this);
+    this.removeDuplicateSources = this.removeDuplicateSources.bind(this);
   }
 
   componentDidMount() {
@@ -575,6 +576,21 @@ class Carousel extends React.Component {
 
   }
 
+  removeDuplicateSources(dataArray) {
+    let newArray = [];
+    let currentSource = '';
+
+    for (var i = 0; i < dataArray.length; i ++) {
+      if (currentSource === dataArray[i].name) {
+        continue;
+      } else {
+        currentSource = dataArray[i].name;
+        newArray.push(dataArray[i]);
+      }
+    }
+
+    return newArray;
+  }
 
   updateIndex(e) {
 
@@ -636,20 +652,20 @@ class Carousel extends React.Component {
                     Top Streaming Sources:
 
                     <span>
-                      <a href={this.state.searchResults[0].sources[0].web_url}> {this.state.searchResults[0].sources[0].name} </a>
+                      <a href={this.removeDuplicateSources(this.state.searchResults[0].sources)[0].web_url}> {this.removeDuplicateSources(this.state.searchResults[0].sources)[0].name} </a>
                     </span>
                     <span>
-                      <a href={this.state.searchResults[0].sources[1].web_url}>{this.state.searchResults[0].sources[1].name} </a>
+                      <a href={this.removeDuplicateSources(this.state.searchResults[0].sources)[1].web_url}>{this.removeDuplicateSources(this.state.searchResults[0].sources)[1].name} </a>
                     </span>
                     <span>
-                      <a href={this.state.searchResults[0].sources[2].web_url}>{this.state.searchResults[0].sources[2].name} </a>
+                      <a href={this.removeDuplicateSources(this.state.searchResults[0].sources)[2].web_url}>{this.removeDuplicateSources(this.state.searchResults[0].sources)[2].name} </a>
 
                     </span>
                     <span>
-                      <a href={this.state.searchResults[0].sources[3].web_url}>{this.state.searchResults[0].sources[3].name} </a>
+                      <a href={this.removeDuplicateSources(this.state.searchResults[0].sources)[3].web_url}>{this.removeDuplicateSources(this.state.searchResults[0].sources)[3].name} </a>
                     </span>
                     <span>
-                      <a href={this.state.searchResults[0].sources[4].web_url}>{this.state.searchResults[0].sources[4].name}</a>
+                      <a href={this.removeDuplicateSources(this.state.searchResults[0].sources)[4].web_url}>{this.removeDuplicateSources(this.state.searchResults[0].sources)[4].name}</a>
                       </span>
                   </div>
                 </div>
