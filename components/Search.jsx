@@ -35,7 +35,6 @@ class Search extends React.Component {
     }
     axios(options)
       .then(result => {
-        alert(result.data);
         console.log('data retrieval complete')
         console.log(result.data);
         this.props.cb(result.data);

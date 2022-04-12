@@ -25,7 +25,7 @@ app.get('/test', (req, res) => {
 // Search
 ///////////////////////
 
-// given an title string from the search component, this sends back all title detail objects
+// given a title string from the search component, this sends back all title detail objects
 app.post('/search', (req, res) => {
   var searchTerm = req.body.query;
   getTitleIds(searchTerm)

@@ -5,6 +5,7 @@ import $ from 'jquery';
 import Login_Signup from '../components/Login_Signup.jsx';
 import Search from '../components/Search.jsx';
 import Carousel from '../components/Carousel.jsx';
+import VideoCard from '../components/VideoCard.jsx';
 import Signup from '../components/Signup.jsx';
 import Watchlist from '../components/Watchlist.jsx';
 import Settings from '../components/Settings/Settings.jsx';
@@ -23,8 +24,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchResults: null,
-      trending: null,
+      searchResults: [],
+      selectedTitleIndex: 0,
+      trending: [],
       user_id: null,
       user_name: null,
       user_email: null,
@@ -37,6 +39,7 @@ class App extends React.Component {
     this.showModal = this.showModal.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.updateState = this.updateState.bind(this);
+    this.displaySelectedTitle = this.displaySelectedTitle.bind(this);
   }
 
   updateState(key, value) {
@@ -76,10 +79,21 @@ class App extends React.Component {
 
   updateSearchResults(data) {
     this.setState({
+      ...this.state,
       searchResults: data,
     }, () => {
       console.log('search results updated in App state');
     })
+  }
+
+  displaySelectedTitle(index) {
+    this.setState({
+      ...this.state,
+      selectedTitleIndex: index
+    });
+    $('#Title-page').css({ display: 'inline-block' });
+    $('#carousel').css({ display: 'none' });
+    $('#footer').css({ display: 'none' });
   }
 
   loadTrending() {
@@ -124,7 +138,12 @@ class App extends React.Component {
 
         <div id='body'>
 
-          <Carousel searchResults={this.state.searchResults} trending={this.state.trending} />
+          <Carousel searchResults={this.state.searchResults} trending={this.state.trending} displaySelectedTitle={this.displaySelectedTitle} />
+
+          <div id="Title-page">
+            <VideoCard title={this.state.searchResults[this.state.selectedTitleIndex]} />
+            <img src={SFicon} onClick={this.showModal} className='home'></img>
+          </div>
 
           <div id='Login-page'>
             <Login_Signup />
