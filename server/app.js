@@ -5,8 +5,8 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
-const { getTitleIds, getTitleDetails, getRelated } = require('./apiMethods/search.js');
-const { insertTitle, insertUser, retrieveAllStreams, retrieveOneStream, insertStream} = require('./database/dbMethods.js');
+const { getTitleIds, getTitleDetails, getRelated } = require('../apiMethods/search.js');
+const { insertTitle, insertUser, retrieveAllStreams, retrieveOneStream, insertStream} = require('../database/dbMethods.js');
 
 app.use(bodyParser.json());
 app.use(cors());
