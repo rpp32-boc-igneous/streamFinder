@@ -87,13 +87,15 @@ class App extends React.Component {
   }
 
   displaySelectedTitle(index) {
+
     this.setState({
       ...this.state,
-      selectedTitleIndex: index
+      selectedTitleIndex: index - 1
+    }, () => {
+      $('#Title-page').css({ display: 'inline-block' });
+      $('#carousel').css({ display: 'none' });
+      $('#footer').css({ display: 'none' });
     });
-    $('#Title-page').css({ display: 'inline-block' });
-    $('#carousel').css({ display: 'none' });
-    $('#footer').css({ display: 'none' });
   }
 
   loadTrending() {

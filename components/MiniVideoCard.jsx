@@ -20,7 +20,7 @@ var MiniVideoCard = (props) => {
   if (props.obj !== undefined) {
     return (
       <div className='video-card'>
-        <img id='search-card-img' src={props.obj.poster}></img>
+        <img id='search-card-img' src={props.obj.poster} onClick={() => {props.selectTitle(props.index)}}></img>
         <div id='search-text-detail'>
           <div>{props.obj.title + ` (${props.obj.year})`}</div>
           <div>{props.obj.us_rating}</div>

@@ -37,7 +37,6 @@ class Carousel extends React.Component {
     this.updateState();
   }
 
-
   updateState() {
 
     // let searchResults = this.props.searchResults;
@@ -90,7 +89,6 @@ class Carousel extends React.Component {
 
 
   render() {
-
     return (
       <div id='carousel'>
         <div id='carousel-box'>
@@ -109,7 +107,7 @@ class Carousel extends React.Component {
               onSlideChange={() => null}
               onSwiper={((swiper) => console.log(swiper))}
             >{this.props.searchResults.map((title, i) =>
-              <SwiperSlide key={i}><MiniVideoCard obj={title} /></SwiperSlide>
+              <SwiperSlide key={i}><MiniVideoCard obj={title} selectTitle={this.props.displaySelectedTitle} index={i}/></SwiperSlide>
               )
             }</Swiper>
           </div>
@@ -131,9 +129,4 @@ class Carousel extends React.Component {
 export default Carousel;
 
 //<CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
-
-// pagination={{
-//   clickable: true,
-//   bulletClass: `swiper-pagination-bullet swiper-pagination-testClass`
-// }}
 
