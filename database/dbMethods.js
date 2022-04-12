@@ -17,22 +17,15 @@ var retrieveUser = (id) => {
   return User.find({ id: id });
 }
 
-var retrieveWatchlist = (id) => {
-  return User.find({ id: id })
-    .then(obj => {
-      return {
-        'watch_list': obj.watch_list,
-        'watch_history': obj.watch_history
-      }
-    })
+var updateUser = (user) => {
+  return User.findOneAndReplace({ id: user.id }, user);
 }
-
 
 module.exports = {
 
   insertTitle: insertTitle,
   insertUser: insertUser,
   retrieveUser: retrieveUser,
-  retrieveWatchlist: retrieveWatchlist
+  updateUser: updateUser
 
 }
