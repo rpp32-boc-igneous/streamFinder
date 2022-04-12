@@ -21,7 +21,6 @@ var updateUser = (user) => {
   return User.findOneAndReplace({ id: user.id }, user);
 }
 
-
 module.exports = {
 
   insertTitle: insertTitle,
