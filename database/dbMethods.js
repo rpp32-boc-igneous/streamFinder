@@ -1,4 +1,4 @@
-const { Title, User } = require('./index');
+const { Title, User, Stream } = require('./index');
 const { formatTitleObj, formatUserObj } = require('./objFormatting.js');
 
 
@@ -21,11 +21,27 @@ var updateUser = (user) => {
   return User.findOneAndReplace({ id: user.id }, user);
 }
 
+
+//STREAM Collection Methods
+var retrieveAllStreams = () => {
+  return Stream.find();
+}
+
+var retrieveOneStream = (name) => {
+  return Stream.find({name: name});
+}
+
+var insertStream = (streamObj) => {
+  return Stream.create(streamObj);
+}
+
 module.exports = {
 
   insertTitle: insertTitle,
   insertUser: insertUser,
   retrieveUser: retrieveUser,
-  updateUser: updateUser
-
+  retrieveWatchlist: retrieveWatchlist,
+  retrieveAllStreams: retrieveAllStreams,
+  retrieveOneStream: retrieveOneStream,
+  insertStream: insertStream
 }

@@ -45,16 +45,30 @@ const userSchema = new mongoose.Schema({
   }
 });
 
-
+const streamSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    unique: true,
+    require: true
+  },
+  logo: String,
+  cost: mongoose.Mixed,
+  ads: Boolean,
+  free: Boolean,
+  subscription: Boolean,
+  website: String
+});
 
 const Title = mongoose.model('Title', titleSchema);
 const User = mongoose.model('User', userSchema);
+const Stream =mongoose.model('Stream', streamSchema);
 
 
 
 module.exports = {
 
   Title: Title,
-  User: User
+  User: User,
+  Stream: Stream
 
 }

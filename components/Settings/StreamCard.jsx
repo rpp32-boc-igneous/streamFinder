@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import $ from 'jquery';
+import Option from './Option.jsx';
 import { IoAdd } from 'react-icons/io5';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoCheckmark } from 'react-icons/io5';
 
 const StreamCard = (props) => {
+
+  const [options, setOptions] = useState(['No Ads', 'Free']);
 
   const streamSub = () => {
     if(!$(`#store-${props.name}`).hasClass('subscribed')) {
@@ -15,7 +18,6 @@ const StreamCard = (props) => {
     } else {
       props.removeStream(props.name);
     }
-
   }
 
   return (
@@ -32,8 +34,11 @@ const StreamCard = (props) => {
       />
       <div className='stream-info'>
         <div>{props.name}</div>
-        <div>watch with Ads</div>
-        <div>Free</div>
+        <div>
+          {options.map((option, i) => (
+            <Option key={i} option={option} />
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -5,8 +5,8 @@ const app = express();
 const path = require('path');
 const port = 3000;
 
-const { getTitleIds, getTitleDetails, getRelated } = require('../apiMethods/search.js');
-const { insertTitle, insertUser, updateUser } = require('../database/dbMethods.js');
+const { getTitleIds, getTitleDetails, getRelated } = require('./apiMethods/search.js');
+const { insertTitle, insertUser, retrieveAllStreams, retrieveOneStream, insertStream} = require('./database/dbMethods.js');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -64,8 +64,6 @@ app.get('/signup', (req, res) => {
 })
 
 
-
-
 ///////////////////////
 // Watchlist
 ///////////////////////
@@ -86,6 +84,27 @@ app.put('/update_user', (req, res) => {
 // Settings
 ///////////////////////
 
+app.get('/streams', (req, res) => {
+  retrieveAllStreams()
+  .then(data => {
+    res.status(200).json({success: true, data: data})
+  })
+  .catch(err => res.status(400).json({success: false, error: err}))
+})
 
+app.get('/streams/:stream', (req, res) => {
+  retrieveOneStream(req.params.stream)
+  .then(data => {
+    res.status(200).json({success: true, data: data})
+  })
+  .catch(err => res.status(400).json({success:false, error: err}))
+})
+
+app.post('/streams', (req, res) => {
+  insertStream(req.body)
+  .then(() => res.status(201).json({success: true}))
+  .catch(err => res.status(400).json({success: false, error: err}))
+
+})
 
 module.exports = app;
