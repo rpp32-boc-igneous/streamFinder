@@ -15,7 +15,7 @@ export NVM_DIR="$HOME/.nvm"
 npm install
 
 #run build script
-#npm run build
+npm run build
 
 #start our node app in the background
 node app.js > app.out.log 2> app.err.log < /dev/null &
