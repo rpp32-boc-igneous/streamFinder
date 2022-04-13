@@ -25,11 +25,12 @@ app.get('/test', (req, res) => {
 // Search
 ///////////////////////
 
-// given an title string from the search component, this sends back all title detail objects
+// given a title string from the search component, this sends back all title detail objects
+// currently limited to 5 results to save API calls
 app.post('/search', (req, res) => {
   var searchTerm = req.body.query;
   getTitleIds(searchTerm)
-  .then(ids => getTitleDetails(ids))
+  .then(ids => getTitleDetails(ids.slice(0, 5)))
   .then(data => {
     res.send(data)
   })
