@@ -1,4 +1,5 @@
-require('dotenv').config();
+const dotenv = require('dotenv');
+console.log(process.env.MONGO_API);
 // db key for future deployment db security (non-localhost in connection string)
 const key = process.env.DB_KEY;
 const mongoose = require('mongoose');
@@ -53,7 +54,7 @@ const streamSchema = new mongoose.Schema({
   },
   logo: String,
   cost: mongoose.Mixed,
-  ads: Boolean,
+  no_ads: Boolean,
   free: Boolean,
   subscription: Boolean,
   website: String
