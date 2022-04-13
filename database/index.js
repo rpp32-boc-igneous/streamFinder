@@ -53,7 +53,7 @@ const streamSchema = new mongoose.Schema({
   },
   logo: String,
   cost: mongoose.Mixed,
-  ads: Boolean,
+  no_ads: Boolean,
   free: Boolean,
   subscription: Boolean,
   website: String

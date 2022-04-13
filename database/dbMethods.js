@@ -40,7 +40,7 @@ module.exports = {
   insertTitle: insertTitle,
   insertUser: insertUser,
   retrieveUser: retrieveUser,
-  retrieveWatchlist: retrieveWatchlist,
+  updateUser: updateUser,
   retrieveAllStreams: retrieveAllStreams,
   retrieveOneStream: retrieveOneStream,
   insertStream: insertStream
