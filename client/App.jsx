@@ -15,6 +15,10 @@ import banner from '../assets/StreamFinderBanner.png';
 import userIcon from '../assets/userIcon.png';
 import SFicon from '../assets/StreamFinderIcon_transparent.png';
 
+// Mock data
+import { mockTrending } from '../mock_data/trending.js'
+
+
 // Modules
 const { deriveTrending } = require('../modules/deriveTrending.js');
 
@@ -24,9 +28,11 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      searchTerm: null,
       searchResults: [],
       selectedTitleIndex: 0,
-      trending: [],
+      trending: mockTrending,
+      toCarousel: [mockTrending, true],
       user_id: null,
       user_name: null,
       user_email: null,
@@ -40,6 +46,16 @@ class App extends React.Component {
     this.updateUser = this.updateUser.bind(this);
     this.updateState = this.updateState.bind(this);
     this.displaySelectedTitle = this.displaySelectedTitle.bind(this);
+    this.showTrending = this.showTrending.bind(this);
+    this.updateSearchTerm = this.updateSearchTerm.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      ...this.state,
+      toCarousel: [this.state.trending, true]
+    })
+    $('#trending-button').addClass('button-focus');
   }
 
   updateState(key, value) {
@@ -77,12 +93,22 @@ class App extends React.Component {
       })
   }
 
+  //updates search term in state for carousel label, i.e "showing search results for Titanic"
+  updateSearchTerm(term) {
+    this.setState({
+      ...this.state,
+        searchTerm: term
+    })
+  }
+
   updateSearchResults(data) {
     this.setState({
       ...this.state,
       searchResults: data,
+      toCarousel: [data, false],
     }, () => {
       console.log('search results updated in App state');
+      $('#trending-button').removeClass('button-focus')
     })
   }
 
@@ -125,13 +151,22 @@ class App extends React.Component {
 
   }
 
+  showTrending() {
+    this.setState({
+      ...this.state,
+      toCarousel: [this.state.trending, true],
+    }, () => {
+      $('#trending-button').addClass('button-focus')
+    })
+  }
+
   render() {
 
     return (
       <div>
         <div id='header'>
           <button id='login-button' onClick={this.showModal}>Login</button>
-          <Search changePage={this.showModal} cb={this.updateSearchResults} />
+          <Search changePage={this.showModal} cb={this.updateSearchResults} updateTerm={this.updateSearchTerm} />
         </div>
 
         <div id='banner-box'>
@@ -140,37 +175,37 @@ class App extends React.Component {
 
         <div id='body'>
 
-          <Carousel searchResults={this.state.searchResults} trending={this.state.trending} displaySelectedTitle={this.displaySelectedTitle} />
+          <Carousel searchResults={this.state.toCarousel} trending={this.state.trending} displaySelectedTitle={this.displaySelectedTitle} searchTerm={this.state.searchTerm} />
 
           <div id="Title-page">
             <VideoCard title={this.state.searchResults[this.state.selectedTitleIndex]} />
-            <img src={SFicon} onClick={this.showModal} className='home'></img>
+            <img src={SFicon} onClick={this.showModal} className='home' id="home-title"></img>
           </div>
 
           <div id='Login-page'>
             <Login_Signup />
-            <img src={SFicon} onClick={this.showModal} className='home'></img>
+            <img src={SFicon} onClick={this.showModal} className='home' id="home-login"></img>
           </div>
 
           <div id='Signup-page'>
             <Signup />
-            <img src={SFicon} onClick={this.showModal} className='home'></img>
+            <img src={SFicon} onClick={this.showModal} className='home' id="home-signup"></img>
           </div>
 
           <div id='Watchlist-page'>
             <Watchlist />
-            <img src={SFicon} onClick={this.showModal} className='home'></img>
+            <img src={SFicon} onClick={this.showModal} className='home' id="home-watchlist"></img>
           </div>
 
           <div id='Settings-page'>
             <Settings />
-            <img src={SFicon} onClick={this.showModal} className='home'></img>
+            <img src={SFicon} onClick={this.showModal} className='home' id="home-settings"></img>
           </div>
 
         </div>
 
         <div id='footer'>
-          <div id='trending-button' className='footer-button'>Trending</div>
+          <div id='trending-button' className='footer-button' onClick={this.showTrending}>Trending</div>
           <div className='divider'>|</div>
           <div id='watchlist-button' className='footer-button' onClick={this.showModal}>Watchlist</div>
           <div className='divider' >|</div>

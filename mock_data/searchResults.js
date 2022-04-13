@@ -258,8 +258,9 @@ const mockSearchResults = [{
   ]
 }];
 
+
 module.exports = {
 
-  mockSearchResults: mockSearchResults
+  mockSearchResults: mockSearchResults,
 
 }

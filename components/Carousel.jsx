@@ -4,6 +4,7 @@ import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import MiniVideoCard from './MiniVideoCard.jsx';
 import CarouselCount from './CarouselCount.jsx';
 import arrow from '../assets/Arrow.png';
+import $ from 'jquery';
 
 //mock data
 import { mockSearchResults } from '../mock_data/searchResults.js';
@@ -91,6 +92,7 @@ class Carousel extends React.Component {
   render() {
     return (
       <div id='carousel'>
+      <div>{this.props.searchResults[1] === true ? (<div>Trending now...</div>) : (<CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} searchTerm={this.props.searchTerm} />)}</div>
         <div id='carousel-box'>
           <img src={arrow} className='swiper-button-prev' onClick={this.updateIndex} id='left'></img>
           <div id='swiper-box'>
@@ -106,7 +108,7 @@ class Carousel extends React.Component {
               scrollbar={{ draggable: true }}
               onSlideChange={() => null}
               onSwiper={((swiper) => console.log(swiper))}
-            >{this.props.searchResults.map((title, i) =>
+            >{this.props.searchResults[0].map((title, i) =>
               <SwiperSlide key={i}><MiniVideoCard obj={title} selectTitle={this.props.displaySelectedTitle} index={i}/></SwiperSlide>
               )
             }</Swiper>

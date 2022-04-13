@@ -19,8 +19,6 @@ body {
 .home {
   display: inline-block;
   position: relative;
-  top: -5px;
-  left: -310px;
   width: 50px;
   height: auto;
 }
@@ -97,6 +95,15 @@ PAGE LAYOUT
   cursor: pointer;
 }
 
+.buttonUnfocus {
+  color: rgba(255, 255, 255, 1);
+}
+
+.button-focus {
+  color: rgba(255, 255, 50, 0.9);
+}
+
+
 .divider {
   display: inline-block;
   color: rgba(255, 255, 255, 1);
@@ -123,6 +130,11 @@ LOGIN
   color: rgba(255, 255, 255, 1);
 }
 
+#home-login {
+  top: -15px;
+  left: 240px;
+}
+
 /*
 /////////////////////////////////////
 SIGNUP
@@ -142,6 +154,11 @@ SIGNUP
   text-align: center;
   align-items: center;
   color: rgba(255, 255, 255, 1);
+}
+
+#home-signup {
+  top: -5px;
+  left: -310px;
 }
 
 /*
@@ -347,6 +364,11 @@ VIDEO CARDS
   color: rgba(255, 255, 255, 1);
 }
 
+#home-title {
+  top: -5px;
+  left: -310px;
+}
+
 
 /*
 /////////////////////////////////////
@@ -367,6 +389,11 @@ WATCHLIST
   text-align: center;
   align-items: center;
   color: rgba(255, 255, 255, 1);
+}
+
+#home-watchlist {
+  top: -15px;
+  left: 240px;
 }
 
 /*
@@ -396,6 +423,11 @@ USER SETTINGS
   text-align: center;
   align-items: center;
   color: rgba(255, 255, 255, 1);
+}
+
+#home-settings {
+  top: -410px;
+  left: 260px;
 }
 
 /*
