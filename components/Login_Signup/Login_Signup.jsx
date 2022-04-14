@@ -11,7 +11,6 @@ class Login_Signup extends React.Component {
 
   handleOauthSubmit(event) {
     event.preventDefault();
-    console.log("This is where Oauth will happen");
     $.ajax({
       url: "/oauth",
       method: "GET",
@@ -31,7 +30,7 @@ class Login_Signup extends React.Component {
     })
       .then((google_url) => {
         let consent_url = google_url;
-        console.log("Whyyyyy:", consent_url);
+        console.log("Consenting to:", consent_url);
         window.location.href = consent_url;
       })
       .catch((error) => error);

@@ -8,21 +8,24 @@ router.use((req, res, next) => {
 });
 
 router.get("/", (req, res) => {
-  console.log("Is it here?");
+  // console.log("Is it here?");
 });
 
 //Getting the user from Google with the code
 router.get("/google", (req, res) => {
   const url = google_oauth.get_url();
-  console.log("oauth url controller", url);
+  // console.log("oauth url controller", url);
   res.send(url);
 });
 
 //Getting the current user
 router.get("/redirect/google", (req, res) => {
-  console.log("This is a successful redirect..");
-  console.log(req.query);
-  res.end();
+  // console.log("This is a successful redirect..");
+  // console.log(req.query);
+  let code = req.query.code;
+  google_oauth.get_code(code);
+
+  res.redirect("/");
 });
 
 // router.get("/google", google);
