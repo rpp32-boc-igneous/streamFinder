@@ -2,22 +2,13 @@ import React from "react";
 import $ from "jquery";
 
 // Components
-<<<<<<< HEAD
 import Login_Signup from "../components/Login_Signup/Login_Signup.jsx";
 import Search from "../components/Search.jsx";
 import Carousel from "../components/Carousel.jsx";
+import VideoCard from "../components/VideoCard.jsx";
 import Signup from "../components/Login_Signup/Signup.jsx";
 import Watchlist from "../components/Watchlist.jsx";
 import Settings from "../components/Settings/Settings.jsx";
-=======
-import Login_Signup from '../components/Login_Signup.jsx';
-import Search from '../components/Search.jsx';
-import Carousel from '../components/Carousel.jsx';
-import VideoCard from '../components/VideoCard.jsx';
-import Signup from '../components/Signup.jsx';
-import Watchlist from '../components/Watchlist.jsx';
-import Settings from '../components/Settings/Settings.jsx';
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
 
 // Graphics + branding
 import banner from "../assets/StreamFinderBanner.png";
@@ -25,8 +16,7 @@ import userIcon from "../assets/userIcon.png";
 import SFicon from "../assets/StreamFinderIcon_transparent.png";
 
 // Mock data
-import { mockTrending } from '../mock_data/trending.js'
-
+import { mockTrending } from "../mock_data/trending.js";
 
 // Modules
 const { deriveTrending } = require("../modules/deriveTrending.js");
@@ -35,11 +25,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-<<<<<<< HEAD
-      searchResults: null,
-      trending: null,
-    };
-=======
       searchTerm: null,
       searchResults: [],
       selectedTitleIndex: 0,
@@ -50,9 +35,8 @@ class App extends React.Component {
       user_email: null,
       watch_list: [],
       watch_history: [],
-      subscriptions: []
-    }
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
+      subscriptions: [],
+    };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.loadTrending = this.loadTrending.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -66,24 +50,27 @@ class App extends React.Component {
   componentDidMount() {
     this.setState({
       ...this.state,
-      toCarousel: [this.state.trending, true]
-    })
-    $('#trending-button').addClass('button-focus');
+      toCarousel: [this.state.trending, true],
+    });
+    $("#trending-button").addClass("button-focus");
   }
 
   updateState(key, value) {
-    this.setState({
-      ...this.state,
-      key: value
-    }, () => {
-      this.updateUser();
-    })
+    this.setState(
+      {
+        ...this.state,
+        key: value,
+      },
+      () => {
+        this.updateUser();
+      }
+    );
   }
 
   updateUser() {
     let options = {
-      method: 'post',
-      url: '/update_user',
+      method: "post",
+      url: "/update_user",
       data: {
         user_id: this.state.user_id,
         user_name: this.state.user_name,
@@ -93,59 +80,53 @@ class App extends React.Component {
         subscriptions: this.state.subscriptions,
       },
       headers: {
-        accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    }
+        accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    };
     axios(options)
-      .then(result => {
+      .then((result) => {
         console.log(result.data);
       })
-      .catch(err => {
-        console.log('error updating user', err);
-      })
+      .catch((err) => {
+        console.log("error updating user", err);
+      });
   }
 
   //updates search term in state for carousel label, i.e "showing search results for Titanic"
   updateSearchTerm(term) {
     this.setState({
       ...this.state,
-        searchTerm: term
-    })
+      searchTerm: term,
+    });
   }
 
   updateSearchResults(data) {
-<<<<<<< HEAD
     this.setState(
       {
+        ...this.state,
         searchResults: data,
+        toCarousel: [data, false],
       },
       () => {
         console.log("search results updated in App state");
+        $("#trending-button").removeClass("button-focus");
       }
     );
-=======
-    this.setState({
-      ...this.state,
-      searchResults: data,
-      toCarousel: [data, false],
-    }, () => {
-      console.log('search results updated in App state');
-      $('#trending-button').removeClass('button-focus')
-    })
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
   }
 
   displaySelectedTitle(index) {
-
-    this.setState({
-      ...this.state,
-      selectedTitleIndex: index - 1
-    }, () => {
-      $('#Title-page').css({ display: 'inline-block' });
-      $('#carousel').css({ display: 'none' });
-      $('#footer').css({ display: 'none' });
-    });
+    this.setState(
+      {
+        ...this.state,
+        selectedTitleIndex: index - 1,
+      },
+      () => {
+        $("#Title-page").css({ display: "inline-block" });
+        $("#carousel").css({ display: "none" });
+        $("#footer").css({ display: "none" });
+      }
+    );
   }
 
   loadTrending() {
@@ -174,91 +155,102 @@ class App extends React.Component {
   }
 
   showTrending() {
-    this.setState({
-      ...this.state,
-      toCarousel: [this.state.trending, true],
-    }, () => {
-      $('#trending-button').addClass('button-focus')
-    })
+    this.setState(
+      {
+        ...this.state,
+        toCarousel: [this.state.trending, true],
+      },
+      () => {
+        $("#trending-button").addClass("button-focus");
+      }
+    );
   }
 
   render() {
     return (
       <div>
-<<<<<<< HEAD
         <div id="header">
           <button id="login-button" onClick={this.showModal}>
             Login
           </button>
-          <Search changePage={this.showModal} cb={this.updateSearchResults} />
-=======
-        <div id='header'>
-          <button id='login-button' onClick={this.showModal}>Login</button>
-          <Search changePage={this.showModal} cb={this.updateSearchResults} updateTerm={this.updateSearchTerm} />
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
+          <Search
+            changePage={this.showModal}
+            cb={this.updateSearchResults}
+            updateTerm={this.updateSearchTerm}
+          />
         </div>
 
         <div id="banner-box">
           <img src={banner} id="banner"></img>
         </div>
 
-<<<<<<< HEAD
         <div id="body">
           <Carousel
-            searchResults={this.state.searchResults}
+            searchResults={this.state.toCarousel}
             trending={this.state.trending}
+            displaySelectedTitle={this.displaySelectedTitle}
+            searchTerm={this.state.searchTerm}
           />
-=======
-        <div id='body'>
-
-          <Carousel searchResults={this.state.toCarousel} trending={this.state.trending} displaySelectedTitle={this.displaySelectedTitle} searchTerm={this.state.searchTerm} />
 
           <div id="Title-page">
-            <VideoCard title={this.state.searchResults[this.state.selectedTitleIndex]} />
-            <img src={SFicon} onClick={this.showModal} className='home' id="home-title"></img>
+            <VideoCard
+              title={this.state.searchResults[this.state.selectedTitleIndex]}
+            />
+            <img
+              src={SFicon}
+              onClick={this.showModal}
+              className="home"
+              id="home-title"
+            ></img>
           </div>
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
 
           <div id="Login-page">
             <Login_Signup />
-<<<<<<< HEAD
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
-=======
-            <img src={SFicon} onClick={this.showModal} className='home' id="home-login"></img>
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
+            <img
+              src={SFicon}
+              onClick={this.showModal}
+              className="home"
+              id="home-login"
+            ></img>
           </div>
 
           <div id="Signup-page">
             <Signup />
-<<<<<<< HEAD
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
-=======
-            <img src={SFicon} onClick={this.showModal} className='home' id="home-signup"></img>
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
+            <img
+              src={SFicon}
+              onClick={this.showModal}
+              className="home"
+              id="home-signup"
+            ></img>
           </div>
 
           <div id="Watchlist-page">
             <Watchlist />
-<<<<<<< HEAD
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
-=======
-            <img src={SFicon} onClick={this.showModal} className='home' id="home-watchlist"></img>
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
+            <img
+              src={SFicon}
+              onClick={this.showModal}
+              className="home"
+              id="home-watchlist"
+            ></img>
           </div>
 
           <div id="Settings-page">
             <Settings />
-<<<<<<< HEAD
-            <img src={SFicon} onClick={this.showModal} className="home"></img>
-=======
-            <img src={SFicon} onClick={this.showModal} className='home' id="home-settings"></img>
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
+            <img
+              src={SFicon}
+              onClick={this.showModal}
+              className="home"
+              id="home-settings"
+            ></img>
           </div>
         </div>
 
-<<<<<<< HEAD
         <div id="footer">
-          <div id="trending-button" className="footer-button">
+          <div
+            id="trending-button"
+            className="footer-button"
+            onClick={this.showTrending}
+          >
             Trending
           </div>
           <div className="divider">|</div>
@@ -277,14 +269,6 @@ class App extends React.Component {
           >
             Settings
           </div>
-=======
-        <div id='footer'>
-          <div id='trending-button' className='footer-button' onClick={this.showTrending}>Trending</div>
-          <div className='divider'>|</div>
-          <div id='watchlist-button' className='footer-button' onClick={this.showModal}>Watchlist</div>
-          <div className='divider' >|</div>
-          <div id='settings-button' className='footer-button' onClick={this.showModal}>Settings</div>
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
         </div>
       </div>
     );
@@ -293,8 +277,4 @@ class App extends React.Component {
 
 export default App;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> bd9b1c46692fc83e168564afab095ce35168f11c
 //<div id="banner">StreamFinder</div>

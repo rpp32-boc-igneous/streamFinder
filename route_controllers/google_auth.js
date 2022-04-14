@@ -20,7 +20,6 @@ module.exports.get_url = function () {
     access_type: "offline",
     scope: scopes,
   });
-
   return url;
 };
 
