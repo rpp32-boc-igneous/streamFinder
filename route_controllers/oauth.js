@@ -20,7 +20,12 @@ router.get("/fake", (req, res) => {
 
 //Getting the user from Google with the code
 router.get("/google", (req, res) => {
-  console.log("This is the google code: ", google_oauth.get_code());
+  google_oauth
+    .get_code()
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => error);
 });
 
 //Getting the current user

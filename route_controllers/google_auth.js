@@ -28,11 +28,8 @@ const google_auth_url = JSON.stringify(
 // );
 
 module.exports.get_code = async function getAuthorizationCode(google_auth_url) {
-  await $.ajax({
-    url: google_auth_url,
+  await axios.get({
     method: "GET",
-    success: (data) => {
-      Console.log(data);
-    },
+    url: google_auth_url,
   });
 };
