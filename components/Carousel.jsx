@@ -1,9 +1,13 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import VideoCard from './VideoCard.jsx';
+import MiniVideoCard from './MiniVideoCard.jsx';
 import CarouselCount from './CarouselCount.jsx';
 import arrow from '../assets/Arrow.png';
+import $ from 'jquery';
+
+//mock data
+import { mockSearchResults } from '../mock_data/searchResults.js';
 
 import 'swiper/swiper.scss';
 import 'swiper/components/navigation/navigation.scss';
@@ -20,7 +24,7 @@ class Carousel extends React.Component {
     super(props);
     this.state = {
       trending: props.trending,
-      searchResults: null,
+      searchResults: mockSearchResults,
       newResults: false,
       currentSlidesIndex: 1,
       currentSlidesLength: null,
@@ -34,10 +38,10 @@ class Carousel extends React.Component {
     this.updateState();
   }
 
-
   updateState() {
 
-    let searchResults = this.props.searchResults;
+    // let searchResults = this.props.searchResults;
+    let searchResults = mockSearchResults;
     let trending = this.props.trending;
     let newResults = false;
 
@@ -56,7 +60,6 @@ class Carousel extends React.Component {
     }
 
   }
-
 
   updateIndex(e) {
 
@@ -89,13 +92,13 @@ class Carousel extends React.Component {
   render() {
     return (
       <div id='carousel'>
+      <div>{this.props.searchResults[1] === true ? (<div>Trending now...</div>) : (<CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} searchTerm={this.props.searchTerm} />)}</div>
         <div id='carousel-box'>
-          <CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
           <img src={arrow} className='swiper-button-prev' onClick={this.updateIndex} id='left'></img>
           <div id='swiper-box'>
             <Swiper
-              spaceBetween={50}
-              slidesPerView={1}
+              spaceBetween={5}
+              slidesPerView={4}
               speed={500}
               loop='true'
               navigation={{
@@ -105,17 +108,18 @@ class Carousel extends React.Component {
               scrollbar={{ draggable: true }}
               onSlideChange={() => null}
               onSwiper={((swiper) => console.log(swiper))}
-            >
-              <SwiperSlide><div className='video-card'>Video Card 1</div></SwiperSlide>
-              <SwiperSlide><div className='video-card'>Video Card 2</div></SwiperSlide>
-              <SwiperSlide><div className='video-card'>Video Card 3</div></SwiperSlide>
-              <SwiperSlide><div className='video-card'>Video Card 4</div></SwiperSlide>
-              <SwiperSlide><div className='video-card'>Video Card 5</div></SwiperSlide>
-            </Swiper>
+            >{this.props.searchResults[0].map((title, i) =>
+              <SwiperSlide key={i}><MiniVideoCard obj={title} selectTitle={this.props.displaySelectedTitle} index={i}/></SwiperSlide>
+              )
+            }</Swiper>
           </div>
           <img src={arrow} className='swiper-button-next' onClick={this.updateIndex} id='right'></img>
         </div>
       </div>
+    )
+
+    return (
+      <div>carousel goes here</div>
     )
   }
 
@@ -126,9 +130,5 @@ class Carousel extends React.Component {
 
 export default Carousel;
 
-
-// pagination={{
-//   clickable: true,
-//   bulletClass: `swiper-pagination-bullet swiper-pagination-testClass`
-// }}
+//<CarouselCount index={this.state.currentSlidesIndex} length={this.state.currentSlidesLength} />
 

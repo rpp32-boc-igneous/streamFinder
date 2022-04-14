@@ -2,19 +2,26 @@ import React, { useState, useEffect } from "react";
 // import Filter from "./Filter.jsx";
 
 const FilterList = (props) => {
+
   return (
-    <div>
+    <div id='filter-list'>
       <span>
-        <input type='checkbox' />
-        no ads
+        <input
+          className='checkbox'
+          id='no_ads'
+          type='checkbox'
+          onClick={() => props.filterAds()}
+        />
+          no ads
       </span>
       <span>
-        <input type='checkbox' />
-        free
-      </span>
-      <span>
-        <input type='checkbox' />
-        monthly subscription
+        <input
+          className='checkbox'
+          id='free'
+          type='checkbox'
+          onClick={() => props.filterFree()}
+        />
+          free
       </span>
     </div>
   );
