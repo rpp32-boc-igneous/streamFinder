@@ -100,7 +100,7 @@ class Settings extends React.Component {
     return (
       <div>
         <div id='account'>
-          <span onClick={this.close}><AiOutlineClose class='close icon'/></span>
+          <span onClick={this.close}><AiOutlineClose className='close icon'/></span>
           <h1>Account</h1>
           <UserInfo setField={this.setUpdateField}/>
           <button className='button' onClick={this.signOut}>Sign out</button>

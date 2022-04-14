@@ -19,7 +19,7 @@ const StreamCard = (props) => {
     if (props.stream.no_ads) setOptions(options => [...options, 'No Ads']);
     if (props.stream.free) setOptions(options => [...options, 'Free']);
     // if (cost) setOptions(options => [...options, cost]);
-  }, options);
+  }, []);
 
   const streamSub = () => {
     if(!$(`#store-${props.stream.name}`).hasClass('subscribed')) {

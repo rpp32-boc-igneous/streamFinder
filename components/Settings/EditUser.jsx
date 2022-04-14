@@ -10,10 +10,10 @@ const EditUser = (props) => {
 
   return (
     <div className='hide' id='update-box'>
-      <span onClick={() => close()}><AiOutlineClose class='close icon' id='update-close'/></span>
+      <span onClick={() => close()}><AiOutlineClose className='close icon' id='update-close'/></span>
       <form className='update-form'>
         <label className='update-label'>Enter Updated {props.field}</label>
-        <input class="update-input" type="text" />
+        <input className="update-input" type="text" />
         <button id='update-btn'> Submit </button>
       </form>
     </div>

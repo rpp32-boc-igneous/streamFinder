@@ -68,7 +68,7 @@ const StreamStore = (props) => {
       <span
         onClick={closeStore}>
           <AiOutlineClose
-        class='close'
+        className='close'
         id='close-store'/></span>
       <FilterList
         filterAds={filterAds}

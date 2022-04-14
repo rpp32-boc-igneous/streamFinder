@@ -25,7 +25,7 @@ const StreamSearch = (props) => {
       <input
         type='text'
         placeholder='Search'
-        streams id='search-bar'
+        id='search-bar'
         onKeyPress={(e) => checkEnter(e)}
       />
       <span
