@@ -138,6 +138,13 @@ class App extends React.Component {
     var clickClass = e.target.className;
 
     if (clickClass !== 'home') {
+      if (clickType === 'Settings' || 'Watchlist') {
+        $(`#${clickType}-page`).css({ display: 'inline-block' });
+        $('#carousel').css({ display: 'none' });
+        $('#footer').css({ display: 'none' });
+        $('#banner-box').css({ display: 'none' });
+        $('#header').css({ display: 'none' });
+      }
       $(`#${clickType}-page`).css({ display: 'inline-block' });
       $('#carousel').css({ display: 'none' });
       $('#footer').css({ display: 'none' });
@@ -147,6 +154,7 @@ class App extends React.Component {
       $('#carousel').css({ display: 'inline-block' });
       $('#footer').css({ display: 'flex' });
       $('#banner-box').css({ display: 'flex' });
+      $('#header').css(({ display: 'flex' }));
     }
 
   }
