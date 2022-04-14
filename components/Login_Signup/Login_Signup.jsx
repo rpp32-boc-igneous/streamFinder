@@ -13,8 +13,8 @@ class Login_Signup extends React.Component {
     event.preventDefault();
     console.log("This is where Oauth will happen");
     $.ajax({
-      url: "/oauth/google",
-      method: "POST",
+      url: "/oauth",
+      method: "GET",
       success: function () {
         console.log("This is the successfull post of the google oauth attempt");
       },
@@ -24,6 +24,14 @@ class Login_Signup extends React.Component {
   handleLoginSubmit(event) {
     event.preventDefault();
     console.log("This is where the app auth will happen");
+
+    $.ajax({
+      url: "/oauth/google",
+      method: "GET",
+      success: function () {
+        console.log("Hey! It worked");
+      },
+    });
   }
 
   render() {
@@ -33,8 +41,8 @@ class Login_Signup extends React.Component {
         <div>
           <h3>Sign In</h3>
           <form>
-            <input type="text" name="userName" placeHolder="User Name"></input>
-            <input type="text" name="password" placeHolder="Password"></input>
+            <input type="text" name="userName" placeholder="User Name"></input>
+            <input type="text" name="password" placeholder="Password"></input>
             <input
               type="submit"
               value="Submit"
@@ -54,3 +62,5 @@ class Login_Signup extends React.Component {
 }
 
 export default Login_Signup;
+
+document.getElementById("Main");
