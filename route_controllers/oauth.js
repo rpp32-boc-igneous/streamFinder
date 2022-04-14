@@ -7,25 +7,15 @@ router.use((req, res, next) => {
   next();
 });
 
-//Get login URL
-// router.get("/", (req, res) => {
-//   console.log("This is a thing");
-//   res.end();
-// });
-
-router.get("/fake", (req, res) => {
-  console.log("This should not work if I understand this correctly");
-  res.end();
+router.get("/", (req, res) => {
+  console.log("Is it here?");
 });
 
 //Getting the user from Google with the code
 router.get("/google", (req, res) => {
-  google_oauth
-    .get_code()
-    .then((data) => {
-      console.log(data);
-    })
-    .catch((error) => error);
+  const url = google_oauth.get_url();
+  console.log("oauth url controller", url);
+  res.send(url);
 });
 
 //Getting the current user

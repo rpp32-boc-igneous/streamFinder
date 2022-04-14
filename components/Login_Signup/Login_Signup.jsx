@@ -23,15 +23,18 @@ class Login_Signup extends React.Component {
 
   handleLoginSubmit(event) {
     event.preventDefault();
-    console.log("This is where the app auth will happen");
 
     $.ajax({
       url: "/oauth/google",
       method: "GET",
-      success: function () {
-        console.log("Hey! It worked");
-      },
-    });
+      success: (google_url) => url,
+    })
+      .then((google_url) => {
+        let consent_url = google_url;
+        console.log("Whyyyyy:", consent_url);
+        window.location.href = consent_url;
+      })
+      .catch((error) => error);
   }
 
   render() {

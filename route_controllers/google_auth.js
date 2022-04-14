@@ -15,21 +15,21 @@ const scopes = [
   "https://www.googleapis.com/auth/userinfo.email",
 ];
 
-const google_auth_url = JSON.stringify(
-  oauth2Client.generateAuthUrl({
+module.exports.get_url = function () {
+  let url = oauth2Client.generateAuthUrl({
     access_type: "offline",
     scope: scopes,
-  })
-);
+  });
 
-// console.log(
-//   "This is the client: ",
-//   JSON.stringify(oauth2Client.generateAuthUrl())
-// );
+  return url;
+};
 
-module.exports.get_code = async function getAuthorizationCode(google_auth_url) {
-  await axios.get({
+module.exports.get_code = async function getAuthorizationCode() {
+  console.log("Testing");
+  console.log("URL: ", google_auth_url);
+  const code = await axios.get({
     method: "GET",
     url: google_auth_url,
   });
+  return code;
 };
