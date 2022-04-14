@@ -1,5 +1,5 @@
-const dotenv = require('dotenv');
-console.log(process.env.MONGO_API);
+require('dotenv').config();
+console.log(process.env.PORT);
 // db key for future deployment db security (non-localhost in connection string)
 const key = process.env.DB_KEY;
 const mongoose = require('mongoose');

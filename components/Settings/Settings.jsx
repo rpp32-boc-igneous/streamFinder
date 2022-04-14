@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import axios from 'axios';
 import UserInfo from './UserInfo.jsx';
 import StreamList from './StreamList.jsx';
 import StreamStore from './StreamStore.jsx';
@@ -11,42 +12,42 @@ class Settings extends React.Component {
     super(props);
     this.state = {
       streams: [
-        {
-          name:'movie1',
-          logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-          no_ads: false,
-          free: true,
-          cost: 0,
-          subscription: false,
-          website: 'https://google.com'
-        },
-        {
-          name:'show1',
-          logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-          no_ads: true,
-          free: false,
-          cost: 10,
-          subscription: true,
-          website: 'https://google.com'
-        },
-        {
-          name:'movie2',
-          logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-          no_ads: true,
-          free: true,
-          cost: 0,
-          subscription: false,
-          website: 'https://google.com'
-        },
-        {
-          name:'show2',
-          logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-          no_ads: false,
-          free: false,
-          cost: 5.99,
-          subscription: true,
-          website: 'https://google.com'
-        }
+        // {
+        //   name:'movie1',
+        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
+        //   no_ads: false,
+        //   free: true,
+        //   cost: 0,
+        //   subscription: false,
+        //   website: 'https://google.com'
+        // },
+        // {
+        //   name:'show1',
+        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
+        //   no_ads: true,
+        //   free: false,
+        //   cost: 10,
+        //   subscription: true,
+        //   website: 'https://google.com'
+        // },
+        // {
+        //   name:'movie2',
+        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
+        //   no_ads: true,
+        //   free: true,
+        //   cost: 0,
+        //   subscription: false,
+        //   website: 'https://google.com'
+        // },
+        // {
+        //   name:'show2',
+        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
+        //   no_ads: false,
+        //   free: false,
+        //   cost: 5.99,
+        //   subscription: true,
+        //   website: 'https://google.com'
+        // }
       ],
       subscriptions: [
         {name: 'Netflix', subbed: false, default: true},
@@ -56,8 +57,28 @@ class Settings extends React.Component {
         {name:'Vudu', subbed: false, default: true},
         {name:'Disney', subbed: false, default: true}
       ],
-      updateField: null
+      updateField: null,
+      URL: 'http://localhost:3000'
     };
+  }
+
+  // componentDidMount() {
+  //   this.getStreams();
+  //   console.log(this.state.streams);
+  // }
+
+  componentDidUpdate() {
+    if (this.state.streams.length === 0){
+      this.getStreams();
+    }
+  }
+
+  getStreams = () => {
+    axios.get(`${this.state.URL}/streams`)
+    .then(data => {
+      this.setState({streams: data.data})
+    })
+    .catch(err => console.log('all streams request failed'));
   }
 
   close = () => {

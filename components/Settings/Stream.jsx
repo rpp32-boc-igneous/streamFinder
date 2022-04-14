@@ -28,7 +28,8 @@ const Stream = (props) => {
       id={`check-${props.stream}`}
       type='checkbox'
       name={props.stream}
-      checked='true'
+      checked={true}
+      readOnly={true}
       />
     )
   }

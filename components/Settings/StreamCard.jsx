@@ -41,7 +41,7 @@ const StreamCard = (props) => {
         <IoAdd className='card-icon ' id={`sub-${props.stream.name}`}/>
         <AiOutlineClose className='card-icon hide' id={`unsub-${props.stream.name}`}/>
       </span>
-        <img src='https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg'
+        <img src={props.stream.logo}
         className='stream-img'
       />
       <div className='stream-info'>

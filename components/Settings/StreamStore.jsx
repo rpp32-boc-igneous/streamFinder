@@ -11,6 +11,10 @@ const StreamStore = (props) => {
   const [ads, setAds] = useState(false);
   const [free, setFree] = useState(false);
 
+  useEffect(() => {
+    setStreams(props.streams)
+  }, [props.streams])
+
   const closeStore = () => {
     $('#store').addClass('hide');
     $('#account').removeClass('hide');

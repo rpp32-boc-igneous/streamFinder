@@ -88,7 +88,7 @@ app.put('/update_user', (req, res) => {
 app.get('/streams', (req, res) => {
   retrieveAllStreams()
   .then(data => {
-    res.status(200).json({success: true, data: data})
+    res.status(200).send(data)
   })
   .catch(err => res.status(400).json({success: false, error: err}))
 })
@@ -96,7 +96,7 @@ app.get('/streams', (req, res) => {
 app.get('/streams/:stream', (req, res) => {
   retrieveOneStream(req.params.stream)
   .then(data => {
-    res.status(200).json({success: true, data: data})
+    res.status(200).send(data)
   })
   .catch(err => res.status(400).json({success:false, error: err}))
 })
