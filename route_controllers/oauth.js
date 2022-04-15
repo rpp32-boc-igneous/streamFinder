@@ -9,6 +9,7 @@ router.use((req, res, next) => {
 
 // Entrance to the validated portion of the app
 router.get("/openSesame", (req, res) => {
+  console.log("cookies: ", req.cookies);
   let id_cookie = JSON.parse(req.cookies.id);
   res.send(id_cookie);
 });

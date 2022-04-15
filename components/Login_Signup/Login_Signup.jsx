@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import GoogleLogin from "react-google-login";
 
 class Login_Signup extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class Login_Signup extends React.Component {
     this.handleGoogleOauthSubmit = this.handleGoogleOauthSubmit.bind(this);
     this.handleMySpaceOauthSubmit = this.handleMySpaceOauthSubmit.bind(this);
     this.handleAOLOauthSubmit = this.handleAOLOauthSubmit.bind(this);
+    this.responseGoogle = this.responseGoogle.bind(this);
   }
 
   handleOauthSubmit(event) {
@@ -33,25 +35,30 @@ class Login_Signup extends React.Component {
       .then((google_url) => {
         let consent_url = google_url;
         console.log("Consenting to:", consent_url);
-        window.location.href = consent_url;
+        window.location.replace(consent_url);
       })
-      .then((e) => {
-        $.ajax({
-          url: "/openSesame",
-          method: "GET",
-          success: (data) => {
-            console.log("Should have the ID: ", data);
-
-            //set the state with the new user information
-          },
-        });
-      })
+      .then((e) => console.log("Anything??"))
       .catch((error) => error);
+
+    console.log("Heat check");
+    // $.ajax({
+    //   url: "/oauth/openSesame",
+    //   method: "GET",
+    //   success: (data) => {
+    //     console.log("Anything");
+    //     console.log("Should have the ID: ", data);
+    //     //set the state with the new user information
+    //   },
+    // });
   }
 
   handleAOLOauthSubmit(event) {}
 
   handleMySpaceOauthSubmit(event) {}
+
+  responseGoogle(response) {
+    console.log("Response: ", response);
+  }
 
   render() {
     return (
@@ -69,6 +76,12 @@ class Login_Signup extends React.Component {
             />
           </form>
           <h3>or Sign in with</h3>
+          <GoogleLogin
+            clientId="768315598088-9hct54aqr973f9uccu076mvs5smvlg6j.apps.googleusercontent.com"
+            buttonText="Login"
+            onSuccess={this.responseGoogle}
+            onFailure={this.responseGoogle}
+          />
           <form>
             <button onClick={this.handleGoogleOauthSubmit}>Google</button>
             <button onClick={this.handleMySpaceOauthSubmit}>FaceBook</button>
