@@ -4,8 +4,13 @@ const cors = require("cors");
 const app = express();
 const path = require("path");
 const port = process.env.PORT;
+const cookieParser = require("cookie-parser");
+
+// Roter for Login and Sign Up //
 const oauth = require("../route_controllers/oauth");
 const signup = require("../route_controllers/signup");
+
+// Cong for enviornmental variables
 require("dotenv").config();
 
 const {
@@ -21,6 +26,7 @@ const {
   insertStream,
 } = require("../database/dbMethods.js");
 
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("public"));
@@ -62,7 +68,7 @@ app.post("/related", (req, res) => {
 ///////////////////////
 
 app.use("/oauth", oauth);
-// app.get('/login', (req, res) => {})
+
 app.use("/signup", signup);
 // app.get('/signup', (req, res) => {
 //   var user = req.body.user;
@@ -71,7 +77,7 @@ app.use("/signup", signup);
 //     console.log('user creation success')
 //     res.send(data);
 //   })
-// })
+// })\
 
 ///////////////////////
 // Watchlist

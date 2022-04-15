@@ -33,6 +33,15 @@ class Login_Signup extends React.Component {
         console.log("Consenting to:", consent_url);
         window.location.href = consent_url;
       })
+      .then((e) => {
+        $.ajax({
+          url: "/openSesame",
+          method: "GET",
+          success: (data) => {
+            console.log("Should have the ID: ", data);
+          },
+        });
+      })
       .catch((error) => error);
   }
 

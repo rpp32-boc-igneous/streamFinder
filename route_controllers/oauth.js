@@ -7,25 +7,31 @@ router.use((req, res, next) => {
   next();
 });
 
-router.get("/", (req, res) => {
-  // console.log("Is it here?");
+// Entrance to the validated portion of the app
+router.get("/openSesame", (req, res) => {
+  console.log("cookies", req.cookies.id);
+  let id_cookie = JSON.parse(req.cookies.id);
+  res.send(id_cookie);
 });
 
-//Getting the user from Google with the code
+// Getting the user from Google with the code
 router.get("/google", (req, res) => {
   const url = google_oauth.get_url();
   // console.log("oauth url controller", url);
   res.send(url);
 });
 
-//Getting the current user
+// Getting the current user
 router.get("/redirect/google", (req, res) => {
-  // console.log("This is a successful redirect..");
-  // console.log(req.query);
   let code = req.query.code;
-  google_oauth.get_code(code);
-
-  res.redirect("/");
+  // let id_info =
+  google_oauth
+    .get_code(code)
+    .then((code) => {
+      let id_info = JSON.stringify(code);
+      res.cookie("id", id_info).redirect("/oauth/openSesame");
+    })
+    .catch((error) => res.send(error));
 });
 
 // router.get("/google", google);

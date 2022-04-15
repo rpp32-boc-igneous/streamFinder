@@ -31,7 +31,7 @@ module.exports.get_code = async function (code) {
   // oauth2Client.setCredentials(tokens);
 
   const id_token = jwt.decode(tokens.id_token, { complete: true });
-  console.log("ID_TOKEN: ", id_token);
+  // console.log("ID_TOKEN: ", id_token);
 
   const id_info = {
     name: id_token.payload.name,
