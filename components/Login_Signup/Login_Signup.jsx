@@ -41,6 +41,8 @@ class Login_Signup extends React.Component {
           method: "GET",
           success: (data) => {
             console.log("Should have the ID: ", data);
+
+            //set the state with the new user information
           },
         });
       })

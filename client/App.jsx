@@ -205,7 +205,7 @@ class App extends React.Component {
           </div>
 
           <div id="Login-page">
-            <Login_Signup />
+            <Login_Signup updateState={this.updateState} />
             <img
               src={SFicon}
               onClick={this.showModal}
