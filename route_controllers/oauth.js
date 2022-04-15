@@ -9,7 +9,6 @@ router.use((req, res, next) => {
 
 // Entrance to the validated portion of the app
 router.get("/openSesame", (req, res) => {
-  console.log("cookies", req.cookies.id);
   let id_cookie = JSON.parse(req.cookies.id);
   res.send(id_cookie);
 });
@@ -17,7 +16,6 @@ router.get("/openSesame", (req, res) => {
 // Getting the user from Google with the code
 router.get("/google", (req, res) => {
   const url = google_oauth.get_url();
-  // console.log("oauth url controller", url);
   res.send(url);
 });
 
@@ -34,8 +32,7 @@ router.get("/redirect/google", (req, res) => {
     .catch((error) => res.send(error));
 });
 
-// router.get("/google", google);
-// router.get("/facebook", facebook);
+// router.get("/facebook", AOL);
 // roter.get("/myspace", myspace);
 
 module.exports = router;

@@ -27,7 +27,7 @@ module.exports.get_url = function () {
 module.exports.get_code = async function (code) {
   const { tokens } = await oauth2Client.getToken(code);
   const id_token = jwt.decode(tokens.id_token, { complete: true });
-
+  console.log("This is the token for real: ", id_token);
   const id_info = {
     name: id_token.payload.name,
     email: id_token.payload.email,

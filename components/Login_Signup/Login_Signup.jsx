@@ -5,8 +5,10 @@ class Login_Signup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-    this.handleOauthSubmit = this.handleOauthSubmit.bind(this);
-    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.handleGoogleOauthSubmit = this.handleGoogleOauthSubmit.bind(this);
+    this.handleMySpaceOauthSubmit = this.handleMySpaceOauthSubmit.bind(this);
+    this.handleAOLOauthSubmit = this.handleAOLOauthSubmit.bind(this);
   }
 
   handleOauthSubmit(event) {
@@ -20,7 +22,7 @@ class Login_Signup extends React.Component {
     });
   }
 
-  handleLoginSubmit(event) {
+  handleGoogleOauthSubmit(event) {
     event.preventDefault();
 
     $.ajax({
@@ -45,6 +47,10 @@ class Login_Signup extends React.Component {
       .catch((error) => error);
   }
 
+  handleAOLOauthSubmit(event) {}
+
+  handleMySpaceOauthSubmit(event) {}
+
   render() {
     return (
       <div>
@@ -62,9 +68,9 @@ class Login_Signup extends React.Component {
           </form>
           <h3>or Sign in with</h3>
           <form>
-            <button onClick={this.handleOauthSubmit}>Google</button>
-            <button onClick={this.handleOauthSubmit}>FaceBook</button>
-            <button onClick={this.handleOauthSubmit}>MySpace</button>
+            <button onClick={this.handleGoogleOauthSubmit}>Google</button>
+            <button onClick={this.handleMySpaceOauthSubmit}>FaceBook</button>
+            <button onClick={this.handleAOLOauthSubmit}>MySpace</button>
           </form>
         </div>
       </div>
