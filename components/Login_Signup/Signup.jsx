@@ -19,6 +19,13 @@ class Signup extends React.Component {
 
         <div className="StreamButtonAtSignUp">
           <input type="radio" value="Netflix" name="stream" /> Netflix
+          <input type="radio" value="Hulu" name="stream" /> Hulu
+          <input type="radio" value="Vudu" name="stream" /> Vudu
+          <input type="radio" value="HBO_Max" name="stream" /> HBO Max
+          <input type="radio" value="Disney +" name="stream" /> Disney +
+          <input type="radio" value="Amazon_Prime_Video" name="stream" /> Amazon
+          Prime Video
+          <input type="radio" value="Peacock" name="stream" /> Peacock
         </div>
       </div>
     );

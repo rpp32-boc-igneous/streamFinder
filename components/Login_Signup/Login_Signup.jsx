@@ -99,11 +99,10 @@ class Login_Signup extends React.Component {
             onSuccess={this.onSuccess}
             onFailure={this.onFailure}
           />
-          <form>
-            <button onClick={this.handleGoogleOauthSubmit}>Google</button>
+          {/* <form>
             <button onClick={this.handleMySpaceOauthSubmit}>FaceBook</button>
             <button onClick={this.handleAOLOauthSubmit}>MySpace</button>
-          </form>
+          </form> */}
         </div>
       </div>
     );
