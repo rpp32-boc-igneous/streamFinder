@@ -141,6 +141,8 @@ class App extends React.Component {
     var parent = e.target.parentNode.id;
     var clickClass = e.target.className;
 
+    console.log("Clicky stuff: ", { clickType, parent, clickClass });
+
     if (clickClass !== "home") {
       $(`#${clickType}-page`).css({ display: "inline-block" });
       $("#carousel").css({ display: "none" });
@@ -174,7 +176,7 @@ class App extends React.Component {
             Login
           </button>
           <button id="signup-button" onClick={this.showModal}>
-            Sign Up
+            Signup
           </button>
           <Search
             changePage={this.showModal}

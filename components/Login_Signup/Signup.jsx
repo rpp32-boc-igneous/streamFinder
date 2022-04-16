@@ -11,10 +11,10 @@ class Signup extends React.Component {
       <div>
         <h1>Signup</h1>
         <form>
-          <input type="text" placeHolder="User Name" />
-          <input type="text" placeHolder="Password" />
-          <input type="text" placeHolder="Confirm Password" />
-          <input type="text" placeHolder="Email Address" />
+          <input type="text" placeholder="User Name" />
+          <input type="text" placeholder="Password" />
+          <input type="text" placeholder="Confirm Password" />
+          <input type="text" placeholder="Email Address" />
         </form>
 
         <div className="StreamButtonAtSignUp">
