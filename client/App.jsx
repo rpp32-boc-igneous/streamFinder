@@ -3,10 +3,10 @@ import $ from "jquery";
 
 // Components
 import Login_Signup from "../components/Login_Signup/Login_Signup.jsx";
+import Signup from "../components/Login_Signup/Signup.jsx";
 import Search from "../components/Search.jsx";
 import Carousel from "../components/Carousel.jsx";
 import VideoCard from "../components/VideoCard.jsx";
-import Signup from "../components/Login_Signup/Signup.jsx";
 import Watchlist from "../components/Watchlist.jsx";
 import Settings from "../components/Settings/Settings.jsx";
 
@@ -172,6 +172,9 @@ class App extends React.Component {
         <div id="header">
           <button id="login-button" onClick={this.showModal}>
             Login
+          </button>
+          <button id="signup-button" onClick={this.showModal}>
+            Sign Up
           </button>
           <Search
             changePage={this.showModal}

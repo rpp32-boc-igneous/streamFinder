@@ -53,6 +53,7 @@
     "react-dom": "^18.0.0",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
+    "react-simple-oauth2-login": "^0.5.3",
     "sass-loader": "^12.6.0",
     "supertest": "^6.2.2",
     "swiper": "^6.8.4",

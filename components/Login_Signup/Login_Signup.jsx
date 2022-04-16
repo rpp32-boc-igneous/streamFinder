@@ -11,6 +11,8 @@ class Login_Signup extends React.Component {
     this.handleMySpaceOauthSubmit = this.handleMySpaceOauthSubmit.bind(this);
     this.handleAOLOauthSubmit = this.handleAOLOauthSubmit.bind(this);
     this.responseGoogle = this.responseGoogle.bind(this);
+    this.onSuccess = this.onSuccess.bind(this);
+    this.onFailure = this.onFailure.bind(this);
   }
 
   handleOauthSubmit(event) {
@@ -35,21 +37,10 @@ class Login_Signup extends React.Component {
       .then((google_url) => {
         let consent_url = google_url;
         console.log("Consenting to:", consent_url);
-        window.location.replace(consent_url);
+        window.open(consent_url);
       })
       .then((e) => console.log("Anything??"))
       .catch((error) => error);
-
-    console.log("Heat check");
-    // $.ajax({
-    //   url: "/oauth/openSesame",
-    //   method: "GET",
-    //   success: (data) => {
-    //     console.log("Anything");
-    //     console.log("Should have the ID: ", data);
-    //     //set the state with the new user information
-    //   },
-    // });
   }
 
   handleAOLOauthSubmit(event) {}
@@ -58,6 +49,31 @@ class Login_Signup extends React.Component {
 
   responseGoogle(response) {
     console.log("Response: ", response);
+  }
+
+  onSuccess(response) {
+    // Check and see if there is a user in the DB with the email
+    let name = response.profileObj.name;
+    let email = response.profileObj.email;
+    let imageUrl = response.profileObj.imageUrl;
+    let first_name = response.profileObj.givenName;
+
+    $.ajax({
+      url: "/oauth/verifyUser",
+      method: "GET",
+      data: { name, email, first_name },
+      success: (result) => result,
+    })
+      .then((result) => {
+        console.log("Survey says!!!", result);
+      })
+      .catch((error) => error);
+
+    console.log(name, email, first_name);
+  }
+
+  onFailure(response) {
+    console.log("This is the failure response: ", response);
   }
 
   render() {
@@ -79,8 +95,9 @@ class Login_Signup extends React.Component {
           <GoogleLogin
             clientId="768315598088-9hct54aqr973f9uccu076mvs5smvlg6j.apps.googleusercontent.com"
             buttonText="Login"
-            onSuccess={this.responseGoogle}
-            onFailure={this.responseGoogle}
+            redirectUri="http://localhost:3000/oauth/google/redirect"
+            onSuccess={this.onSuccess}
+            onFailure={this.onFailure}
           />
           <form>
             <button onClick={this.handleGoogleOauthSubmit}>Google</button>
