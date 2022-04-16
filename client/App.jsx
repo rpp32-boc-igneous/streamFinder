@@ -225,13 +225,14 @@ class App extends React.Component {
           </div>
 
           <div id="Watchlist-page">
-            <Watchlist />
-            <img
-              src={SFicon}
-              onClick={this.showModal}
-              className="home"
-              id="home-watchlist"
-            ></img>
+            <Watchlist  watch_list={this.state.watch_list}
+                        watch_history={this.state.watch_history}
+                        displaySelectedTitle={this.displaySelectedTitle}/>
+            <img  src={SFicon}
+                  onClick={this.showModal}
+                  className='home'
+                  id="home-watchlist">
+            </img>
           </div>
 
           <div id="Settings-page">
