@@ -12,21 +12,21 @@ function ServiceButtonGroup(props) {
 
   return (
     <div>
-      {group1.map((stream) => (
-        <div style={style}>
+      <div style={style}>
+        {group1.map((stream) => (
           <ServiceButton service_name={stream} />
-        </div>
-      ))}
-      {group2.map((stream) => (
-        <div style={style}>
+        ))}
+      </div>
+      <div style={style}>
+        {group2.map((stream) => (
           <ServiceButton service_name={stream} />
-        </div>
-      ))}
-      {group3.map((stream) => (
-        <div style={style}>
+        ))}
+      </div>
+      <div style={style}>
+        {group3.map((stream) => (
           <ServiceButton service_name={stream} />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }
