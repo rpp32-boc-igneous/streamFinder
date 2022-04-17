@@ -23,10 +23,13 @@ router.get("/google", (req, res) => {
   res.send(url);
 });
 
-// Getting the current user
+////////////////////////////
+// Getting the current user :::: Not working Currently
+////////////////////////////
 router.get("/google/redirect", (req, res) => {
-  let code = req.query.code;
-  console.log("We made it", req);
+  // I will need to check the DB here and see if there is an existing user..
+  // This currently isnt being used. Need to figure this out or delete it...
+  console.log("Just want to check and see if this is running??");
   // let id_info =
   google_oauth
     .get_code(code)
@@ -40,7 +43,15 @@ router.get("/google/redirect", (req, res) => {
 // Verify the user in the DB, add if not there
 router.get("/verifyUser", (req, res) => {
   console.log("This is the verify user route", req.query);
-  User.find({ email: "jarrod83miller@gmail.com" })
+  let query = { email: req.query.email };
+  let update = {
+    email: req.query.email,
+    name: req.query.name,
+    first_name: req.query.first_nameß,
+  };
+  let options = { upsert: true, new: true };
+
+  User.findOneAndUpdate(query, update, options)
     .then((result) => {
       console.log("This is the DB search result", result);
     })

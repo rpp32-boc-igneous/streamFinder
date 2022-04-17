@@ -39,7 +39,6 @@ class Login_Signup extends React.Component {
         console.log("Consenting to:", consent_url);
         window.open(consent_url);
       })
-      .then((e) => console.log("Anything??"))
       .catch((error) => error);
   }
 
@@ -61,7 +60,11 @@ class Login_Signup extends React.Component {
     $.ajax({
       url: "/oauth/verifyUser",
       method: "GET",
-      data: { name, email, first_name },
+      data: {
+        name: "Bob Smith",
+        email: "Bob@email.com",
+        first_name: "Bob",
+      },
       success: (result) => result,
     })
       .then((result) => {
