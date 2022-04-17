@@ -1,9 +1,22 @@
 import React from "react";
+import ServiceButtonGroup from "./ServiceButtonGroup.jsx";
 
 class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      services: [
+        "Netflix",
+        "Hulu",
+        "Amazon Prime Video",
+        "Vudu",
+        "HBO Max",
+        "Disney +",
+        "Peacock",
+        "Sling TV",
+        "Discovery",
+      ],
+    };
   }
 
   render() {
@@ -18,14 +31,7 @@ class Signup extends React.Component {
         </form>
 
         <div className="StreamButtonAtSignUp">
-          <input type="radio" value="Netflix" name="stream" /> Netflix
-          <input type="radio" value="Hulu" name="stream" /> Hulu
-          <input type="radio" value="Vudu" name="stream" /> Vudu
-          <input type="radio" value="HBO_Max" name="stream" /> HBO Max
-          <input type="radio" value="Disney +" name="stream" /> Disney +
-          <input type="radio" value="Amazon_Prime_Video" name="stream" /> Amazon
-          Prime Video
-          <input type="radio" value="Peacock" name="stream" /> Peacock
+          <ServiceButtonGroup services={this.state.services} />
         </div>
       </div>
     );
