@@ -51,23 +51,21 @@ class Login_Signup extends React.Component {
   }
 
   onSuccess(response) {
-    // Check and see if there is a user in the DB with the email
+    // Define the user object
     let name = response.profileObj.name;
     let email = response.profileObj.email;
     let imageUrl = response.profileObj.imageUrl;
     let first_name = response.profileObj.givenName;
 
+    //Check the DB and see if there is a user with the matching profile
     $.ajax({
       url: "/oauth/verifyUser",
       method: "GET",
-      data: {
-        name: "Bob Smith",
-        email: "Bob@email.com",
-        first_name: "Bob",
-      },
+      data: { name, email, first_name },
       success: (result) => result,
     })
       .then((result) => {
+        // Get the current user and set it to app state
         console.log("Survey says!!!", result);
       })
       .catch((error) => error);
@@ -87,7 +85,12 @@ class Login_Signup extends React.Component {
           <h3>Sign In</h3>
           <form>
             <input type="text" name="userName" placeholder="User Name"></input>
-            <input type="text" name="password" placeholder="Password"></input>
+            <input
+              autocomplete="on"
+              type="password"
+              name="password"
+              placeholder="Password"
+            ></input>
             <input
               type="submit"
               value="Submit"

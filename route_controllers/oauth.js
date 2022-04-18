@@ -40,23 +40,22 @@ router.get("/google/redirect", (req, res) => {
     .catch((error) => res.send(error));
 });
 
-// Verify the user in the DB, add if not there
+// Checks the DB for an existing user and returns it if currently exists
+// If new user, new entry is added to the Users collection and returned
+// If user is not in the DB we need to redirect the user to the Sign up page
 router.get("/verifyUser", (req, res) => {
-  console.log("This is the verify user route", req.query);
   let query = { email: req.query.email };
-  let update = {
+  let user = {
     email: req.query.email,
     name: req.query.name,
     first_name: req.query.first_nameß,
   };
-  let options = { upsert: true, new: true };
 
-  User.findOneAndUpdate(query, update, options)
-    .then((result) => {
-      console.log("This is the DB search result", result);
+  User.findOne(query)
+    .then((user) => {
+      console.log("This is the findOne result: ", user);
     })
     .catch((error) => error);
-  res.end();
 });
 
 // router.get("/facebook", AOL);

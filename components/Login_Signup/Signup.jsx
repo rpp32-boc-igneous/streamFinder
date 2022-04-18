@@ -25,8 +25,12 @@ class Signup extends React.Component {
         <h1>Signup</h1>
         <form>
           <input type="text" placeholder="User Name" />
-          <input type="text" placeholder="Password" />
-          <input type="text" placeholder="Confirm Password" />
+          <input type="password" autocomplete="on" placeholder="Password" />
+          <input
+            type="password"
+            autocomplete="on"
+            placeholder="Confirm Password"
+          />
           <input type="text" placeholder="Email Address" />
         </form>
 
