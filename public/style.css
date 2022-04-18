@@ -384,6 +384,7 @@ VIDEO CARDS
   background-color: rgba(255, 255, 255, 0.0);
   margin-left: 2px;
   margin-top: 40px;
+  transition: transform 100ms ease-in-out 25ms;
 }
 
 .video-card:hover {
