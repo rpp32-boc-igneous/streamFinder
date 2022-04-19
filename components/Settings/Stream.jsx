@@ -20,8 +20,6 @@ const Stream = (props) => {
   let Checkbox;
   let name = props.format(stream.name);
 
-  console.log('stream subbed', props.subbed)
-
   // if (stream.default) {
    Checkbox = (
       <input

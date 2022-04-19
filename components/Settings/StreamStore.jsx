@@ -22,7 +22,7 @@ const StreamStore = (props) => {
   }, [props.streams])
 
   useEffect(() => {
-    console.log(searchResults);
+    // console.log(searchResults);
 
   //   (searching) ?
   //     setList(searchResults):

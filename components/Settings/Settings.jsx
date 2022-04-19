@@ -95,7 +95,7 @@ class Settings extends React.Component {
       return acc;
     }, []);
 
-    this.setState({defaultSubs: defaults}, () => console.log(this.state.defaultSubs));
+    this.setState({defaultSubs: defaults});
   }
 
   getSubs = () => {
