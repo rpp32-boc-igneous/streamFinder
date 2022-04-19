@@ -33,6 +33,18 @@ var MiniVideoCard = (props) => {
     }
   }
 
+  const descriptionSuperShortener = (stringDescription) => {
+    let newString = [];
+    let words = stringDescription.split(' ');
+    for (var i = 0; i < words.length; i++) {
+      if (newString.length < 10) {
+        newString.push(words[i])
+      }
+    }
+
+    return newString.join(' ').concat('...');
+  }
+
   if (props.obj !== undefined) {
     return (
       <div className='video-card'>
@@ -41,20 +53,9 @@ var MiniVideoCard = (props) => {
           <div id='search-card-title'>{props.obj.title + ` (${props.obj.year})`}</div>
           <div id='search-card-rating1'>{props.obj.us_rating}</div>
           <div id='search-card-rating2'>
-            <span>User Rating: {props.obj.user_rating}/10 </span>
             <span>Critic Rating: {props.obj.critic_score}/100</span>
           </div>
-          <p id='search-card-description'>{descriptionShortener(props.obj.plot_overview)}</p>
-          <div id='search-card-sources'>
-            Available On:
-
-            <div>{removeDuplicateSources(props.obj.sources).map((item, i) =>
-              <span key={i}>
-                <a href={item.web_url}>{item.name} </a>
-              </span>
-            )}</div>
-          </div>
-          <a id='search-card-see-more'>See more streaming sources</a>
+          <p id='search-card-description'>{descriptionSuperShortener(props.obj.plot_overview)}</p>
         </div>
       </div>
     )
@@ -68,3 +69,18 @@ var MiniVideoCard = (props) => {
 }
 
 export default MiniVideoCard;
+
+// User Rating (saved)
+// <span>User Rating: {props.obj.user_rating}/10 </span>
+
+// "Available On" block
+// <div id='search-card-sources'>
+//             Available On:
+
+//             <div>{removeDuplicateSources(props.obj.sources).map((item, i) =>
+//               <span key={i}>
+//                 <a href={item.web_url}>{item.name} </a>
+//               </span>
+//             )}</div>
+//           </div>
+//           <a id='search-card-see-more'>See more streaming sources</a>

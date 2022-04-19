@@ -141,17 +141,24 @@ class App extends React.Component {
     var parent = e.target.parentNode.id;
     var clickClass = e.target.className;
 
-    $(".page").css({'display':'none'});
-    if (clickClass !== "home") {
-      $(`#${clickType}-page`).css({ display: "inline-block" });
-      $("#carousel").css({ display: "none" });
-      $("#footer").css({ display: "none" });
-      $("#banner-box").css({ display: "none" });
+    if (clickClass !== 'home') {
+      if (clickType === 'Settings' || 'Watchlist') {
+        $(`#${clickType}-page`).css({ display: 'inline-block' });
+        $('#carousel').css({ display: 'none' });
+        $('#footer').css({ display: 'none' });
+        $('#banner-box').css({ display: 'none' });
+        $('#header').css({ display: 'none' });
+      }
+      $(`#${clickType}-page`).css({ display: 'inline-block' });
+      $('#carousel').css({ display: 'none' });
+      $('#footer').css({ display: 'none' });
+      $('#banner-box').css({ display: 'none' });
     } else {
-      $(`#${parent}`).css({ display: "none" });
-      $("#carousel").css({ display: "inline-block" });
-      $("#footer").css({ display: "flex" });
-      $("#banner-box").css({ display: "flex" });
+      $(`#${parent}`).css({ display: 'none' });
+      $('#carousel').css({ display: 'inline-block' });
+      $('#footer').css({ display: 'flex' });
+      $('#banner-box').css({ display: 'flex' });
+      $('#header').css(({ display: 'flex' }));
     }
   }
 
