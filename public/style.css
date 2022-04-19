@@ -498,6 +498,17 @@ VIDEO CARDS
   color: rgba(255, 185, 50, 1)
 }
 
+.subscribedLink {
+  text-decoration: underline dotted;
+  border: 1px solid rgba(173, 255, 47, 0.6);
+  border-radius: 5px;
+}
+
+.platformLink
+.subscribedLink {
+  margin-top: 3px;
+}
+
 
 /*
 /////////////////////////////////////

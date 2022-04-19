@@ -19,7 +19,7 @@ class VideoCard extends React.Component {
       <div id='video-card-info'>
         <img id='video-card-billboard' src={this.props.title.backdrop}></img>
         <VideoCardOverview title={this.props.title} addToWatchlist={this.props.addToWatchlist}/>
-        <VideoCardPlatforms title={this.props.title}/>
+        <VideoCardPlatforms title={this.props.title} subscriptions={this.props.subscriptions}/>
       </div>
     }
 

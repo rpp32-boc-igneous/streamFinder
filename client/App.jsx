@@ -222,6 +222,7 @@ class App extends React.Component {
             <VideoCard
               title={this.state.active[this.state.selectedTitleIndex]}
               addToWatchlist={this.addToWatchlist}
+              subscriptions={this.state.subscriptions}
             />
             <img
               src={SFicon}
