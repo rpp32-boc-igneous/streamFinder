@@ -30,7 +30,8 @@ app.get('/test', (req, res) => {
 app.post('/search', (req, res) => {
   var searchTerm = req.body.query;
   getTitleIds(searchTerm)
-  .then(ids => getTitleDetails(ids.slice(0, 5)))
+  .then(ids => {
+    return getTitleDetails(ids.slice(0, 5))})
   .then(data => {
     res.send(data)
   })

@@ -2,6 +2,8 @@ import React from 'react';
 
 var MiniVideoCard = (props) => {
 
+  let carouselType = props.carouselType;
+
   const removeDuplicateSources = (dataArray) => {
     let newArray = [];
     let currentSource = '';
@@ -48,7 +50,7 @@ var MiniVideoCard = (props) => {
   if (props.obj !== undefined) {
     return (
       <div className='video-card'>
-        <img id='search-card-img' src={props.obj.poster} onClick={() => {props.selectTitle(props.index)}}></img>
+        <img id='search-card-img' src={props.obj.poster} onClick={() => {props.selectTitle(carouselType, props.index)}}></img>
         <div id='search-text-detail'>
           <div id='search-card-title'>{props.obj.title + ` (${props.obj.year})`}</div>
           <div id='search-card-rating1'>{props.obj.us_rating}</div>

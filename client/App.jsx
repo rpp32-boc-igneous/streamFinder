@@ -29,7 +29,8 @@ class App extends React.Component {
       searchResults: [],
       selectedTitleIndex: 0,
       trending: mockTrending,
-      toCarousel: [mockTrending, true],
+      active: mockTrending,
+      carouselType: 'trending',
       user_id: null,
       user_name: null,
       user_email: null,
@@ -106,20 +107,28 @@ class App extends React.Component {
       {
         ...this.state,
         searchResults: data,
-        toCarousel: [data, false],
+        active: data,
+        carouselType: 'searchResults'
       },
       () => {
-        console.log("search results updated in App state");
+        // console.log("search results updated in App state");
         $("#trending-button").removeClass("button-focus");
       }
     );
   }
 
-  displaySelectedTitle(index) {
+  displaySelectedTitle(keyname, index) {
+
+    // uses keyname from wherever title was clicked to change
+    // index to relevant index and "active" to
+    // relevant feed for VideoCard display
+
+    var targetData = this.state[keyname];
     this.setState(
       {
         ...this.state,
-        selectedTitleIndex: index - 1,
+        selectedTitleIndex: index,
+        active: targetData
       },
       () => {
         $("#Title-page").css({ display: "inline-block" });
@@ -163,10 +172,12 @@ class App extends React.Component {
   }
 
   showTrending() {
+    var trending = this.state.trending.slice()
     this.setState(
       {
         ...this.state,
-        toCarousel: [this.state.trending, true],
+        active: trending,
+        carouselType: 'trending'
       },
       () => {
         $("#trending-button").addClass("button-focus");
@@ -175,6 +186,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div id="header">
@@ -194,7 +206,8 @@ class App extends React.Component {
 
         <div id="body">
           <Carousel
-            searchResults={this.state.toCarousel}
+            carouselType={this.state.carouselType}
+            searchResults={this.state.active}
             trending={this.state.trending}
             displaySelectedTitle={this.displaySelectedTitle}
             searchTerm={this.state.searchTerm}
@@ -202,7 +215,7 @@ class App extends React.Component {
 
           <div className="page" id="Title-page">
             <VideoCard
-              title={this.state.searchResults[this.state.selectedTitleIndex + 1]}
+              title={this.state.active[this.state.selectedTitleIndex]}
             />
             <img
               src={SFicon}
