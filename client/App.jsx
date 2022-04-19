@@ -39,7 +39,6 @@ class App extends React.Component {
       subscriptions: ['Disney Plus', 'iTunes', 'Amazon'],
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
-    this.loadTrending = this.loadTrending.bind(this);
     this.showModal = this.showModal.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.updateState = this.updateState.bind(this);
@@ -49,13 +48,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      ...this.state,
-      toCarousel: [this.state.trending, true],
-    });
     $("#trending-button").addClass("button-focus");
   }
 
+  // receives key / value pair, updates user state,
+  // then calls updateUser to replace the user record in the database
   updateState(key, value) {
     this.setState(
       {
@@ -94,7 +91,8 @@ class App extends React.Component {
       });
   }
 
-  //updates search term in state for carousel label, i.e "showing search results for Titanic"
+  // updates search term in state for carousel label,
+  // i.e "showing search results for Titanic"
   updateSearchTerm(term) {
     this.setState({
       ...this.state,
@@ -102,6 +100,9 @@ class App extends React.Component {
     });
   }
 
+  // receives data from Search component and sets state, with results,
+  // sets "active" to relevant dataset for clicks to VideoCard component
+  // sets carouselType to 'searchResults
   updateSearchResults(data) {
     this.setState(
       {
@@ -111,18 +112,15 @@ class App extends React.Component {
         carouselType: 'searchResults'
       },
       () => {
-        // console.log("search results updated in App state");
         $("#trending-button").removeClass("button-focus");
       }
     );
   }
 
+  // receives the name of a key in state + an index and
+  // sets state with index and sets "active" to reflect
+  // relevant dataset for VideoCard display
   displaySelectedTitle(keyname, index) {
-
-    // uses keyname from wherever title was clicked to change
-    // index to relevant index and "active" to
-    // relevant feed for VideoCard display
-
     var targetData = this.state[keyname];
     this.setState(
       {
@@ -138,13 +136,7 @@ class App extends React.Component {
     );
   }
 
-  loadTrending() {
-    // axios call to API for movie list
-    // module analyzes to gather trending
-    var trending = deriveTrending(data);
-    // trending is loaded in state
-  }
-
+  // changes display in SPA
   showModal(e) {
     var clickType = e.target.innerHTML;
     var parent = e.target.parentNode.id;
@@ -171,6 +163,7 @@ class App extends React.Component {
     }
   }
 
+  // handles trending button display
   showTrending() {
     var trending = this.state.trending.slice()
     this.setState(
@@ -299,4 +292,3 @@ class App extends React.Component {
 
 export default App;
 
-//<div id="banner">StreamFinder</div>

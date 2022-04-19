@@ -29,7 +29,7 @@ class VideoCardPlatforms extends React.Component {
       <div id='video-card-platforms'>
         {removeDuplicateSources(this.props.title.sources).map((item, i) =>
         <span key={i}>
-          <a href={item.web_url} target="_blank" rel="noopener noreferrer">{item.name}</a><br></br>
+          <a href={item.web_url} className="platformLink" target="_blank" rel="noopener noreferrer">{item.name}</a><br></br>
         </span>
         )}
       </div>

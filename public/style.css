@@ -398,9 +398,8 @@ VIDEO CARDS
   height: 97%;
   width: 97%;
   color: white;
-  border: 1px solid rgba(255, 255, 0, 0.7);
+  border: 1.3px solid rgba(255, 255, 0, 0.9);
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.2);
   margin-left: 2px;
 }
 
@@ -425,23 +424,26 @@ VIDEO CARDS
 }
 #video-card-blurb {
   order:2;
+  font-size: 1.2em;
 }
 #video-card-rating {
   order:3;
-  font-size:smaller;
+  font-size: 1.1em;
+  margin-top: 10px;
 }
 #video-card-title {
   order:0;
-  font-size:medium;
+  font-size: 2.1em;
 }
 #video-card-metadata {
   order:1;
+  font-size: 1.2em;
+  margin-top: 20px;
 }
 
 #video-card-billboard {
   order:1;
-  border-style: solid;
-  border-color:yellow;
+  /* border: 1px solid rgba(255, 255, 0, 0.9); */
   border-radius: 20px;
   max-height:50%;
   max-width:39%
@@ -449,11 +451,11 @@ VIDEO CARDS
 
 #video-card-platforms {
   order:3;
-  border-style: solid;
-  border-color:yellow;
+  margin: auto 4px auto 0;
+  border: 1px solid rgba(255, 255, 255, .3);
   border-radius: 20px;
   max-width:19%;
-  max-height:85%;
+  max-height:80%;
   overflow-y:scroll;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
   scrollbar-width: none; /* for Firefox */
@@ -478,7 +480,6 @@ VIDEO CARDS
   transform: translate(-50%, -50%);
   height: 45%;
   width: 60%;
-  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 20px;
   text-align: center;
   align-items: center;
@@ -486,8 +487,15 @@ VIDEO CARDS
 }
 
 #home-title {
-  top: -5px;
-  left: -310px;
+  position: absolute;
+  width: 30px;
+  height: auto;
+  top: 0px;
+  left: 525px;
+}
+
+.platformLink:hover {
+  color: rgba(255, 185, 50, 1)
 }
 
 
