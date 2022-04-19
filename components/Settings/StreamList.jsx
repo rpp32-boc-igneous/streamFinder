@@ -4,24 +4,21 @@ import Stream from './Stream.jsx';
 import { IoAdd } from 'react-icons/io5';
 
 const StreamList = (props) => {
-//   const defaultStreams = [
-//     {name: 'Netflix', subbed: true},
-//     {name:'Prime', subbed: false},
-//     {name:'Hulu', subbed: false},
-//     {name:'HBOmax', subbed: false},
-//     {name:'Vudu', subbed: false},
-//     {name:'Disney+', subbed: false}
-//   ];
-//   const [streams, setStreams] = useState(defaultStreams);
+
+  const [streams, setStreams] = useState(props.streams);
+
+  useEffect(() => {
+    setStreams(props.streams)
+  }, [props.streams])
 
   const openStore = () => {
     $('#account').addClass('hide');
     $('#store').removeClass('hide');
   }
 
-  const addStream = (stream) => {
-    setStreams(streams.concat({name: stream, subbed: true}));
-  }
+  // const addStream = (stream) => {
+  //   setStreams(streams.concat({name: stream, subbed: true}));
+  // }
 
   return (
     <div className='stream-list'>
@@ -30,13 +27,15 @@ const StreamList = (props) => {
         <IoAdd className='add icon' onClick={openStore}/>
       </div>
       <div id='stream-container'>
-        {props.streams.map((stream, i) => (
+        {streams.map(stream => (
          <Stream
-         key={i}
-         stream={stream.name}
-         subbed={stream.subbed}
-         default={stream.default}
+         key={stream._id}
+         stream={stream}
+         subbed={props.subbed(stream.name)}
          removeStream={props.removeStream}
+         changeSubscription={props.changeSubscription}
+         format={props.format}
+         removeIcon={props.removeIcon}
          />
         ))}
       </div>

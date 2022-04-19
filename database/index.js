@@ -1,10 +1,9 @@
 require('dotenv').config();
-console.log(process.env.PORT);
 // db key for future deployment db security (non-localhost in connection string)
 const key = process.env.DB_KEY;
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost/streamFinder`, { useUnifiedTopology: true, useNewUrlParser: true }, (err, res) => {
+mongoose.connect(process.env.MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true }, (err, res) => {
   if (err) {
     console.log('error securing db connection ', err);
   } else {
@@ -57,7 +56,9 @@ const streamSchema = new mongoose.Schema({
   no_ads: Boolean,
   free: Boolean,
   subscription: Boolean,
-  website: String
+  website: String,
+  default: Boolean,
+  subscribed: Boolean
 });
 
 const Title = mongoose.model('Title', titleSchema);

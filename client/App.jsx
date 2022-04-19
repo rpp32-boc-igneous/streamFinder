@@ -148,9 +148,12 @@ class App extends React.Component {
       $("#banner-box").css({ display: "none" });
     } else {
       $(`#${parent}`).css({ display: "none" });
-      $("#carousel").css({ display: "inline-block" });
+      $('#carousel').css({ display: "inline-block" });
       $("#footer").css({ display: "flex" });
       $("#banner-box").css({ display: "flex" });
+      $("#account").removeClass("hide");
+      $("#store").addClass("hide");
+      $("#update-box").addClass("hide");
     }
   }
 
