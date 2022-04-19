@@ -45,6 +45,7 @@ class App extends React.Component {
     this.displaySelectedTitle = this.displaySelectedTitle.bind(this);
     this.showTrending = this.showTrending.bind(this);
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    this.addToWatchlist = this.addToWatchlist.bind(this);
   }
 
   componentDidMount() {
@@ -63,6 +64,17 @@ class App extends React.Component {
         this.updateUser();
       }
     );
+  }
+
+  addToWatchlist(obj) {
+    let watchlist = this.state.watch_list.slice();
+    watchlist.push(obj);
+    this.setState({
+      ...this.state,
+      watch_list: watchlist
+    }, () => {
+      //console.log('watchlist is now ', this.state.watch_list)
+    })
   }
 
   updateUser() {
@@ -209,6 +221,7 @@ class App extends React.Component {
           <div className="page" id="Title-page">
             <VideoCard
               title={this.state.active[this.state.selectedTitleIndex]}
+              addToWatchlist={this.addToWatchlist}
             />
             <img
               src={SFicon}

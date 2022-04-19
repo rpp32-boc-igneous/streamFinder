@@ -7,6 +7,11 @@ class VideoCardOverview extends React.Component {
     this.state = {
 
     }
+    this.addToWatchlist = this.addToWatchlist.bind(this);
+  }
+
+  addToWatchlist(e) {
+    this.props.addToWatchlist(this.props.title);
   }
 
   render() {
@@ -21,7 +26,7 @@ class VideoCardOverview extends React.Component {
       <div id="video-card-overview">
         <div id='video-card-title'>{this.props.title.title}</div>
         <div id="video-card-program-metadata"><b>{this.props.title.us_rating}</b> <i>{this.props.title.year}</i> {content_length}</div>
-        <button id='video-card-add-to-watchlist-button'>Add To Watchlist</button>
+        <button id='video-card-add-to-watchlist-button' onClick={this.addToWatchlist}>Add To Watchlist</button>
         <div id="video-card-blurb">{this.props.title.plot_overview}</div>
         <div id="video-card-rating"><i>User Rating:</i> {this.props.title.user_rating}/10<br></br><i>Critic Score:</i> {this.props.title.critic_score}/100</div>
       </div>
