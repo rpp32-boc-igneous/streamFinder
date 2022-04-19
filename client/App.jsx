@@ -200,9 +200,9 @@ class App extends React.Component {
             searchTerm={this.state.searchTerm}
           />
 
-          <div id="Title-page">
+          <div className="page" id="Title-page">
             <VideoCard
-              title={this.state.searchResults[this.state.selectedTitleIndex]}
+              title={this.state.searchResults[this.state.selectedTitleIndex + 1]}
             />
             <img
               src={SFicon}
@@ -212,7 +212,7 @@ class App extends React.Component {
             ></img>
           </div>
 
-          <div id="Login-page">
+          <div className="page" id="Login-page">
             <Login_Signup />
             <img
               src={SFicon}
@@ -222,7 +222,7 @@ class App extends React.Component {
             ></img>
           </div>
 
-          <div id="Signup-page">
+          <div className="page" id="Signup-page">
             <Signup />
             <img
               src={SFicon}
@@ -232,7 +232,7 @@ class App extends React.Component {
             ></img>
           </div>
 
-          <div id="Watchlist-page">
+          <div className="page" id="Watchlist-page">
             <Watchlist  watch_list={this.state.watch_list}
                         watch_history={this.state.watch_history}
                         displaySelectedTitle={this.displaySelectedTitle}/>
@@ -243,7 +243,7 @@ class App extends React.Component {
             </img>
           </div>
 
-          <div id="Settings-page">
+          <div className="page" id="Settings-page">
             <Settings />
             <img
               src={SFicon}
