@@ -8,59 +8,74 @@ import StreamSearch from './StreamSearch.jsx';
 const StreamStore = (props) => {
   const [keyword, setKeyword] = useState(null);
   const [streams, setStreams] = useState(props.streams);
+  const [searchResults, setSearchResults] = useState(props.streams);
+  const [searching, setSearching] = useState(false);
   const [ads, setAds] = useState(false);
   const [free, setFree] = useState(false);
+
+  useEffect(() => {
+    setStreams(props.streams)
+    setSearchResults(props.streams)
+  }, [props.streams])
+
+  useEffect(() => {
+    setStreams(searchResults)
+  }, [searchResults])
 
   const closeStore = () => {
     $('#store').addClass('hide');
     $('#account').removeClass('hide');
   }
 
+  const regEx = (string) => {
+    return string.replace(/\W/g,'').toLowerCase();
+  }
+
   const searchStreams = (keyword) => {
-    const results = props.streams.filter(stream => {
-    return stream.name.includes(keyword);
+    keyword = regEx(keyword);
+    const results = streams.filter(stream => {
+    return regEx(stream.name).includes(keyword);
     });
+    setSearching(true);
+    setSearchResults(results);
     setStreams(results);
+  }
+
+  const clearSearchResults = () => {
+    setSearching(false);
+    let list = props.streams;
+    if (ads) list = list.filter(stream => stream.no_ads === true);
+    if (free) list = list.filter(stream => stream.free === true);
+    setSearchResults(list);
   }
 
   const filterAds = () => {
-    let results;
+    let list = [...searchResults];
     if($('#no_ads').prop('checked')) {
       setAds(true);
-      results = streams.filter(stream => {
-      return stream.no_ads === true;
-      });
+      list = list.filter(stream => stream.no_ads === true);
     } else {
       setAds(false);
-      if (free) {
-        results = props.streams.filter(stream => {
-          return stream.free === true;
-        });
-      } else {
-        results = props.streams;
-      }
+      if (!searching) list = props.streams;
     }
-    setStreams(results);
+    if (free) list = list.filter(stream => stream.free === true);
+    setStreams(list);
   }
 
   const filterFree = () => {
-    let results;
+    let list = [...searchResults];
+    if (ads) list = list.filter(stream => stream.no_ads === true);
     if($('#free').prop('checked')) {
       setFree(true);
-      results = streams.filter(stream => {
+      list = list.filter(stream => {
       return stream.free === true;
       });
     } else {
       setFree(false);
-      if (ads) {
-        results = props.streams.filter(stream => {
-          return stream.no_ads === true;
-        });
-      } else {
-        results = props.streams;
-      }
+      if (!searching) list = props.streams;
     }
-    setStreams(results);
+    if (ads) list = list.filter(stream => stream.no_ads === true);
+    setStreams(list);
   }
 
   return (
@@ -68,21 +83,26 @@ const StreamStore = (props) => {
       <span
         onClick={closeStore}>
           <AiOutlineClose
-        class='close'
+        className='icon close'
         id='close-store'/></span>
       <FilterList
         filterAds={filterAds}
         filterFree={filterFree}
         streams={streams}
       />
-      <StreamSearch search={searchStreams}/>
+      <StreamSearch
+        search={searchStreams}
+        clear={clearSearchResults}
+      />
       <div id='stream-grid' className='grid'>
-        {streams.map((stream, i) => (
+        {streams.map(stream => (
           <StreamCard
-            key={i}
+            key={stream._id}
             stream={stream}
             addStream={props.addStream}
             removeStream={props.removeStream}
+            unsubscribe={props.unsubscribe}
+            subbed={props.subbed}
           />
         ))}
       </div>
