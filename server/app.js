@@ -6,7 +6,7 @@ const path = require('path');
 const port = 3000;
 
 const { getTitleIds, getTitleDetails, getRelated } = require('../apiMethods/search.js');
-const { insertTitle, insertUser, retrieveAllStreams, retrieveOneStream, insertStream} = require('../database/dbMethods.js');
+const { insertTitle, insertUser, retrieveAllStreams, retrieveOneStream, insertStream, updateStream} = require('../database/dbMethods.js');
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -90,7 +90,7 @@ app.put('/update_user', (req, res) => {
 app.get('/streams', (req, res) => {
   retrieveAllStreams()
   .then(data => {
-    res.status(200).json({success: true, data: data})
+    res.status(200).send(data)
   })
   .catch(err => res.status(400).json({success: false, error: err}))
 })
@@ -98,7 +98,7 @@ app.get('/streams', (req, res) => {
 app.get('/streams/:stream', (req, res) => {
   retrieveOneStream(req.params.stream)
   .then(data => {
-    res.status(200).json({success: true, data: data})
+    res.status(200).send(data)
   })
   .catch(err => res.status(400).json({success:false, error: err}))
 })
@@ -107,7 +107,12 @@ app.post('/streams', (req, res) => {
   insertStream(req.body)
   .then(() => res.status(201).json({success: true}))
   .catch(err => res.status(400).json({success: false, error: err}))
+})
 
+app.patch('/streams/:stream', (req, res) => {
+  updateStream(req.params.stream, req.query.field, req.query.val)
+  .then(() => res.status(204).json({success: true}))
+  .catch(err => res.status(400).json({success: false, error: err}))
 })
 
 module.exports = app;

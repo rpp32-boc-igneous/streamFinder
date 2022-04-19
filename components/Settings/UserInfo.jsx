@@ -12,21 +12,26 @@ const UserInfo = (props) => {
   return (
     <div>
       <table>
-        <tr>
-          <td className='table-field' id='email-label'>Email:</td>
-          <td className='table-input' id='email'>john@gmail.com</td>
-          <IoPencil className='edit-account'
-          onClick={() => openEdit('Email')}
-          />
-        </tr>
-        <tr>
-          <td className='table-field' id='password-label'>Password:</td>
-          <td className='table-input' id='password'>*******</td>
-          <IoPencil className='edit-account'
-          onClick={() => openEdit('Password')}
-          />
-        </tr>
-
+        <tbody id='user-table'>
+          <tr>
+            <td className='table-field' id='email-label'>Email: </td>
+            <td className='table-input' id='email'>{props.user.email}</td>
+            <td>
+              <IoPencil className='icon edit-account'
+              onClick={() => openEdit('Email')}
+              />
+            </td>
+          </tr>
+          <tr>
+            <td className='table-field' id='password-label'>Password: </td>
+            <td className='table-input' id='password'>{props.user.pwd}</td>
+            <td>
+              <IoPencil className='icon edit-account'
+              onClick={() => openEdit('Password')}
+              />
+             </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   );

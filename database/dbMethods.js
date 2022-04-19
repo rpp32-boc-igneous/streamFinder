@@ -35,6 +35,10 @@ var insertStream = (streamObj) => {
   return Stream.create(streamObj);
 }
 
+var updateStream = (name, field, val) => {
+  return Stream.updateOne({name: name}, {$set: {[field]: val}});
+}
+
 module.exports = {
 
   insertTitle: insertTitle,
@@ -43,5 +47,6 @@ module.exports = {
   updateUser: updateUser,
   retrieveAllStreams: retrieveAllStreams,
   retrieveOneStream: retrieveOneStream,
-  insertStream: insertStream
+  insertStream: insertStream,
+  updateStream: updateStream
 }

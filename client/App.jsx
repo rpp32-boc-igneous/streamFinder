@@ -172,6 +172,9 @@ class App extends React.Component {
       $('#footer').css({ display: 'flex' });
       $('#banner-box').css({ display: 'flex' });
       $('#header').css(({ display: 'flex' }));
+      $("#account").removeClass("hide");
+      $("#store").addClass("hide");
+      $("#update-box").addClass("hide");
     }
   }
 
