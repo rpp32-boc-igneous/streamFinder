@@ -691,18 +691,15 @@ ACCOUNT
 
 .close {
   color: rgba(255, 255, 255, 1);
-  position: absolute;
-  /* top: 0.2rem; */
-  right: 1rem;
+  position: fixed;
+  top: 25px;
+  right: 25px;
   font-size: 1.3rem;
-}
-
-#settings-close {
-  top: 1rem;
 }
 
 #account {
   position: relative;
+  margin: 0 auto;
   min-width: 225px;
 }
 
@@ -836,7 +833,7 @@ STREAM_LIST
   margin: 3% auto;
   padding: 5px;
   width: 90%;
-  height: 175px;
+  height: 225px;
   min-width: 200px;
   max-width: 500px;
   overflow-y: hidden;
@@ -870,6 +867,7 @@ STREAM_LIST
   padding-top: 0.75rem;
   padding-right: 10px;
   margin: 0 auto;
+  height: 100%;
   overflow-y: auto;
 }
 
@@ -934,9 +932,6 @@ STREAM_CHECKBOXES
 STREAM_STORE
 -------------------------------------
 */
-#close-store {
-  top: 1rem;
-}
 
  #filter-list {
   position: relative;
