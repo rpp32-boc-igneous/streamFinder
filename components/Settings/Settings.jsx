@@ -191,8 +191,8 @@ class Settings extends React.Component {
     return (
       <div id='settings-container'>
         <div id='account' >
-          <span onClick={this.close}><AiOutlineClose className='close icon'/></span>
-          <h1>Account</h1>
+          <span onClick={this.close}><AiOutlineClose className='close icon' id='settings-close'/></span>
+          <div className='account-heading'>Account</div>
           <UserInfo user={this.state.user} setField={this.setUpdateField}/>
           {/* <button className='button' onClick={this.signOut}>Sign out</button> */}
           <StreamList

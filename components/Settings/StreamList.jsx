@@ -23,7 +23,7 @@ const StreamList = (props) => {
   return (
     <div className='stream-list'>
       <div id='list-header'>
-        <h1 id='stream-title'>Streams</h1>
+        <div id='stream-title' className='account-heading'>Streams</div>
         <IoAdd className='add icon' onClick={openStore}/>
       </div>
       <div id='stream-container'>
