@@ -48,8 +48,11 @@ const name = formatName(props.stream.name);
     }
   }
 
+  const classes = props.subbed(props.stream.name) ?
+  'stream-card subscribed' : 'stream-card'
+
   return (
-    <div className='stream-card' id={`store-${props.stream._id}`} onClick={() => streamSub()} >
+    <div className={classes} id={`store-${props.stream._id}`} onClick={() => streamSub()} >
       {/* <span
         className='card-icon'
         // onClick={() => streamSub()}

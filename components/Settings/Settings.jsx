@@ -102,7 +102,7 @@ class Settings extends React.Component {
     let subs = this.state.subs.map(sub => {
       this.state.streams.find(stream => stream.name === sub);
     });
-    console.log(subs);
+    // console.log(subs);
   }
 
   close = () => {
@@ -127,7 +127,6 @@ class Settings extends React.Component {
   };
 
   changeSubscription = (stream) => {
-    console.log(stream)
     this.isSubbed(stream.name) ?
       this.unsubscribe(stream.name, stream._id) :
       this.subscribe(stream.name, stream._id)
@@ -142,8 +141,7 @@ class Settings extends React.Component {
     })
     .catch(err => console.log(`error subscribing to ${name}`))
 
-    this.setState( state => ({ subs: [...state.subs, name]}),
-    () => console.log(this.state.subs));
+    this.setState( state => ({ subs: [...state.subs, name]}));
   }
 
   unsubscribe = (name, id, isDefault) => {
@@ -170,7 +168,6 @@ class Settings extends React.Component {
   addStream = (stream) => {
     this.subscribe(stream.name, stream._id);
     const index = this.state.defaultSubs.findIndex(sub => sub.name === stream.name);
-    console.log(index)
     if (index < 0){
         this.setState( state => (
           { defaultSubs: [...state.defaultSubs, {name: stream.name, default: stream.default, _id: stream._id}]}
@@ -210,6 +207,7 @@ class Settings extends React.Component {
           addStream={this.addStream}
           removeStream={this.removeStream}
           unsubscribe={this.unsubscribe}
+          subbed={this.isSubbed}
         />
       </div>
     );
