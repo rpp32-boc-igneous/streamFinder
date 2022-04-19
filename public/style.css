@@ -109,6 +109,10 @@ PAGE LAYOUT
   color: rgba(255, 255, 255, 1);
 }
 
+#Watchlist-page {
+  margin-top: -50px;
+}
+
 /*
 /////////////////////////////////////
 LOGIN
@@ -208,12 +212,18 @@ CAROUSEL
 #carousel {
   /* background-color: rgba(255, 255, 255, 0.7); */
   display: inline-block;
-  /* height: 400px;
-  width: 70%;
+  height: 500px;
+  width: 830px;
+  margin-top: -50px;
+  /* width: 70%;
   border: 2px solid rgba(255, 255, 100, 0.6);
   border-radius: 10px;
   text-align: center;
   align-content: center; */
+}
+
+#carousel-box {
+  height: 500px;
 }
 
 #carouselTitle {
@@ -236,8 +246,10 @@ CAROUSEL
 
 #swiper-box {
   display: inline-block;
-  height: 400px;
-  width: 700px;
+  height: 500px;
+  width: 750px;
+  /* margin-left: 30px; */
+  margin: 0 auto;
 }
 
 .swiper-container {
@@ -274,7 +286,7 @@ CAROUSEL
 .swiper-button-next {
   color: white;
   height: 40px;
-  margin: 0 0 30% 5px;
+  margin: 0 0 30% 0px;
 }
 
 #display-index {
@@ -305,10 +317,13 @@ CAROUSEL
 }
 
 #search-card-img {
-  margin-top: 10px;
-  margin-left: 33px;
-  height: 125px;
-  width: auto;
+  margin-top: 0px;
+  margin-left: 0px;
+  /* height: 243px;
+  width: auto; */
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
 }
 
 #search-text-detail {
@@ -330,11 +345,11 @@ a:hover {
 }
 
 #search-card-description {
-  font-size: 10px;
+  font-size: 11px;
 }
 
 #search-card-rating1 {
-  font-size: 10px;
+  font-size: 12px;
 }
 
 #search-card-rating2 {
@@ -361,17 +376,25 @@ VIDEO CARDS
 
 .video-card {
   display: inline-block;
-  height: 97%;
-  width: 97%;
+  height: 80%;
+  width: 90%;
   color: white;
   border: 1px solid rgba(255, 255, 0, 0.7);
   border-radius: 5px;
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.0);
   margin-left: 2px;
+  margin-top: 40px;
+  transition: transform 100ms ease-in-out 25ms;
+}
+
+.video-card:hover {
+  transform: scale(1.10) !important; /* T */
+  box-shadow: 0 0 10px #fcf003;
+  cursor: pointer
 }
 
 .swiper-slide {
-  height: 80%;
+
 }
 
 #Title-page {
@@ -418,8 +441,9 @@ WATCHLIST
 }
 
 #home-watchlist {
-  top: -15px;
-  left: 240px;
+  position: absolute;
+  top: 0px;
+  left: 590px;
 }
 
 .watch_title {
@@ -942,12 +966,24 @@ MEDIA QUERIES / RESPONSIVE DESIGN
 /////////////////////////////////////
 */
 
-@media only screen and (max-width: 600px) {
+/* @media only screen and (max-width: 600px) {
   #carousel {
     height: 300px;
     width: 70%;
   }
   #footer {
     margin-top: 20%;
+  }
+} */
+
+@media only screen and (max-width: 840px) {
+  #carousel {
+    width: 95%;
+  }
+  #carousel-box {
+    width: 95%;
+  }
+  #swiper-box {
+    width: 95%;
   }
 }
