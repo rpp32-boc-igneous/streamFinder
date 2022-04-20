@@ -13,6 +13,8 @@ class Login_Signup extends React.Component {
     this.responseGoogle = this.responseGoogle.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.onFailure = this.onFailure.bind(this);
+    this.redirectToSignUp = this.props.showModal;
+    this.liftUserInfoUp = this.props.updateState;
   }
 
   handleOauthSubmit(event) {
@@ -65,8 +67,27 @@ class Login_Signup extends React.Component {
       success: (result) => result,
     })
       .then((result) => {
-        // Get the current user and set it to app state
-        console.log("Survey says!!!", result);
+        console.log("This is the return of the verify User", result);
+        if (!result) {
+          console.log("This is the no user condition");
+          let pseudoEvent = {
+            target: {
+              innerHTML: "Signup",
+              parentNode: {
+                id: "header",
+              },
+              className: "",
+            },
+          };
+          this.redirectToSignUp(pseudoEvent);
+        } else {
+          console.log(
+            "This would be where I have an actual user in the DB: ",
+            result
+          );
+          // Need to discuss using a user object in state and not individual key value pairs
+          // this.liftUserInfoUp()
+        }
       })
       .catch((error) => error);
 
@@ -101,7 +122,7 @@ class Login_Signup extends React.Component {
           <GoogleLogin
             clientId="768315598088-9hct54aqr973f9uccu076mvs5smvlg6j.apps.googleusercontent.com"
             buttonText="Login"
-            redirectUri="http://localhost:3000/oauth/google/redirect"
+            // redirectUri="http://localhost:3000/oauth/google/redirect"
             onSuccess={this.onSuccess}
             onFailure={this.onFailure}
           />

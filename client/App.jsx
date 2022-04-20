@@ -210,7 +210,10 @@ class App extends React.Component {
           </div>
 
           <div id="Login-page">
-            <Login_Signup updateState={this.updateState} />
+            <Login_Signup
+              updateState={this.updateState}
+              showModal={this.showModal}
+            />
             <img
               src={SFicon}
               onClick={this.showModal}
@@ -220,7 +223,7 @@ class App extends React.Component {
           </div>
 
           <div id="Signup-page">
-            <Signup />
+            <Signup updateState={this.updateState} />
             <img
               src={SFicon}
               onClick={this.showModal}

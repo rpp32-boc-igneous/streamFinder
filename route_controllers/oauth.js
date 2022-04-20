@@ -48,12 +48,19 @@ router.get("/verifyUser", (req, res) => {
   let user = {
     email: req.query.email,
     name: req.query.name,
-    first_name: req.query.first_nameß,
+    first_name: req.query.first_name,
   };
+  let options = { upsert: true };
 
   User.findOne(query)
     .then((user) => {
       console.log("This is the findOne result: ", user);
+      if (user === null) {
+        console.log("User does not extist, redirecting to sign up");
+        res.send(false);
+      } else {
+        res.send(user);
+      }
     })
     .catch((error) => error);
 });

@@ -28,11 +28,11 @@ var formatUserObj = (obj) => {
     email: obj.email,
     watch_list: {
       movies: obj.watch_list.movies || "",
-      shows: obj.watch_list.shows,
+      shows: obj.watch_list.shows || "",
     },
     watch_history: {
-      movies: obj.watch_history.movies,
-      shows: obj.watch_history.shows,
+      movies: obj.watch_history.movies || "",
+      shows: obj.watch_history.shows || "",
     },
   };
 };
