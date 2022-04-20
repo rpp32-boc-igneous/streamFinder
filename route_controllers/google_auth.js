@@ -3,6 +3,7 @@ const app = require("express")();
 const axios = require("axios");
 require("dotenv").config();
 const $ = require("jquery");
+const jwt = require("jsonwebtoken");
 
 const oauth2Client = new google.auth.OAuth2(
   process.env.GOOGLE_CLIENT_ID,
@@ -23,12 +24,14 @@ module.exports.get_url = function () {
   return url;
 };
 
-module.exports.get_code = async function getAuthorizationCode() {
-  console.log("Testing");
-  console.log("URL: ", google_auth_url);
-  const code = await axios.get({
-    method: "GET",
-    url: google_auth_url,
-  });
-  return code;
+module.exports.get_code = async function (code) {
+  const { tokens } = await oauth2Client.getToken(code);
+  const id_token = jwt.decode(tokens.id_token, { complete: true });
+  const id_info = {
+    name: id_token.payload.name,
+    email: id_token.payload.email,
+    picture: id_token.payload.picture,
+  };
+
+  return id_info;
 };
