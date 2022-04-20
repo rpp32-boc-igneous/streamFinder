@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import { AiOutlineClose } from 'react-icons/ai';
+import { IoCaretDownOutline } from "react-icons/io5";
 import FilterList from './FilterList.jsx';
 import StreamCard from './StreamCard.jsx';
 import StreamSearch from './StreamSearch.jsx';
@@ -12,6 +13,7 @@ const StreamStore = (props) => {
   const [searching, setSearching] = useState(false);
   const [ads, setAds] = useState(false);
   const [free, setFree] = useState(false);
+  const [pos, setPos] = useState(0);
 
   useEffect(() => {
     setStreams(props.streams)
@@ -78,6 +80,19 @@ const StreamStore = (props) => {
     setStreams(list);
   }
 
+  const pageDown = () => {
+    if (pos >= -1250) {
+      let position = pos;
+      const length = 313;
+      setPos(position - length);
+      console.log(position)
+      $('#stream-grid').css('top', `${position}px`)
+    }
+  }
+
+  // $('body').mousemove((e) => console.log(e.pageY));
+
+
   return (
     <div id='store' className='hide'>
       <span
@@ -94,19 +109,21 @@ const StreamStore = (props) => {
         search={searchStreams}
         clear={clearSearchResults}
       />
-      <div id='stream-grid' className='grid'>
-        {streams.map(stream => (
-          <StreamCard
-            key={stream._id}
-            stream={stream}
-            addStream={props.addStream}
-            removeStream={props.removeStream}
-            unsubscribe={props.unsubscribe}
-            subbed={props.subbed}
-          />
-        ))}
+      <div id='grid-container'>
+        <div id='stream-grid' className='grid'>
+          {streams.map(stream => (
+            <StreamCard
+              key={stream._id}
+              stream={stream}
+              addStream={props.addStream}
+              removeStream={props.removeStream}
+              unsubscribe={props.unsubscribe}
+              subbed={props.subbed}
+            />
+          ))}
+        </div>
       </div>
-      <div id='pages'>1 2 3 4 ></div>
+      <div id='pages' onClick={() => pageDown()}><IoCaretDownOutline /></div>
     </div>
   );
 };

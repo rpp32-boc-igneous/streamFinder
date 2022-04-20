@@ -684,6 +684,7 @@ USER SETTINGS
   height: 60%;
   width: 70%;
   min-width: 225px;
+  max-width: 650px;
   padding: 5%;
   background-color: rgba(81, 81, 81, 0.264);
   border: solid rgba(255, 255, 0, 0.8);
@@ -1050,14 +1051,28 @@ input:focus + #search-x {
   cursor: pointer;
 }
 
-#stream-grid {
+#grid-container {
+  position: relative;
+  box-sizing: border-box;
+  height: 305px;
   background-color: black;
-  margin: 2px auto;
+  border: 0.5px solid rgba(255, 255, 0, 0.9);
+  border-radius: 20px;
+  max-width: 500px;
+  overflow-y: hidden;
+}
+
+#stream-grid {
+  position: relative;
+  box-sizing: border-box;
+  transition: 0.5s all ease-out;
+  background-color: black;
+  margin: 0 auto;
   padding:0.5rem 1.5rem;
   height: 290px;
   max-width: 500px;
-  border: 0.5px solid rgba(255, 255, 0, 0.9);
-  border-radius: 20px;
+  /* border: 0.5px solid rgba(255, 255, 0, 0.9);
+  border-radius: 20px; */
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(105px, auto));
   grid-auto-rows: minmax(124px, auto);
@@ -1066,7 +1081,6 @@ input:focus + #search-x {
   justify-items: center;
   align-items: start;
   align-content: start;
-  overflow-y: auto;
 }
 
 #stream-grid::-webkit-scrollbar {
@@ -1153,9 +1167,16 @@ input:focus + #search-x {
 
 #pages {
   position: relative;
-  margin: 2px auto;
-  vertical-align: bottom;
-  font-size: 0.65rem;
+  width: 20px;
+  margin: 0.5rem auto;
+  /* vertical-align: bottom; */
+  font-size: 1.5rem;
+  color:#fcf003;
+}
+
+#pages:hover {
+  transform: scale(1.25);
+  cursor: pointer;
 }
 
 #store {
