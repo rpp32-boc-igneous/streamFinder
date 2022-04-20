@@ -68,8 +68,12 @@ class Settings extends React.Component {
     };
   }
 
-  ComponentDidMount () {
+  componentDidMount () {
     // this.getSubs();
+    console.log('did mount')
+    if (this.state.streams.length === 0){
+      this.getStreams();
+    }
   }
 
   componentDidUpdate() {
