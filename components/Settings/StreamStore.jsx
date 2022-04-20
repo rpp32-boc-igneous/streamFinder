@@ -26,6 +26,7 @@ const StreamStore = (props) => {
   }, [searchResults])
 
   useEffect(() => {
+    $('#stream-grid').css('top', '0');
     showArrows();
   }, [streams])
 
@@ -96,6 +97,7 @@ const StreamStore = (props) => {
   }
 
   const showArrows = (top, bottom) => {
+    $('#up-arrow').addClass('hide')
     let pages = getPages();
     if (pages < 2) {
       $('#down-arrow').addClass('hide')
