@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoCaretDownOutline } from "react-icons/io5";
+import { IoCaretUpOutline } from "react-icons/io5";
 import FilterList from './FilterList.jsx';
 import StreamCard from './StreamCard.jsx';
 import StreamSearch from './StreamSearch.jsx';
@@ -80,15 +81,57 @@ const StreamStore = (props) => {
     setStreams(list);
   }
 
+  const showArrows = (top, bottom) => {
+    console.log(top, bottom);
+    (top === 0) ? $('#up-arrow').addClass('hide') : $('#up-arrow').removeClass('hide');
+    (top === bottom) ? $('#down-arrow').addClass('hide') : $('#down-arrow').removeClass('hide');
+  }
+
+  const getPages = () => {
+    let widthCSS = window.getComputedStyle(document.getElementById('stream-grid')).getPropertyValue('width');
+    let width = parseInt(widthCSS.replace(/[^0-9.]/g, ''));
+    let cols = Math.floor(width / 140);
+    let rows = Math.ceil(streams.length / cols);
+    let pages = Math.ceil(rows / 2);
+
+    return pages;
+  }
+
   const pageDown = () => {
-    if (pos >= -1250) {
-      let position = pos;
-      const length = 313;
-      setPos(position - length);
-      console.log(position)
-      $('#stream-grid').css('top', `${position}px`)
+    let top = parseInt(window.getComputedStyle(document.getElementById('stream-grid'))
+      .getPropertyValue('top'));
+      let pages = getPages();
+    let length = 308;
+    if (top < -(length * (pages-2)) && top > -(length * (pages-1))) {
+      $('#stream-grid').css('top', `${-(length * (pages-1))}px`);
+      $('#down-arrow').addClass('hide');
+      if ($('#up-arrow').hasClass('hide')) $('#up-arrow').removeClass('hide')
+    }
+    else if (top >= -(length * (pages-2))) {
+      if (top === -(length * (pages-2))) $('#down-arrow').addClass('hide')
+      $('#stream-grid').css('top', `${top - length}px`);
+      if ($('#up-arrow').hasClass('hide')) $('#up-arrow').removeClass('hide')
     }
   }
+
+  const pageUp = () => {
+    let top = parseInt(window.getComputedStyle(document.getElementById('stream-grid'))
+    .getPropertyValue('top'));
+    let length = -308;
+    if (top < 0 && top > length) {
+      $('#stream-grid').css('top', '0');
+      $('#up-arrow').addClass('hide');
+
+      if ($('#down-arrow').hasClass('hide')) $('#down-arrow').removeClass('hide')
+    }
+    else if (top <= length) {
+      if (top === length) $('#up-arrow').addClass('hide')
+      $('#stream-grid').css('top', `${top - length}px`);
+      if ($('#down-arrow').hasClass('hide')) $('#down-arrow').removeClass('hide')
+    }
+  }
+
+  // $('body').mousemove( () => console.log($('#stream-grid').css('width')));
 
   // $('body').mousemove((e) => console.log(e.pageY));
 
@@ -123,7 +166,14 @@ const StreamStore = (props) => {
           ))}
         </div>
       </div>
-      <div id='pages' onClick={() => pageDown()}><IoCaretDownOutline /></div>
+      <span id='pages' >
+        <span id='down-arrow' className='arrow-span'>
+          <IoCaretDownOutline className='arrow' onClick={() => pageDown()} />
+        </span>
+        <span id='up-arrow' className='arrow-span hide'>
+          <IoCaretUpOutline className='arrow' onClick={() => pageUp()} />
+        </span>
+      </span>
     </div>
   );
 };
