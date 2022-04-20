@@ -8,13 +8,20 @@ const EditUser = (props) => {
     $('#account').removeClass('hide');
   }
 
+  const updateUser = (e) => {
+    e.preventDefault();
+    console.log(e.target[0].value);
+    props.update(props.field, e.target[0].value);
+    e.target[0].value = '';
+  }
+
   return (
     <div className='hide' id='update-box'>
-      <span onClick={() => close()}><AiOutlineClose className='close icon' id='update-close'/></span>
-      <form className='update-form'>
-        <label className='update-label'>Enter Updated {props.field}</label>
-        <input className="update-input" type="text" />
-        <button id='update-btn'> Submit </button>
+      <form className='update-form' onSubmit={(e) => updateUser(e)}>
+      <span onClick={() => close()}><AiOutlineClose id='update-close'/></span>
+        <label htmlFor={props.field} className='update-label'>Enter Updated {props.field}</label>
+        <input id={props.field} type='text' className='update-input' />
+        <input type='submit' id='update-btn' value='Submit' />
       </form>
     </div>
   )

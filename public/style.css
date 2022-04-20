@@ -790,11 +790,21 @@ EDIT_USER
   position: relative;
   margin: 50px auto;
   padding: 7px;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 #update-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
   color:rgba(0, 0, 0, 1);
+}
+
+#update-close:hover {
+  transform: scale(1.25);
+  font-size: 1000;
+  filter: blur(0.2px);
+  cursor: pointer;
 }
 
 .update-form {
@@ -813,10 +823,11 @@ EDIT_USER
   height: 1.7rem;
   padding: 0.5rem;
   font-size: 1.25rem;
+  border-radius: 15px;
 }
 
 input:focus {
-  outline: none !important;
+  outline: none;
   border:1px solid rgba(255, 255, 0, 0.9);
   box-shadow: 0 0 2px #dcdddf;
 }
@@ -1048,7 +1059,7 @@ input:focus + #search-x {
   border: 0.5px solid rgba(255, 255, 0, 0.9);
   border-radius: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(105px, auto));
   grid-auto-rows: minmax(124px, auto);
   grid-gap: 2rem;
   justify-content: space-around;
@@ -1072,7 +1083,7 @@ input:focus + #search-x {
   padding: 0.4rem;
   padding-bottom: 3px;
   height: 124px;
-  width: 100px;
+  width: 105px;
   /* margin: 0 auto; */
 }
 

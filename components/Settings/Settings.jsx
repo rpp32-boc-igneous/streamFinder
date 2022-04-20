@@ -60,16 +60,14 @@ class Settings extends React.Component {
       subs: [],
       updateField: null,
       URL: 'http://localhost:3000',
-      user: {
-            name: 'Jane',
-            email: 'jane@gmail.com',
-            pwd: '*****'
-            }
+      username: 'Jane',
+      email: 'jane@gmail.com',
+      password: '*****'
     };
   }
 
-  ComponentDidMount () {
-    // this.getSubs();
+  componentDidMount () {
+    this.getStreams();
   }
 
   componentDidUpdate() {
@@ -114,6 +112,11 @@ class Settings extends React.Component {
 
   setUpdateField = (field) => {
     this.setState({updateField: field});
+  }
+
+  updateAccount = (field, val) => {
+    let key = field.toLowerCase();
+    this.setState({[key]: val}, () => console.log(this.state[key]))
   }
 
   isSubbed = (name) => {
@@ -190,7 +193,12 @@ class Settings extends React.Component {
         <div id='account' >
           <span onClick={this.close}><AiOutlineClose className='close icon' id='settings-close'/></span>
           <div className='account-heading'>Account</div>
-          <UserInfo user={this.state.user} setField={this.setUpdateField}/>
+          <UserInfo
+            user={this.state.username}
+            email={this.state.email}
+            password={this.state.password}
+            setField={this.setUpdateField}
+          />
           {/* <button className='button' onClick={this.signOut}>Sign out</button> */}
           <StreamList
             streams={this.state.defaultSubs}
@@ -201,7 +209,10 @@ class Settings extends React.Component {
             removeIcon={this.showRemove}
           />
         </div>
-        <EditUser field={this.state.updateField}/>
+        <EditUser
+          field={this.state.updateField}
+          update={this.updateAccount}
+        />
         <StreamStore
           streams={this.state.streams}
           addStream={this.addStream}
