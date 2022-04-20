@@ -1,25 +1,43 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
 const app = express();
-const path = require('path');
-const port = 3000;
+const path = require("path");
+const port = process.env.PORT;
+const cookieParser = require("cookie-parser");
 
-const { getTitleIds, getTitleDetails, getRelated } = require('../apiMethods/search.js');
-const { insertTitle, insertUser, retrieveAllStreams, retrieveOneStream, insertStream, updateStream} = require('../database/dbMethods.js');
+// Roter for Login and Sign Up //
+const oauth = require("../route_controllers/oauth");
+const signup = require("../route_controllers/signup");
 
+// Cong for enviornmental variables
+require("dotenv").config();
+
+const {
+  getTitleIds,
+  getTitleDetails,
+  getRelated,
+} = require("../apiMethods/search.js");
+const {
+  insertTitle,
+  insertUser,
+  retrieveAllStreams,
+  retrieveOneStream,
+  insertStream,
+} = require("../database/dbMethods.js");
+
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors());
-app.use(express.static('public'))
+app.use(express.static("public"));
 
 ///////////////////////
 // Test
 ///////////////////////
 
-app.get('/test', (req, res) => {
+app.get("/test", (req, res) => {
   res.sendStatus(200);
-})
-
+});
 
 ///////////////////////
 // Search
@@ -27,92 +45,87 @@ app.get('/test', (req, res) => {
 
 // given a title string from the search component, this sends back all title detail objects
 // currently limited to 5 results to save API calls
-app.post('/search', (req, res) => {
+app.post("/search", (req, res) => {
   var searchTerm = req.body.query;
   getTitleIds(searchTerm)
-  .then(ids => {
-    return getTitleDetails(ids.slice(0, 5))})
-  .then(data => {
-    res.send(data)
-  })
-  .catch(err => {
-    console.log('error retrieving search results => ', err)
-  });
+    .then((ids) => {
+      return getTitleDetails(ids.slice(0, 5));
+    })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      console.log("error retrieving search results => ", err);
+    });
 });
-
-
 
 // given an id, this sends back all related title detail objects
-app.post('/related', (req, res) => {
+app.post("/related", (req, res) => {
   var id = req.body.query;
-  getRelated(id)
-  .then(data => res.send(data));
+  getRelated(id).then((data) => res.send(data));
 });
-
-
 
 ///////////////////////
 // Login / Signup
 ///////////////////////
 
-app.get('/login', (req, res) => {})
+app.use("/oauth", oauth);
 
-app.get('/signup', (req, res) => {
-  var user = req.body.user;
-  insertUser(user)
-  .then(data => {
-    console.log('user creation success')
-    res.send(data);
-  })
-})
-
+app.use("/signup", signup);
+// app.get('/signup', (req, res) => {
+//   var user = req.body.user;
+//   insertUser(user)
+//   .then(data => {
+//     console.log('user creation success')
+//     res.send(data);
+//   })
+// })\
 
 ///////////////////////
 // Watchlist
 ///////////////////////
 
-app.put('/update_user', (req, res) => {
+app.put("/update_user", (req, res) => {
   let user = req.body.user;
   updateUser(user)
-  .then(res => {
-    console.log('user update successful')
-  })
-  .catch(err => {
-    console.log('error updating user => ', err)
-  })
-})
-
+    .then((res) => {
+      console.log("user update successful");
+    })
+    .catch((err) => {
+      console.log("error updating user => ", err);
+    });
+});
 
 ///////////////////////
 // Settings
 ///////////////////////
 
-app.get('/streams', (req, res) => {
+app.get("/streams", (req, res) => {
   retrieveAllStreams()
-  .then(data => {
-    res.status(200).send(data)
-  })
-  .catch(err => res.status(400).json({success: false, error: err}))
-})
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => res.status(400).json({ success: false, error: err }));
+});
 
-app.get('/streams/:stream', (req, res) => {
+app.get("/streams/:stream", (req, res) => {
   retrieveOneStream(req.params.stream)
-  .then(data => {
-    res.status(200).send(data)
-  })
-  .catch(err => res.status(400).json({success:false, error: err}))
-})
+    .then((data) => {
+      res.status(200).send(data);
+    })
+    .catch((err) => res.status(400).json({ success: false, error: err }));
+});
 
-app.post('/streams', (req, res) => {
+app.post("/streams", (req, res) => {
   insertStream(req.body)
-  .then(() => res.status(201).json({success: true}))
-  .catch(err => res.status(400).json({success: false, error: err}))
-})
+    .then(() => res.status(201).json({ success: true }))
+    .catch((err) => res.status(400).json({ success: false, error: err }));
+});
 
-app.patch('/streams/:stream', (req, res) => {
+app.patch("/streams/:stream", (req, res) => {
   updateStream(req.params.stream, req.query.field, req.query.val)
-  .then(() => res.status(204).json({success: true}))
-  .catch(err => res.status(400).json({success: false, error: err}))
-})
+    .then(() => res.status(204).json({ success: true }))
+    .catch((err) => res.status(400).json({ success: false, error: err }));
+});
 
 module.exports = app;
