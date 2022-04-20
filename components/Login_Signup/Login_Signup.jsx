@@ -13,17 +13,9 @@ class Login_Signup extends React.Component {
     this.responseGoogle = this.responseGoogle.bind(this);
     this.onSuccess = this.onSuccess.bind(this);
     this.onFailure = this.onFailure.bind(this);
-    this.redirectToSignUp = this.props.showModal;
+    this.redirect = this.props.showModal;
     this.liftUserInfoUp = this.props.updateState;
   }
-
-  // *** props.updateUserState accepts an object with these properties:
-  // user_name: ...,
-  // user_email: ...,
-  // watch_list: ...,
-  // watch_history: ...,
-  // subscriptions: ...,
-  // and updates state accordingly
 
   handleOauthSubmit(event) {
     event.preventDefault();
@@ -78,7 +70,7 @@ class Login_Signup extends React.Component {
         console.log("This is the return of the verify User", result);
         if (!result) {
           console.log("This is the no user condition");
-          let pseudoEvent = {
+          let goToSignUp = {
             target: {
               innerHTML: "Signup",
               parentNode: {
@@ -87,14 +79,20 @@ class Login_Signup extends React.Component {
               className: "",
             },
           };
-          this.redirectToSignUp(pseudoEvent);
+          this.props.showModal(goToSignUp);
         } else {
-          console.log(
-            "This would be where I have an actual user in the DB: ",
-            result
-          );
-          // Need to discuss using a user object in state and not individual key value pairs
-          // this.liftUserInfoUp()
+          let goToHome = {
+            target: {
+              innerHTML: "",
+              parentNode: {
+                id: "Login-page",
+              },
+              className: "home",
+            },
+          };
+          console.log("This would be where I have an actual user in the DB: ");
+
+          this.props.showModal(goToHome);
         }
       })
       .catch((error) => error);

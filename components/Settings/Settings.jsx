@@ -1,11 +1,11 @@
-import React from 'react';
-import $ from 'jquery';
-import axios from 'axios';
-import UserInfo from './UserInfo.jsx';
-import StreamList from './StreamList.jsx';
-import StreamStore from './StreamStore.jsx';
-import EditUser from './EditUser.jsx';
-import { AiOutlineClose } from 'react-icons/ai';
+import React from "react";
+import $ from "jquery";
+import axios from "axios";
+import UserInfo from "./UserInfo.jsx";
+import StreamList from "./StreamList.jsx";
+import StreamStore from "./StreamStore.jsx";
+import EditUser from "./EditUser.jsx";
+import { AiOutlineClose } from "react-icons/ai";
 
 class Settings extends React.Component {
   constructor(props) {
@@ -59,90 +59,96 @@ class Settings extends React.Component {
       ],
       subs: [],
       updateField: null,
-      URL: 'http://localhost:3000',
+      URL: "http://localhost:3000",
       user: {
-            name: 'Jane',
-            email: 'jane@gmail.com',
-            pwd: '*****'
-            }
+        name: "Jane",
+        email: "jane@gmail.com",
+        pwd: "*****",
+      },
     };
   }
 
-  ComponentDidMount () {
+  componentDidMount() {
     // this.getSubs();
-  }
-
-  componentDidUpdate() {
-    console.log('update');
-    if (this.state.streams.length === 0){
+    console.log("update");
+    if (this.state.streams.length === 0) {
       this.getStreams();
     }
   }
 
-  getStreams = () => {
-    axios.get(`${this.state.URL}/streams`)
-    .then(data => {
-      this.setState({streams: data.data}, () => this.getDefaults())
-    })
-    .catch(err => console.log('all streams request failed'));
+  componentDidUpdate() {
+    // console.log("update");
+    // if (this.state.streams.length === 0) {
+    //   this.getStreams();
+    // }
   }
+
+  getStreams = () => {
+    axios
+      .get(`${this.state.URL}/streams`)
+      .then((data) => {
+        this.setState({ streams: data.data }, () => this.getDefaults());
+      })
+      .catch((err) => console.log("all streams request failed"));
+  };
 
   getDefaults = () => {
     const defaults = this.state.streams.reduce((acc, stream) => {
       if (stream.default === true) {
-        acc.push({name: stream.name, default: true, _id: stream._id});
+        acc.push({ name: stream.name, default: true, _id: stream._id });
       }
       return acc;
     }, []);
 
-    this.setState({defaultSubs: defaults});
-  }
+    this.setState({ defaultSubs: defaults });
+  };
 
   getSubs = () => {
-    let subs = this.state.subs.map(sub => {
-      this.state.streams.find(stream => stream.name === sub);
+    let subs = this.state.subs.map((sub) => {
+      this.state.streams.find((stream) => stream.name === sub);
     });
     // console.log(subs);
-  }
+  };
 
   close = () => {
-    $(`#Settings-page`).css({ display: 'none' });
-    $('#carousel').css({ display: 'inline-block' });
-    $('#footer').css({ display: 'flex' });
-    $('#banner-box').css({ display: 'flex' });
-  }
+    $(`#Settings-page`).css({ display: "none" });
+    $("#carousel").css({ display: "inline-block" });
+    $("#footer").css({ display: "flex" });
+    $("#banner-box").css({ display: "flex" });
+  };
 
   setUpdateField = (field) => {
-    this.setState({updateField: field});
-  }
+    this.setState({ updateField: field });
+  };
 
   isSubbed = (name) => {
     return this.state.subs.includes(name);
-  }
+  };
 
   showRemove = (id) => {
-    $(`#${id} .remove-stream`).hasClass('hide') ?
-      $(`#${id} .remove-stream`).removeClass('hide') :
-      $(`#${id} .remove-stream`).addClass('hide')
+    $(`#${id} .remove-stream`).hasClass("hide")
+      ? $(`#${id} .remove-stream`).removeClass("hide")
+      : $(`#${id} .remove-stream`).addClass("hide");
   };
 
   changeSubscription = (stream) => {
-    this.isSubbed(stream.name) ?
-      this.unsubscribe(stream.name, stream._id) :
-      this.subscribe(stream.name, stream._id)
-  }
+    this.isSubbed(stream.name)
+      ? this.unsubscribe(stream.name, stream._id)
+      : this.subscribe(stream.name, stream._id);
+  };
 
   subscribe = (name, id) => {
-    $(`#store-${id}`).addClass('subscribed');
+    $(`#store-${id}`).addClass("subscribed");
 
-    axios.patch(`${this.state.URL}/streams/${name}?field=subscribed&val=true`)
-    .then(() =>{
-      console.log(`now subscribed to ${name}`)
-    })
-    .catch(err => console.log(`error subscribing to ${name}`))
+    axios
+      .patch(`${this.state.URL}/streams/${name}?field=subscribed&val=true`)
+      .then(() => {
+        console.log(`now subscribed to ${name}`);
+      })
+      .catch((err) => console.log(`error subscribing to ${name}`));
 
-    this.setState( state => ({ subs: [...state.subs, name]}));
-  }
+    this.setState((state) => ({ subs: [...state.subs, name] }));
+  };
 
   unsubscribe = (name, id, isDefault) => {
     // axios.patch(`${this.state.URL}/streams/${name}?field=subscribed&val=false`)
@@ -150,47 +156,56 @@ class Settings extends React.Component {
     //   console.log(`now unsubscribed from ${name}`)
     // })
     // .catch(err => console.log(`error unsubscribing from ${name}`))
-    $(`#store-${id}`).removeClass('subscribed');
-    if (isDefault)  $(`#${id} .checkbox`).prop('checked', false);
-    let newSubs = this.state.subs.filter(sub => sub !== name);
-    this.setState({subs: newSubs}, () => console.log(this.state.subs));
-  }
+    $(`#store-${id}`).removeClass("subscribed");
+    if (isDefault) $(`#${id} .checkbox`).prop("checked", false);
+    let newSubs = this.state.subs.filter((sub) => sub !== name);
+    this.setState({ subs: newSubs }, () => console.log(this.state.subs));
+  };
 
   formatName = (name) => {
     return name
-    .replace(/-/g, ' ')
-    .replace(/ plus/g, '+ ')
-    .replace(/(?: |\b)(\w)/g, (key) => {
-      return key.toUpperCase();
-    })
-  }
+      .replace(/-/g, " ")
+      .replace(/ plus/g, "+ ")
+      .replace(/(?: |\b)(\w)/g, (key) => {
+        return key.toUpperCase();
+      });
+  };
 
   addStream = (stream) => {
     this.subscribe(stream.name, stream._id);
-    const index = this.state.defaultSubs.findIndex(sub => sub.name === stream.name);
-    if (index < 0){
-        this.setState( state => (
-          { defaultSubs: [...state.defaultSubs, {name: stream.name, default: stream.default, _id: stream._id}]}
-        ));
+    const index = this.state.defaultSubs.findIndex(
+      (sub) => sub.name === stream.name
+    );
+    if (index < 0) {
+      this.setState((state) => ({
+        defaultSubs: [
+          ...state.defaultSubs,
+          { name: stream.name, default: stream.default, _id: stream._id },
+        ],
+      }));
     } else {
-      $(`#${stream._id} .checkbox`).prop('checked', true);
+      $(`#${stream._id} .checkbox`).prop("checked", true);
     }
-  }
+  };
 
   removeStream = (name, id, isDefault) => {
     // let clone = this.state.defaultSubs;
     this.unsubscribe(name, id);
-    let newStreams = this.state.defaultSubs.filter(stream => stream.name !== name);
-    this.setState({defaultSubs: newStreams});
-  }
+    let newStreams = this.state.defaultSubs.filter(
+      (stream) => stream.name !== name
+    );
+    this.setState({ defaultSubs: newStreams });
+  };
 
   render() {
     return (
-      <div id='settings-container'>
-        <div id='account' >
-          <span onClick={this.close}><AiOutlineClose className='close icon' id='settings-close'/></span>
-          <div className='account-heading'>Account</div>
-          <UserInfo user={this.state.user} setField={this.setUpdateField}/>
+      <div id="settings-container">
+        <div id="account">
+          <span onClick={this.close}>
+            <AiOutlineClose className="close icon" id="settings-close" />
+          </span>
+          <div className="account-heading">Account</div>
+          <UserInfo user={this.state.user} setField={this.setUpdateField} />
           {/* <button className='button' onClick={this.signOut}>Sign out</button> */}
           <StreamList
             streams={this.state.defaultSubs}
@@ -201,7 +216,7 @@ class Settings extends React.Component {
             removeIcon={this.showRemove}
           />
         </div>
-        <EditUser field={this.state.updateField}/>
+        <EditUser field={this.state.updateField} />
         <StreamStore
           streams={this.state.streams}
           addStream={this.addStream}
