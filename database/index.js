@@ -1,15 +1,20 @@
-require('dotenv').config();
+require("dotenv").config();
 // db key for future deployment db security (non-localhost in connection string)
 const key = process.env.DB_KEY;
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
+console.log("MONGO KEY: ", process.env.MONGO_URI);
 
-mongoose.connect(process.env.MONGO_URI, { useUnifiedTopology: true, useNewUrlParser: true }, (err, res) => {
-  if (err) {
-    console.log('error securing db connection ', err);
-  } else {
-    console.log('db connection success');
+mongoose.connect(
+  process.env.MONGO_URI,
+  { useUnifiedTopology: true, useNewUrlParser: true },
+  (err, res) => {
+    if (err) {
+      console.log("error securing db connection ", err);
+    } else {
+      console.log("db connection success");
+    }
   }
-});
+);
 
 //based on Watchmode Title Details API
 const titleSchema = new mongoose.Schema({
@@ -30,26 +35,25 @@ const titleSchema = new mongoose.Schema({
   sources: Array,
 });
 
-
 // not sure if user settings will be a part of this - if so, will refactor
 const userSchema = new mongoose.Schema({
   user_name: String,
   email: String,
   watch_list: {
     movies: Array,
-    shows: Array
+    shows: Array,
   },
   watch_history: {
     movies: Array,
-    shows: Array
-  }
+    shows: Array,
+  },
 });
 
 const streamSchema = new mongoose.Schema({
   name: {
     type: String,
     unique: true,
-    require: true
+    require: true,
   },
   logo: String,
   cost: mongoose.Mixed,
@@ -58,19 +62,15 @@ const streamSchema = new mongoose.Schema({
   subscription: Boolean,
   website: String,
   default: Boolean,
-  subscribed: Boolean
+  subscribed: Boolean,
 });
 
-const Title = mongoose.model('Title', titleSchema);
-const User = mongoose.model('User', userSchema);
-const Stream =mongoose.model('Stream', streamSchema);
-
-
+const Title = mongoose.model("Title", titleSchema);
+const User = mongoose.model("User", userSchema);
+const Stream = mongoose.model("Stream", streamSchema);
 
 module.exports = {
-
   Title: Title,
   User: User,
-  Stream: Stream
-
-}
+  Stream: Stream,
+};
