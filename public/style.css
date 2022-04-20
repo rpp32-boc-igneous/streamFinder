@@ -996,6 +996,7 @@ STREAM_STORE
 
 #search-bar:hover {
   background-color: #fbfbfbd4;
+  color: black;
   opacity: 0.75;
   line-height: 1.25rem;
   border-radius: 8px;
@@ -1029,10 +1030,14 @@ input:focus + #search-x {
   color: black;
 }
 
+#search-bar:hover + #search-x {
+  color: black;
+}
+
 #search-x {
   position: absolute;
   top: 0.2rem;
-  right: 3.7rem;
+  right: 3.85rem;
   z-index: 2;
   width: 160;
 }

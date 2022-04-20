@@ -25,6 +25,10 @@ const StreamStore = (props) => {
     setStreams(searchResults)
   }, [searchResults])
 
+  useEffect(() => {
+    showArrows();
+  }, [streams])
+
   const closeStore = () => {
     $('#store').addClass('hide');
     $('#account').removeClass('hide');
@@ -45,11 +49,11 @@ const StreamStore = (props) => {
   }
 
   const clearSearchResults = () => {
-    setSearching(false);
     let list = props.streams;
     if (ads) list = list.filter(stream => stream.no_ads === true);
     if (free) list = list.filter(stream => stream.free === true);
     setSearchResults(list);
+    setSearching(false);
   }
 
   const filterAds = () => {
@@ -81,12 +85,6 @@ const StreamStore = (props) => {
     setStreams(list);
   }
 
-  const showArrows = (top, bottom) => {
-    console.log(top, bottom);
-    (top === 0) ? $('#up-arrow').addClass('hide') : $('#up-arrow').removeClass('hide');
-    (top === bottom) ? $('#down-arrow').addClass('hide') : $('#down-arrow').removeClass('hide');
-  }
-
   const getPages = () => {
     let widthCSS = window.getComputedStyle(document.getElementById('stream-grid')).getPropertyValue('width');
     let width = parseInt(widthCSS.replace(/[^0-9.]/g, ''));
@@ -95,6 +93,17 @@ const StreamStore = (props) => {
     let pages = Math.ceil(rows / 2);
 
     return pages;
+  }
+
+  const showArrows = (top, bottom) => {
+    let pages = getPages();
+    if (pages < 2) {
+      $('#down-arrow').addClass('hide')
+    } else {
+      if ($('#down-arrow').hasClass('hide')) {
+        $('#down-arrow').removeClass('hide');
+      }
+    }
   }
 
   const pageDown = () => {
