@@ -9,6 +9,14 @@ class Login_Signup extends React.Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
   }
 
+  // *** props.updateUserState accepts an object with these properties:
+  // user_name: ...,
+  // user_email: ...,
+  // watch_list: ...,
+  // watch_history: ...,
+  // subscriptions: ...,
+  // and updates state accordingly
+
   handleOauthSubmit(event) {
     event.preventDefault();
     console.log("This is where Oauth will happen");

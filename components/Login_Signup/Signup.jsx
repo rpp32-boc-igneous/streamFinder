@@ -9,6 +9,14 @@ class Signup extends React.Component {
     }
   }
 
+  // *** props.updateUserState accepts an object with these properties:
+  // user_name: ...,
+  // user_email: ...,
+  // watch_list: ...,
+  // watch_history: ...,
+  // subscriptions: ...,
+  // and updates state accordingly
+
   render() {
     return (
       <div>
