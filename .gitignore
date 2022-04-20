@@ -3,6 +3,7 @@ public/bundle.js
 public/bundle.js.map
 public/bundle.js.LICENSE.txt
 *.env
+*.sh
 
 # macOS
 .DS_Store

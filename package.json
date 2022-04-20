@@ -32,6 +32,8 @@
     "concurrently": "^7.0.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "css": "^3.0.0",
+    "css-loader": "^5.2.7",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "file-loader": "^6.2.0",
@@ -43,6 +45,7 @@
     "laravel-mix": "^6.0.43",
     "mongo": "^0.1.0",
     "mongoose": "^6.2.10",
+    "netslider": "^1.3.5",
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.15",
     "passport": "^0.5.2",
@@ -53,7 +56,11 @@
     "react-dom": "^18.0.0",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
+<<<<<<< HEAD
     "react-simple-oauth2-login": "^0.5.3",
+=======
+    "react-slick": "^0.28.1",
+>>>>>>> c94354e9ffcefeb1866b0ef20044350a6c9a8339
     "sass-loader": "^12.6.0",
     "supertest": "^6.2.2",
     "swiper": "^6.8.4",

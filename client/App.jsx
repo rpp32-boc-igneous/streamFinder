@@ -29,32 +29,31 @@ class App extends React.Component {
       searchResults: [],
       selectedTitleIndex: 0,
       trending: mockTrending,
-      toCarousel: [mockTrending, true],
-      user_id: null,
+      active: mockTrending,
+      carouselType: 'trending',
       user_name: null,
       user_email: null,
       watch_list: [],
       watch_history: [],
-      subscriptions: [],
+      subscriptions: ['Disney Plus', 'iTunes', 'Amazon'],
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
-    this.loadTrending = this.loadTrending.bind(this);
     this.showModal = this.showModal.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.updateState = this.updateState.bind(this);
     this.displaySelectedTitle = this.displaySelectedTitle.bind(this);
     this.showTrending = this.showTrending.bind(this);
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
+    this.addToWatchlist = this.addToWatchlist.bind(this);
+    this.updateUserState = this.updateUserState.bind(this);
   }
 
   componentDidMount() {
-    this.setState({
-      ...this.state,
-      toCarousel: [this.state.trending, true],
-    });
     $("#trending-button").addClass("button-focus");
   }
 
+  // receives key / value pair, updates user state,
+  // then calls updateUser to replace the user record in the database
   updateState(key, value) {
     this.setState(
       {
@@ -65,6 +64,31 @@ class App extends React.Component {
         this.updateUser();
       }
     );
+  }
+
+  updateUserState(obj) {
+    this.setState({
+      ...this.state,
+      user_name: obj.user_name,
+      user_email: obj.user_email,
+      watch_list: obj.watch_list,
+      watch_history: obj.watch_history,
+      subscriptions: obj.subscriptions
+    }, () => {
+      console.log('user refreshed in state')
+      this.updateUser();
+    })
+  }
+
+  addToWatchlist(obj) {
+    let watchlist = this.state.watch_list.slice();
+    watchlist.push(obj);
+    this.setState({
+      ...this.state,
+      watch_list: watchlist
+    }, () => {
+      //console.log('watchlist is now ', this.state.watch_list)
+    })
   }
 
   updateUser() {
@@ -93,7 +117,8 @@ class App extends React.Component {
       });
   }
 
-  //updates search term in state for carousel label, i.e "showing search results for Titanic"
+  // updates search term in state for carousel label,
+  // i.e "showing search results for Titanic"
   updateSearchTerm(term) {
     this.setState({
       ...this.state,
@@ -101,25 +126,33 @@ class App extends React.Component {
     });
   }
 
+  // receives data from Search component and sets state, with results,
+  // sets "active" to relevant dataset for clicks to VideoCard component
+  // sets carouselType to 'searchResults
   updateSearchResults(data) {
     this.setState(
       {
         ...this.state,
         searchResults: data,
-        toCarousel: [data, false],
+        active: data,
+        carouselType: 'searchResults'
       },
       () => {
-        console.log("search results updated in App state");
         $("#trending-button").removeClass("button-focus");
       }
     );
   }
 
-  displaySelectedTitle(index) {
+  // receives the name of a key in state + an index and
+  // sets state with index and sets "active" to reflect
+  // relevant dataset for VideoCard display
+  displaySelectedTitle(keyname, index) {
+    var targetData = this.state[keyname];
     this.setState(
       {
         ...this.state,
-        selectedTitleIndex: index - 1,
+        selectedTitleIndex: index,
+        active: targetData
       },
       () => {
         $("#Title-page").css({ display: "inline-block" });
@@ -129,18 +162,13 @@ class App extends React.Component {
     );
   }
 
-  loadTrending() {
-    // axios call to API for movie list
-    // module analyzes to gather trending
-    var trending = deriveTrending(data);
-    // trending is loaded in state
-  }
-
+  // changes display in SPA
   showModal(e) {
     var clickType = e.target.innerHTML;
     var parent = e.target.parentNode.id;
     var clickClass = e.target.className;
 
+<<<<<<< HEAD
     console.log("Clicky stuff: ", { clickType, parent, clickClass });
 
     if (clickClass !== "home") {
@@ -148,19 +176,40 @@ class App extends React.Component {
       $("#carousel").css({ display: "none" });
       $("#footer").css({ display: "none" });
       $("#banner-box").css({ display: "none" });
+=======
+    if (clickClass !== 'home') {
+      if (clickType === 'Settings' || 'Watchlist') {
+        $(`#${clickType}-page`).css({ display: 'inline-block' });
+        $('#carousel').css({ display: 'none' });
+        $('#footer').css({ display: 'none' });
+        $('#banner-box').css({ display: 'none' });
+        $('#header').css({ display: 'none' });
+      }
+      $(`#${clickType}-page`).css({ display: 'inline-block' });
+      $('#carousel').css({ display: 'none' });
+      $('#footer').css({ display: 'none' });
+      $('#banner-box').css({ display: 'none' });
+>>>>>>> c94354e9ffcefeb1866b0ef20044350a6c9a8339
     } else {
-      $(`#${parent}`).css({ display: "none" });
-      $("#carousel").css({ display: "inline-block" });
-      $("#footer").css({ display: "flex" });
-      $("#banner-box").css({ display: "flex" });
+      $(`#${parent}`).css({ display: 'none' });
+      $('#carousel').css({ display: 'inline-block' });
+      $('#footer').css({ display: 'flex' });
+      $('#banner-box').css({ display: 'flex' });
+      $('#header').css(({ display: 'flex' }));
+      $("#account").removeClass("hide");
+      $("#store").addClass("hide");
+      $("#update-box").addClass("hide");
     }
   }
 
+  // handles trending button display
   showTrending() {
+    var trending = this.state.trending.slice()
     this.setState(
       {
         ...this.state,
-        toCarousel: [this.state.trending, true],
+        active: trending,
+        carouselType: 'trending'
       },
       () => {
         $("#trending-button").addClass("button-focus");
@@ -169,6 +218,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <div id="header">
@@ -191,15 +241,18 @@ class App extends React.Component {
 
         <div id="body">
           <Carousel
-            searchResults={this.state.toCarousel}
+            carouselType={this.state.carouselType}
+            searchResults={this.state.active}
             trending={this.state.trending}
             displaySelectedTitle={this.displaySelectedTitle}
             searchTerm={this.state.searchTerm}
           />
 
-          <div id="Title-page">
+          <div className="page" id="Title-page">
             <VideoCard
-              title={this.state.searchResults[this.state.selectedTitleIndex]}
+              title={this.state.active[this.state.selectedTitleIndex]}
+              addToWatchlist={this.addToWatchlist}
+              subscriptions={this.state.subscriptions}
             />
             <img
               src={SFicon}
@@ -209,11 +262,8 @@ class App extends React.Component {
             ></img>
           </div>
 
-          <div id="Login-page">
-            <Login_Signup
-              updateState={this.updateState}
-              showModal={this.showModal}
-            />
+          <div className="page" id="Login-page">
+            <Login_Signup updateUserState={this.updateUserState}/>
             <img
               src={SFicon}
               onClick={this.showModal}
@@ -222,8 +272,8 @@ class App extends React.Component {
             ></img>
           </div>
 
-          <div id="Signup-page">
-            <Signup updateState={this.updateState} />
+          <div className="page" id="Signup-page">
+            <Signup updateUserState={this.updateUserState}/>
             <img
               src={SFicon}
               onClick={this.showModal}
@@ -232,17 +282,18 @@ class App extends React.Component {
             ></img>
           </div>
 
-          <div id="Watchlist-page">
-            <Watchlist />
-            <img
-              src={SFicon}
-              onClick={this.showModal}
-              className="home"
-              id="home-watchlist"
-            ></img>
+          <div className="page" id="Watchlist-page">
+            <Watchlist  watch_list={this.state.watch_list}
+                        watch_history={this.state.watch_history}
+                        displaySelectedTitle={this.displaySelectedTitle}/>
+            <img  src={SFicon}
+                  onClick={this.showModal}
+                  className='home'
+                  id="home-watchlist">
+            </img>
           </div>
 
-          <div id="Settings-page">
+          <div className="page" id="Settings-page">
             <Settings />
             <img
               src={SFicon}
@@ -285,4 +336,3 @@ class App extends React.Component {
 
 export default App;
 
-//<div id="banner">StreamFinder</div>

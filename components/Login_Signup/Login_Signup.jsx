@@ -17,6 +17,14 @@ class Login_Signup extends React.Component {
     this.liftUserInfoUp = this.props.updateState;
   }
 
+  // *** props.updateUserState accepts an object with these properties:
+  // user_name: ...,
+  // user_email: ...,
+  // watch_list: ...,
+  // watch_history: ...,
+  // subscriptions: ...,
+  // and updates state accordingly
+
   handleOauthSubmit(event) {
     event.preventDefault();
     $.ajax({

@@ -1,55 +1,65 @@
-import React, {Fragment} from 'react';
+import React, { useState, useEffect } from 'react';
 import $ from 'jquery';
 import { IoRemoveSharp } from 'react-icons/io5';
 
 const Stream = (props) => {
-  const showRemove = (id) => {
-    $(id).hasClass('hide') ?
-      $(id).removeClass('hide') :
-      $(id).addClass('hide')
+  const [iconClass, setIconClass ] = useState('remove-stream hide');
+  const [stream, setStream] = useState(props.stream);
+
+  useEffect(() => {
+    setStream(props.stream)
+    // setIconClass('remove-stream hide')
+  }, [props.stream])
+
+  const showRemove = () => {
+    iconClass.includes('hide') ?
+      setIconClass('remove-stream') :
+      setIconClass('remove-stream hide')
   };
 
   let Checkbox;
+  let name = props.format(stream.name);
 
-  if (props.default) {
+  // if (stream.default) {
    Checkbox = (
       <input
-          className='checkbox'
-          id={`check-${props.stream}`}
-          type='checkbox'
-          name={props.stream}
-          defaultChecked={props.subbed}
-        />
-    );
-  } else {
-   Checkbox = (
-      <input
-      className='checkbox'
-      id={`check-${props.stream}`}
-      type='checkbox'
-      name={props.stream}
-      checked='true'
+        className='checkbox'
+        type='checkbox'
+        name={stream.name}
+        defaultChecked={props.subbed}
+        onClick={() => props.changeSubscription(props.stream)}
       />
-    )
-  }
+    );
+  // } else {
+  //  Checkbox = (
+  //   <input
+  //     className='checkbox'
+  //     type='checkbox'
+  //     name={stream.name}
+  //     checked={true}
+  //     readOnly={true}
+  //   />
+  //   )
+  // }
 
   return (
-    <div style={{display: 'inline-block'}}>
+    <div id={stream._id} className='stream hide'>
       {Checkbox}
       <span
         className='stream-label'
-        id={props.stream}
-        onClick={() => showRemove(`#remove-${props.stream}`)}
+        onClick={() => showRemove(`#${stream._id}`)}
+        // onClick={() => props.removeIcon(stream._id)}
       >
-        {props.stream}
+        {name}
         <span className='hover-text'>Delete</span>
       </span>
       <span
         className='remove-stream'
-        onClick={() => props.removeStream(props.stream)}>
+        onClick={() => props.removeStream(stream.name, stream._id, stream.default)}
+      >
         <IoRemoveSharp
-          className='remove-stream hide'
-          id={`remove-${props.stream}`}
+          // className='remove-stream hide'
+          className={iconClass}
         />
       </span>
     </div>
