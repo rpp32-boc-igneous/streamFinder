@@ -31,7 +31,6 @@ class App extends React.Component {
       trending: mockTrending,
       active: mockTrending,
       carouselType: 'trending',
-      user_id: null,
       user_name: null,
       user_email: null,
       watch_list: [],
@@ -46,6 +45,7 @@ class App extends React.Component {
     this.showTrending = this.showTrending.bind(this);
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
+    this.updateUserState = this.updateUserState.bind(this);
   }
 
   componentDidMount() {
@@ -64,6 +64,20 @@ class App extends React.Component {
         this.updateUser();
       }
     );
+  }
+
+  updateUserState(obj) {
+    this.setState({
+      ...this.state,
+      user_name: obj.user_name,
+      user_email: obj.user_email,
+      watch_list: obj.watch_list,
+      watch_history: obj.watch_history,
+      subscriptions: obj.subscriptions
+    }, () => {
+      console.log('user refreshed in state')
+      this.updateUser();
+    })
   }
 
   addToWatchlist(obj) {
@@ -236,7 +250,7 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Login-page">
-            <Login_Signup />
+            <Login_Signup updateUserState={this.updateUserState}/>
             <img
               src={SFicon}
               onClick={this.showModal}
@@ -246,7 +260,7 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Signup-page">
-            <Signup />
+            <Signup updateUserState={this.updateUserState}/>
             <img
               src={SFicon}
               onClick={this.showModal}
