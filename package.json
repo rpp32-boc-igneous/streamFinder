@@ -56,11 +56,8 @@
     "react-dom": "^18.0.0",
     "react-google-login": "^5.2.2",
     "react-icons": "^4.3.1",
-<<<<<<< HEAD
     "react-simple-oauth2-login": "^0.5.3",
-=======
     "react-slick": "^0.28.1",
->>>>>>> c94354e9ffcefeb1866b0ef20044350a6c9a8339
     "sass-loader": "^12.6.0",
     "supertest": "^6.2.2",
     "swiper": "^6.8.4",
