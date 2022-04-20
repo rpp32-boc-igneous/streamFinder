@@ -34,23 +34,6 @@ PAGE LAYOUT
 */
 
 
-#login-button {
-  display: inline-block;
-  height: 40px;
-  width: 60px;
-  background-color: rgba(255, 255, 255, 0.4);
-  border: 1px solid black;
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 1);
-  font-family: "Avenir";
-}
-
-#login-button:hover {
-  cursor: pointer;
-  background-color: rgba(255, 255, 0, 0.9);
-  color: rgba(0, 0, 0, 1);
-}
-
 #header {
   display: flex;
   justify-content: space-between;
@@ -135,6 +118,24 @@ LOGIN
   left: 240px;
 }
 
+#login-button {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 1px solid black;
+  border-radius: 10px 0 0 10px;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
+}
+
+#login-button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 0, 0.9);
+  color: rgba(0, 0, 0, 1);
+}
+
 
 
 /*
@@ -162,6 +163,22 @@ SIGNUP
 #home-signup {
   top: -5px;
   left: -310px;
+}
+
+#signup-button {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid black;
+  border-radius: 0 10px 10px 0;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
+}
+
+#signup-button:hover {
+  background-color: rgba(255, 135, 0, 0.9);
+  color: rgba(0, 0, 0, 1);
 }
 
 

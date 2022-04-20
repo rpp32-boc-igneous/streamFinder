@@ -166,6 +166,7 @@ class App extends React.Component {
         $("#Title-page").css({ display: "inline-block" });
         $("#carousel").css({ display: "none" });
         $("#footer").css({ display: "none" });
+        $("#header").css({ display: "none" });
       }
     );
   }
@@ -231,12 +232,14 @@ class App extends React.Component {
     return (
       <div>
         <div id="header">
+        <div id="login-signup-box">
           <button id="login-button" onClick={this.showModal}>
             Login
           </button>
           <button id="signup-button" onClick={this.showModal}>
             Signup
           </button>
+          </div>
           <Search
             changePage={this.showModal}
             cb={this.updateSearchResults}
@@ -347,7 +350,7 @@ class App extends React.Component {
             Settings
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
