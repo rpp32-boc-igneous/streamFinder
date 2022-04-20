@@ -33,9 +33,11 @@ class App extends React.Component {
       carouselType: "trending",
       user_name: null,
       user_email: null,
+      user_password: null,
       watch_list: [],
       watch_history: [],
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
+      is_logged_in: false
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -218,6 +220,14 @@ class App extends React.Component {
   }
 
   render() {
+
+    let userObj = {
+      user_name: this.state.user_name,
+      user_email: this.state.user_email,
+      user_password: this.state.user_password,
+      subscriptions: this.state.subscriptions
+    }
+
     return (
       <div>
         <div id="header">
@@ -302,7 +312,7 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings />
+            <Settings user={userObj}/>
             <img
               src={SFicon}
               onClick={this.showModal}
