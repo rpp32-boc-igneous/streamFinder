@@ -68,16 +68,19 @@ class Settings extends React.Component {
     };
   }
 
-  ComponentDidMount () {
-    // this.getSubs();
+  componentDidMount () {
+    console.log('update');
+    // if (this.state.streams.length === 0){
+      this.getStreams();
+    // }
   }
 
-  componentDidUpdate() {
-    console.log('update');
-    if (this.state.streams.length === 0){
-      this.getStreams();
-    }
-  }
+  // componentDidUpdate() {
+  //   console.log('update');
+  //   if (this.state.streams.length === 0){
+  //     this.getStreams();
+  //   }
+  // }
 
   getStreams = () => {
     axios.get(`${this.state.URL}/streams`)

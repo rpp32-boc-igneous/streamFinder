@@ -1048,7 +1048,7 @@ input:focus + #search-x {
   border: 0.5px solid rgba(255, 255, 0, 0.9);
   border-radius: 20px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, auto));
+  grid-template-columns: repeat(auto-fill, minmax(105px, auto));
   grid-auto-rows: minmax(124px, auto);
   grid-gap: 2rem;
   justify-content: space-around;
@@ -1072,7 +1072,7 @@ input:focus + #search-x {
   padding: 0.4rem;
   padding-bottom: 3px;
   height: 124px;
-  width: 100px;
+  width: 105px;
   /* margin: 0 auto; */
 }
 
