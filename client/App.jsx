@@ -232,13 +232,14 @@ class App extends React.Component {
     return (
       <div>
         <div id="header">
-        <div id="login-signup-box">
-          <button id="login-button" onClick={this.showModal}>
-            Login
-          </button>
-          <button id="signup-button" onClick={this.showModal}>
-            Signup
-          </button>
+          <div id="login-signup-box">
+            <button id="login-button" onClick={this.showModal}>
+              Login
+            </button>
+            <button id="signup-button" onClick={this.showModal}>
+              Signup
+            </button>
+            <div id="welcome-message">{this.state.user_name !== null ? (<div>Welcome Back, {this.state.user_name}</div>) : (<div></div>) }</div>
           </div>
           <Search
             changePage={this.showModal}
@@ -315,7 +316,7 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings user={userObj}/>
+            <Settings user={userObj} />
             <img
               src={SFicon}
               onClick={this.showModal}
