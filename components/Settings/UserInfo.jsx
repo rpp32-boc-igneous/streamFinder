@@ -15,7 +15,7 @@ const UserInfo = (props) => {
         <tbody id='user-table'>
           <tr>
             <td className='table-field' id='email-label'>Email: </td>
-            <td className='table-input' id='email'>{props.user.email}</td>
+            <td className='table-input' id='email'>{props.email}</td>
             <td>
               <IoPencil className='icon edit-account'
               onClick={() => openEdit('Email')}
@@ -24,7 +24,7 @@ const UserInfo = (props) => {
           </tr>
           <tr>
             <td className='table-field' id='password-label'>Password: </td>
-            <td className='table-input' id='password'>{props.user.pwd}</td>
+            <td className='table-input' id='password'>{props.password}</td>
             <td>
               <IoPencil className='icon edit-account'
               onClick={() => openEdit('Password')}
