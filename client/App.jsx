@@ -356,31 +356,37 @@ class App extends React.Component {
         </div>
 
         <div id="footer">
-          <div
-            id="trending-button"
-            className="footer-button"
-            onClick={this.showTrending}
-          >
-            Trending
+          <div className="footer-button-box">
+            <div
+              id="trending-button"
+              className="footer-button"
+              onClick={this.showTrending}
+            >
+              Trending
+            </div>
           </div>
           <div className="divider">|</div>
-          <div
-            id="watchlist-button"
-            className="footer-button"
-            onClick={this.showModal}
-          >
-            Watchlist
+          <div className="footer-button-box">
+            <div
+              id="watchlist-button"
+              className="footer-button"
+              onClick={this.showModal}
+            >
+              Watchlist
+            </div>
           </div>
           <div className="divider">|</div>
-          <div
-            id="settings-button"
-            className="footer-button"
-            onClick={this.showModal}
-          >
-            Settings
+          <div className="footer-button-box">
+            <div
+              id="settings-button"
+              className="footer-button"
+              onClick={this.showModal}
+            >
+              Settings
+            </div>
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }

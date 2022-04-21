@@ -22,7 +22,7 @@ const Carousel = (props) => {
 
     return (
       <div id='desktop-carousel'>
-      <div>{props.carouselType === 'trending' ? (<div>Trending now...</div>) : (<CarouselCount searchTerm={props.searchTerm} />)}</div>
+      <div>{props.carouselType === 'trending' ? (<div>Now trending...</div>) : (<CarouselCount searchTerm={props.searchTerm} />)}</div>
         <div id='carousel-box'>
           <img src={arrow} className='swiper-button-prev' id='left'></img>
           <div id='swiper-box'>

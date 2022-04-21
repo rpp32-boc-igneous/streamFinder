@@ -57,7 +57,7 @@ var MobileVideoCard = (props) => {
           <div id='mobile-search-card-rating2'>
             <span>Critic Rating: {props.obj.critic_score}/100</span>
           </div>
-          <p id='mobile-search-card-description'>{descriptionSuperShortener(props.obj.plot_overview)}</p>
+          <p id='mobile-search-card-description'>{descriptionShortener(props.obj.plot_overview)}</p>
         </div>
       </div>
     )

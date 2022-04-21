@@ -22,12 +22,11 @@ const MobileCarousel = (props) => {
 
   return (
     <div id='mobile-carousel'>
-    <div>{props.carouselType === 'trending' ? (<div>Trending now...</div>) : (<CarouselCount searchTerm={props.searchTerm} />)}</div>
       <div id='carousel-box'>
         <img src={arrow} className='swiper-button-prev' id='left'></img>
-        <div id='swiper-box'>
+        <div id='mobile-swiper-box'>
           <Swiper
-            spaceBetween={10}
+            spaceBetween={2}
             slidesPerView={1}
             speed={500}
             loop='true'
@@ -45,6 +44,7 @@ const MobileCarousel = (props) => {
         </div>
         <img src={arrow} className='swiper-button-next' id='right'></img>
       </div>
+      <div id="mobile-carousel-label">{props.carouselType === 'trending' ? (<div>Now trending...</div>) : (<CarouselCount searchTerm={props.searchTerm} />)}</div>
     </div>
   )
 
