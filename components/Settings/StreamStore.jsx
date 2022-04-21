@@ -39,10 +39,11 @@ const StreamStore = (props) => {
     return string.replace(/\W/g,'').toLowerCase();
   }
 
-  const searchStreams = (keyword) => {
-    keyword = regEx(keyword);
+  const searchStreams = (term) => {
+    term = regEx(term);
+    setKeyword(term);
     const results = streams.filter(stream => {
-    return regEx(stream.name).includes(keyword);
+    return regEx(stream.name).includes(term);
     });
     setSearching(true);
     setSearchResults(results);
