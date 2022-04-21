@@ -70,13 +70,6 @@ class Settings extends React.Component {
     this.getStreams();
   }
 
-  componentDidUpdate() {
-    // console.log("update");
-    // if (this.state.streams.length === 0) {
-    //   this.getStreams();
-    // }
-  }
-
   // componentDidUpdate() {
   //   console.log('update');
   //   if (this.state.streams.length === 0){
@@ -157,11 +150,11 @@ class Settings extends React.Component {
   };
 
   unsubscribe = (name, id, isDefault) => {
-    // axios.patch(`${this.state.URL}/streams/${name}?field=subscribed&val=false`)
-    // .then(() =>{
-    //   console.log(`now unsubscribed from ${name}`)
-    // })
-    // .catch(err => console.log(`error unsubscribing from ${name}`))
+    axios.patch(`${this.state.URL}/streams/${name}?field=subscribed&val=false`)
+    .then(() =>{
+      console.log(`now unsubscribed from ${name}`)
+    })
+    .catch(err => console.log(`error unsubscribing from ${name}`))
     $(`#store-${id}`).removeClass("subscribed");
     if (isDefault) $(`#${id} .checkbox`).prop("checked", false);
     let newSubs = this.state.subs.filter((sub) => sub !== name);

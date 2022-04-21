@@ -1225,14 +1225,14 @@ input:focus + #search-x {
 
 #pages {
   position: relative;
-  margin: 0.5rem auto;
+  margin: 5px auto;
   /* vertical-align: bottom; */
-  font-size: 1.5rem;
   color:#fcf003;
 }
 
 .arrow {
   display: inline-block;
+  font-size: 2rem;
 }
 
 .arrow:hover {
@@ -1241,7 +1241,7 @@ input:focus + #search-x {
 }
 
 .arrow-span {
-  margin: 0 2px;
+  margin: 0 10px;
 }
 
 #store {

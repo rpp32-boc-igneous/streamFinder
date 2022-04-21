@@ -24,6 +24,7 @@ const {
   retrieveAllStreams,
   retrieveOneStream,
   insertStream,
+  updateStream
 } = require("../database/dbMethods.js");
 
 app.use(cookieParser());
