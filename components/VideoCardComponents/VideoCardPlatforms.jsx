@@ -1,10 +1,11 @@
 import React from 'react';
+import axios from 'axios';
 
 class VideoCardPlatforms extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      URL:'http://localhost:3000'
     }
     this.isSubscribed = this.isSubscribed.bind(this);
   }
@@ -18,24 +19,35 @@ class VideoCardPlatforms extends React.Component {
     return false;
   }
 
+  getStreams(){
+    axios
+      .get(`${this.state.URL}/streams`)
+      .then((data) => {
+        console.log(data);
+        this.setState({ streams: data.data });
+      })
+      .catch((err) => console.log("all streams request failed"));
+  };
+
+  componentDidMount() {
+    this.getStreams();
+    console.log(this.state.streams);
+  }
+
 
   render() {
-
     const removeDuplicateSources = (dataArray) => {
+      let services = {};
       let newArray = [];
-      let currentSource = '';
 
       for (var i = 0; i < dataArray.length; i++) {
-        if (currentSource === dataArray[i].name) {
-          continue;
-        } else {
-          currentSource = dataArray[i].name;
+        if (services[dataArray[i].name] === undefined) {
+          services[dataArray[i].name] = dataArray[i];
           newArray.push(dataArray[i]);
         }
       }
       return newArray;
     }
-
 
 
     return (
