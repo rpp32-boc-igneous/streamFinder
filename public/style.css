@@ -90,7 +90,6 @@ PAGE LAYOUT
 }
 
 
-
 /*
 /////////////////////////////////////
 LOGIN
@@ -230,22 +229,27 @@ SEARCH
 
 /*
 /////////////////////////////////////
-CAROUSEL
+DESKTOP CAROUSEL
 /////////////////////////////////////
 */
 
 
 #carousel {
-  /* background-color: rgba(255, 255, 255, 0.7); */
   display: inline-block;
   height: 500px;
   width: 830px;
   margin-top: -50px;
-  /* width: 70%;
-  border: 2px solid rgba(255, 255, 100, 0.6);
-  border-radius: 10px;
-  text-align: center;
-  align-content: center; */
+}
+
+#desktop-carousel {
+  display: inline-block;
+  height: 500px;
+  width: 830px;
+  margin-top: -50px;
+}
+
+#mobile-carousel {
+  display: none;
 }
 
 #carousel-box {
@@ -352,7 +356,19 @@ CAROUSEL
   border-radius: 5px;
 }
 
+#mobile-search-card-img {
+  margin-top: 0px;
+  margin-left: 0px;
+  width: 50%;
+  height: auto;
+  border-radius: 5px;
+}
+
 #search-text-detail {
+  text-align: center;
+}
+
+#mobile-search-text-detail {
   text-align: center;
 }
 
@@ -374,7 +390,15 @@ a:hover {
   font-size: 11px;
 }
 
+#mobile-search-card-description {
+  font-size: 11px;
+}
+
 #search-card-rating1 {
+  font-size: 12px;
+}
+
+#mobile-search-card-rating1 {
   font-size: 12px;
 }
 
@@ -382,7 +406,15 @@ a:hover {
   font-size: 10px;
 }
 
+#mobile-search-card-rating2 {
+  font-size: 10px;
+}
+
 #search-card-title {
+  font-size: 17px;
+}
+
+#mobile-search-card-title {
   font-size: 17px;
 }
 
@@ -392,6 +424,19 @@ a:hover {
 
 #search-card-see-more {
   font-size: 10px;
+}
+
+/*
+/////////////////////////////////////
+MOBILE CAROUSEL
+/////////////////////////////////////
+*/
+
+#mobile-carousel {
+  display: none;
+  height: 500px;
+  width: 830px;
+  margin-top: -50px;
 }
 
 
@@ -407,6 +452,19 @@ VIDEO CARDS
   display: inline-block;
   height: 80%;
   width: 90%;
+  color: white;
+  border: 1px solid rgba(255, 255, 0, 0.7);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.0);
+  margin-left: 2px;
+  margin-top: 40px;
+  transition: transform 100ms ease-in-out 25ms;
+}
+
+.mobile-video-card {
+  display: inline-block;
+  height: 400px;
+  width: 300px;
   color: white;
   border: 1px solid rgba(255, 255, 0, 0.7);
   border-radius: 5px;
@@ -1279,4 +1337,12 @@ MEDIA QUERIES / RESPONSIVE DESIGN
   #swiper-box {
     width: 95%;
   }
+  #mobile-carousel {
+    display: inline-block;
+  }
+  #desktop-carousel {
+    display: none;
+  }
 }
+
+
