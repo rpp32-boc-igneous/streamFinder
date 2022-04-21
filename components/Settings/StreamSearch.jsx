@@ -14,7 +14,6 @@ const StreamSearch = (props) => {
 
   const searchStreams = (e) => {
     e.preventDefault();
-    console.log($('#search-bar').val());
     let keyword = $('#search-bar').val();
     props.search(keyword);
     setIconClass('');

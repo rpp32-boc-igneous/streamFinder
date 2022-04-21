@@ -165,7 +165,7 @@ class Settings extends React.Component {
     $(`#store-${id}`).removeClass("subscribed");
     if (isDefault) $(`#${id} .checkbox`).prop("checked", false);
     let newSubs = this.state.subs.filter((sub) => sub !== name);
-    this.setState({ subs: newSubs }, () => console.log(this.state.subs));
+    this.setState({ subs: newSubs });
   };
 
   formatName = (name) => {
