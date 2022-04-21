@@ -2,7 +2,6 @@ body {
   background-color: rgba(0, 0, 0, 1);
   font-family: "Avenir";
   color: rgba(255, 255, 255, 1);
-  /* font-family: "Dosis", sans-serif; */
   min-width: 350px;
 }
 
@@ -11,10 +10,9 @@ body {
   color: rgba(255, 255, 255, 1);
   font-size: 4em;
   margin-left: 15%;
-  -webkit-animation: glow 1s ease-in-out infinite alternate;
-  -moz-animation: glow 1s ease-in-out infinite alternate;
-  animation: glow 1s ease-in-out infinite alternate;
 }
+
+
 
 .home {
   display: inline-block;
@@ -27,14 +25,7 @@ body {
   cursor: pointer;
 }
 
-@-webkit-keyframes glow {
-  from {
-    text-shadow: 0 0 0px #fff, 0 0 1px #fff, 0 0 3px #fcf003;
-  }
-  to {
-    text-shadow: 0 0 0px #fff, 0 0 1px #fff, 0 0 3px #fcf003;
-  }
-}
+
 
 /*
 /////////////////////////////////////
@@ -42,22 +33,6 @@ PAGE LAYOUT
 /////////////////////////////////////
 */
 
-#login-button {
-  display: inline-block;
-  height: 40px;
-  width: 60px;
-  background-color: rgba(255, 255, 255, 0.4);
-  border: 1px solid black;
-  border-radius: 10px;
-  color: rgba(255, 255, 255, 1);
-  font-family: "Avenir";
-}
-
-#login-button:hover {
-  cursor: pointer;
-  background-color: rgba(255, 255, 0, 0.9);
-  color: rgba(0, 0, 0, 1);
-}
 
 #header {
   display: flex;
@@ -88,6 +63,7 @@ PAGE LAYOUT
   height: 2%;
   color: rgba(255, 255, 255, 1);
   margin: 0 15%;
+  animation: glitch 2000ms;
 }
 
 .footer-button:hover {
@@ -113,11 +89,14 @@ PAGE LAYOUT
   margin-top: -50px;
 }
 
+
+
 /*
 /////////////////////////////////////
 LOGIN
 /////////////////////////////////////
 */
+
 
 #Login-page {
   display: none;
@@ -139,11 +118,32 @@ LOGIN
   left: 240px;
 }
 
+#login-button {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  border: 1px solid black;
+  border-radius: 10px 0 0 10px;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
+}
+
+#login-button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 0, 0.9);
+  color: rgba(0, 0, 0, 1);
+}
+
+
+
 /*
 /////////////////////////////////////
 SIGNUP
 /////////////////////////////////////
 */
+
 
 #Signup-page {
   display: none;
@@ -165,11 +165,35 @@ SIGNUP
   left: -310px;
 }
 
+#signup-button {
+  display: inline-block;
+  height: 40px;
+  width: 60px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid black;
+  border-radius: 0 10px 10px 0;
+  color: rgba(255, 255, 255, 1);
+  font-family: "Avenir";
+}
+
+#signup-button:hover {
+  background-color: rgba(255, 135, 0, 0.9);
+  color: rgba(0, 0, 0, 1);
+}
+
+#welcome-message{
+  display: inline-block;
+  margin-left: 20px;
+  font-size: .9em;
+}
+
+
 /*
 /////////////////////////////////////
 SEARCH
 /////////////////////////////////////
 */
+
 
 #search {
   display: flex;
@@ -203,11 +227,13 @@ SEARCH
 }
 
 
+
 /*
 /////////////////////////////////////
 CAROUSEL
 /////////////////////////////////////
 */
+
 
 #carousel {
   /* background-color: rgba(255, 255, 255, 0.7); */
@@ -368,11 +394,14 @@ a:hover {
   font-size: 10px;
 }
 
+
+
 /*
 /////////////////////////////////////
 VIDEO CARDS
 /////////////////////////////////////
 */
+
 
 .video-card {
   display: inline-block;
@@ -510,11 +539,13 @@ VIDEO CARDS
 }
 
 
+
 /*
 /////////////////////////////////////
 WATCHLIST
 /////////////////////////////////////
 */
+
 
 #Watchlist-page {
   display: none;
@@ -671,6 +702,7 @@ USER SETTINGS
 /////////////////////////////////////
 */
 
+
 .hide {
   display: none;
 }
@@ -704,10 +736,14 @@ USER SETTINGS
   position: relative;
 }
 
+
+
 /*
+/////////////////////////////////////
 ACCOUNT
---------------------------------------
+/////////////////////////////////////
 */
+
 
 .close {
   color: rgba(255, 255, 255, 1);
@@ -777,10 +813,15 @@ table {
   font-size: 200%;
 }
 
+
+
 /*
+/////////////////////////////////////
 EDIT_USER
---------------------------------------
+/////////////////////////////////////
 */
+
+
 #update-box {
   height: 55%;
   width: 90%;
@@ -851,10 +892,14 @@ input:focus {
   color: rgb(62, 62, 62);
 }
 
+
+
 /*
+/////////////////////////////////////
 STREAM_LIST
---------------------------------------
+/////////////////////////////////////
 */
+
 
 .stream-list {
   border: 0.5px solid rgba(255, 255, 0, 0.9);
@@ -906,10 +951,15 @@ STREAM_LIST
   display: none;
 }
 
+
+
 /*
+/////////////////////////////////////
 STREAM_CHECKBOXES
---------------------------------------
+/////////////////////////////////////
 */
+
+
 .stream {
   display: inline-block;
 }
@@ -959,10 +1009,14 @@ STREAM_CHECKBOXES
   line-height: 0.9rem;
 }
 
+
+
 /*
+/////////////////////////////////////
 STREAM_STORE
--------------------------------------
+/////////////////////////////////////
 */
+
 
  #filter-list {
   position: relative;
@@ -1196,11 +1250,14 @@ input:focus + #search-x {
   overflow: hidden;
 }
 
+
+
 /*
 /////////////////////////////////////
 MEDIA QUERIES / RESPONSIVE DESIGN
 /////////////////////////////////////
 */
+
 
 /* @media only screen and (max-width: 600px) {
   #carousel {
