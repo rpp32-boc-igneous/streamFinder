@@ -4,7 +4,7 @@ function ServiceButton(props) {
   return (
     <div>
       <input
-        type="radio"
+        type="checkbox"
         value={props.service_name}
         name="stream"
         label={props.service_name}
