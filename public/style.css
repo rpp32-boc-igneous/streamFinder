@@ -113,8 +113,11 @@ LOGIN
 }
 
 #home-login {
-  top: -15px;
-  left: 240px;
+  position: relative;
+  width: 30px;
+  height: auto;
+  top: -68%;
+  left: 51%;
 }
 
 #login-button {
@@ -160,8 +163,11 @@ SIGNUP
 }
 
 #home-signup {
-  top: -5px;
-  left: -310px;
+  position: relative;
+  width: 30px;
+  height: auto;
+  top: -78%;
+  left: 51%;
 }
 
 #signup-button {
