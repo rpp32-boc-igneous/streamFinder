@@ -51,6 +51,7 @@ class App extends React.Component {
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
+    this.updateSettingsState = this.updateSettingsState.bind(this);
     this.updateScreenSize = this.updateScreenSize.bind(this);
   }
 
@@ -100,6 +101,18 @@ class App extends React.Component {
         this.updateUser();
       }
     );
+  }
+
+  updateSettingsState(obj) {
+    this.setState({
+      ...this.state,
+      user_email: obj.user_email,
+      user_password: obj.user_password,
+      subscriptions: obj.subscriptions
+    }, () => {
+      console.log("user settings updated");
+      this.updateUser();
+    })
   }
 
   addToWatchlist(obj) {
@@ -354,7 +367,7 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings user={userObj} />
+            <Settings user={userObj} updateSettingsState={this.updateSettingsState}/>
             <img
               src={SFicon}
               onClick={this.showModal}

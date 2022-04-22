@@ -497,6 +497,10 @@ VIDEO CARDS
   transition: transform 100ms ease-in-out 25ms;
 }
 
+.single-mobile-video-card {
+  min-width: 320px;
+}
+
 #mobile-video-card-info {
   display: none;
 }
@@ -1398,14 +1402,6 @@ MEDIA QUERIES / RESPONSIVE DESIGN
     width: 95%;
   }
 
-  #mobile-carousel {
-    display: inline-block;
-  }
-
-  #desktop-carousel {
-    display: none;
-  }
-
   #banner {
     width: 80%;
     height: auto;
@@ -1434,6 +1430,14 @@ MEDIA QUERIES / RESPONSIVE DESIGN
 }
 
 @media only screen and (max-width: 480px) {
+
+  #mobile-carousel {
+    display: inline-block;
+  }
+
+  #desktop-carousel {
+    display: none;
+  }
 
   #login-button {
     height: 35px;
@@ -1473,12 +1477,14 @@ MEDIA QUERIES / RESPONSIVE DESIGN
   }
 
   #video-card-blurb {
-    overflow: hidden;
+    text-align: left;
+    margin-top: 0px;
   }
 
   #video-card-blurb-box {
     overflow: scroll;
-    height: 90px;
+    height: 85px;
+    margin-left: 2%;
   }
 
   #mobile-video-card-billboard {
@@ -1517,6 +1523,28 @@ MEDIA QUERIES / RESPONSIVE DESIGN
     border: 1.3px solid rgba(255, 255, 0, 0.9);
     border-radius: 5px;
     margin-left: 2px;
+  }
+
+  #video-card-title {
+    margin-left: 3%;
+  }
+
+  #video-card-program-metadata {
+    margin-left: 4%;
+  }
+
+  #video-card-add-to-watchlist-button {
+    margin-left: 3%;
+  }
+
+  #video-card-rating {
+    margin-left: 2%;
+  }
+
+  #home-title {
+    top: 3%;
+    left: 45%;
+    width: 35px;
   }
 
 }
@@ -1561,6 +1589,14 @@ MEDIA QUERIES / RESPONSIVE DESIGN
 @media only screen and (max-width: 420px) {
   .mobile-video-card {
     height: 81%;
+  }
+
+  .platformLink {
+    font-size: .8em;
+  }
+
+  .subscribed-link{
+    font-size: .8em;
   }
 }
 
@@ -1630,10 +1666,19 @@ MEDIA QUERIES / RESPONSIVE DESIGN
   #carousel {
     height: 450px;
   }
-}
 
-@media only screen and (max-width: 400px) {
   #mobile-carousel-label {
     top: 113px;
+  }
+
+}
+
+@media only screen and (max-width: 340px) {
+  .platformLink {
+    font-size: .7em;
+  }
+
+  .subscribed-link{
+    font-size: .7em;
   }
 }
