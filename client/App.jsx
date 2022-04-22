@@ -33,9 +33,11 @@ class App extends React.Component {
       carouselType: "trending",
       user_name: null,
       user_email: null,
+      user_password: null,
       watch_list: [],
       watch_history: [],
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
+      is_logged_in: false
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -164,6 +166,7 @@ class App extends React.Component {
         $("#Title-page").css({ display: "inline-block" });
         $("#carousel").css({ display: "none" });
         $("#footer").css({ display: "none" });
+        $("#header").css({ display: "none" });
       }
     );
   }
@@ -218,15 +221,26 @@ class App extends React.Component {
   }
 
   render() {
+
+    let userObj = {
+      user_name: this.state.user_name,
+      user_email: this.state.user_email,
+      user_password: this.state.user_password,
+      subscriptions: this.state.subscriptions
+    }
+
     return (
       <div>
         <div id="header">
-          <button id="login-button" onClick={this.showModal}>
-            Login
-          </button>
-          <button id="signup-button" onClick={this.showModal}>
-            Signup
-          </button>
+          <div id="login-signup-box">
+            <button id="login-button" onClick={this.showModal}>
+              Login
+            </button>
+            <button id="signup-button" onClick={this.showModal}>
+              Signup
+            </button>
+            <div id="welcome-message">{this.state.user_name !== null ? (<div>Welcome Back, {this.state.user_name}</div>) : (<div></div>) }</div>
+          </div>
           <Search
             changePage={this.showModal}
             cb={this.updateSearchResults}
@@ -302,7 +316,7 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings />
+            <Settings user={userObj} />
             <img
               src={SFicon}
               onClick={this.showModal}
@@ -337,7 +351,7 @@ class App extends React.Component {
             Settings
           </div>
         </div>
-      </div>
+      </div >
     );
   }
 }
