@@ -24,6 +24,7 @@ const {
   retrieveAllStreams,
   retrieveOneStream,
   insertStream,
+  updateUser,
 } = require("../database/dbMethods.js");
 
 app.use(cookieParser());
@@ -72,21 +73,14 @@ app.post("/related", (req, res) => {
 app.use("/oauth", oauth);
 
 app.use("/signup", signup);
-// app.get('/signup', (req, res) => {
-//   var user = req.body.user;
-//   insertUser(user)
-//   .then(data => {
-//     console.log('user creation success')
-//     res.send(data);
-//   })
-// })\
 
 ///////////////////////
 // Watchlist
 ///////////////////////
 
 app.put("/update_user", (req, res) => {
-  let user = req.body.user;
+  let user = req.body;
+
   updateUser(user)
     .then((res) => {
       console.log("user update successful");

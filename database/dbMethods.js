@@ -17,7 +17,10 @@ var retrieveUser = (id) => {
 };
 
 var updateUser = (user) => {
-  return User.findOneAndReplace({ id: user.id }, user);
+  console.log("This is the user at the DB Method", user);
+  return User.findOneAndUpdate({ email: user.user_email }, user, {
+    upsert: true,
+  });
 };
 
 //STREAM Collection Methods
@@ -34,8 +37,8 @@ var insertStream = (streamObj) => {
 };
 
 var updateStream = (name, field, val) => {
-  return Stream.updateOne({name: name}, {$set: {[field]: val}});
-}
+  return Stream.updateOne({ name: name }, { $set: { [field]: val } });
+};
 
 module.exports = {
   insertTitle: insertTitle,
@@ -45,5 +48,5 @@ module.exports = {
   retrieveAllStreams: retrieveAllStreams,
   retrieveOneStream: retrieveOneStream,
   insertStream: insertStream,
-  updateStream: updateStream
-}
+  updateStream: updateStream,
+};

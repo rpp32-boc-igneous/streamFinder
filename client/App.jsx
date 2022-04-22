@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import axios from "axios";
 
 // Components
 import Login_Signup from "../components/Login_Signup/Login_Signup.jsx";
@@ -81,7 +82,7 @@ class App extends React.Component {
       },
       () => {
         console.log("user refreshed in state");
-        // this.updateUser();
+        this.updateUser();
       }
     );
   }
@@ -101,8 +102,9 @@ class App extends React.Component {
   }
 
   updateUser() {
+    console.log("Is this even running ??");
     let options = {
-      method: "post",
+      method: "put",
       url: "/update_user",
       data: {
         user_id: this.state.user_id,
@@ -119,7 +121,7 @@ class App extends React.Component {
     };
     axios(options)
       .then((result) => {
-        console.log(result.data);
+        console.log("I don't think this works", result.data);
       })
       .catch((err) => {
         console.log("error updating user", err);

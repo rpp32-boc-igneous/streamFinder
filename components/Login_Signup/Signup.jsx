@@ -32,30 +32,28 @@ class Signup extends React.Component {
 
   handleSubmitClick(e) {
     e.preventDefault();
-    // console.log("This is the event click: ", e.target);
 
     if (this.verifyPassword()) {
       console.log("Passwords are matching");
+      let subs = this.state.subscriptionTracker;
+      let currentSubs = [];
+      for (let key in subs) {
+        if (subs[key]) {
+          currentSubs.push(key);
+        }
+      }
+      const { user_name, email, password } = this.state;
+      this.updateUserState({
+        user_name: user_name,
+        user_email: email,
+        watch_list: [],
+        user_password: password,
+        watch_history: [],
+        subscriptions: currentSubs,
+      });
     } else {
       console.log("Password mismatch, clear the form data?");
     }
-
-    let subs = this.state.subscriptionTracker;
-    let currentSubs = [];
-    for (let key in subs) {
-      if (subs[key]) {
-        currentSubs.push(key);
-      }
-    }
-    const { user_name, email, password } = this.state;
-    this.updateUserState({
-      user_name: user_name,
-      user_email: email,
-      watch_list: [],
-      user_password: password,
-      watch_history: [],
-      subscriptions: currentSubs,
-    });
   }
 
   handleInputChange(e) {
@@ -98,8 +96,12 @@ class Signup extends React.Component {
 
   verifyPassword(e) {
     // This is lazy but it will work for now
-    if (this.state.password !== this.state.confirm_password) {
-      alert("Passwords do not match, do not collect 200$");
+    console.log("Testing: ", this.state.password !== "");
+    if (
+      this.state.password !== this.state.confirm_password ||
+      this.state.password === ""
+    ) {
+      alert("Password missing or does not match.");
       return false;
     } else {
       return true;
