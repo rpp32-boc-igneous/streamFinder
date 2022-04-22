@@ -16,6 +16,8 @@ class Signup extends React.Component {
         "Sling TV",
         "Discovery",
       ],
+      subscriptions: [],
+      subscriptionTracker: {},
       user_name: "",
       email: "",
       password: "",
@@ -24,18 +26,38 @@ class Signup extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.verifyPassword = this.verifyPassword.bind(this);
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
-    this.handleStreamSelectionClick =
-      this.handleStreamSelectionClick.bind(this);
+    this.handleStreamSelect = this.handleStreamSelect.bind(this);
+    this.updateUserState = props.updateUserState;
   }
 
   handleSubmitClick(e) {
     e.preventDefault();
-    console.log("This is the event click: ", e.target.value);
+    // console.log("This is the event click: ", e.target);
+
     if (this.verifyPassword()) {
       console.log("Passwords are matching");
     } else {
       console.log("Password mismatch, clear the form data");
     }
+
+    let subs = this.state.subscriptionTracker;
+    let currentSubs = [];
+    for (let key in subs) {
+      if (subs[key]) {
+        currentSubs.push(key);
+      }
+    }
+    const { user_name, email, password } = this.state;
+    // console.log("User name: ", user_name);
+    console.log("CurrentSubs: ", currentSubs, user_name, email, password);
+    this.updateUserState({
+      user_name: user_name,
+      user_email: email,
+      watch_list: [],
+      user_password: password,
+      watch_history: [],
+      subscriptions: currentSubs,
+    });
   }
 
   handleInputChange(e) {
@@ -62,9 +84,18 @@ class Signup extends React.Component {
     }
   }
 
-  handleStreamSelectionClick(e) {
-    e.preventDefault();
-    console.log("Value: ", e.target.value);
+  handleStreamSelect(e) {
+    // e.preventDefault();
+    if (this.state.subscriptionTracker[e.target.value]) {
+      this.state.subscriptionTracker[e.target.value] = false;
+    } else {
+      this.state.subscriptionTracker[e.target.value] = true;
+    }
+
+    console.log(
+      "These are the this.state.subscriptionTracker: ",
+      this.state.subscriptionTracker
+    );
   }
 
   verifyPassword(e) {
@@ -104,7 +135,7 @@ class Signup extends React.Component {
             onChange={this.handleInputChange}
           />
           <input
-            className="password"
+            className="email"
             type="text"
             placeholder="Email Address"
             onChange={this.handleInputChange}
@@ -118,7 +149,11 @@ class Signup extends React.Component {
 
         <div className="StreamButtonAtSignUp">
           {this.state.services.map((service) => (
-            <ServiceButton key={service} service={service} />
+            <ServiceButton
+              handleStreamSelect={this.handleStreamSelect}
+              key={service}
+              service={service}
+            />
           ))}
         </div>
       </div>

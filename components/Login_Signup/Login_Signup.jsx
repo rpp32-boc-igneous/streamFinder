@@ -15,6 +15,7 @@ class Login_Signup extends React.Component {
     this.onFailure = this.onFailure.bind(this);
     this.redirect = this.props.showModal;
     this.liftUserInfoUp = this.props.updateState;
+    this.updateState = props.updateState;
   }
 
   handleOauthSubmit(event) {
@@ -126,6 +127,7 @@ class Login_Signup extends React.Component {
           </form>
           <h3>or Sign in with</h3>
           <GoogleLogin
+            updateState={this.updateState}
             clientId="768315598088-9hct54aqr973f9uccu076mvs5smvlg6j.apps.googleusercontent.com"
             buttonText="Login"
             // redirectUri="http://localhost:3000/oauth/google/redirect"

@@ -37,7 +37,7 @@ class App extends React.Component {
       watch_list: [],
       watch_history: [],
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
-      is_logged_in: false
+      is_logged_in: false,
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -69,6 +69,7 @@ class App extends React.Component {
   }
 
   updateUserState(obj) {
+    console.log("This is whats gettiong passed in: ", obj);
     this.setState(
       {
         ...this.state,
@@ -80,7 +81,7 @@ class App extends React.Component {
       },
       () => {
         console.log("user refreshed in state");
-        this.updateUser();
+        // this.updateUser();
       }
     );
   }
@@ -221,13 +222,12 @@ class App extends React.Component {
   }
 
   render() {
-
     let userObj = {
       user_name: this.state.user_name,
       user_email: this.state.user_email,
       user_password: this.state.user_password,
-      subscriptions: this.state.subscriptions
-    }
+      subscriptions: this.state.subscriptions,
+    };
 
     return (
       <div>
@@ -239,7 +239,13 @@ class App extends React.Component {
             <button id="signup-button" onClick={this.showModal}>
               Signup
             </button>
-            <div id="welcome-message">{this.state.user_name !== null ? (<div>Welcome Back, {this.state.user_name}</div>) : (<div></div>) }</div>
+            <div id="welcome-message">
+              {this.state.user_name !== null ? (
+                <div>Welcome Back, {this.state.user_name}</div>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
           <Search
             changePage={this.showModal}
@@ -277,6 +283,7 @@ class App extends React.Component {
 
           <div className="page" id="Login-page">
             <Login_Signup
+              updateState={this.updateState}
               updateUserState={this.updateUserState}
               showModal={this.showModal}
             />
@@ -351,7 +358,7 @@ class App extends React.Component {
             Settings
           </div>
         </div>
-      </div >
+      </div>
     );
   }
 }
