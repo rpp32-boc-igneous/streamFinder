@@ -113,7 +113,7 @@ class Login_Signup extends React.Component {
           <form>
             <input type="text" name="userName" placeholder="User Name"></input>
             <input
-              autocomplete="on"
+              autoComplete="on"
               type="password"
               name="password"
               placeholder="Password"

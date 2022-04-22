@@ -1,5 +1,5 @@
 import React from "react";
-import ServiceButtonGroup from "./ServiceButtonGroup.jsx";
+import ServiceButton from "./ServiceButton.jsx";
 
 class Signup extends React.Component {
   constructor(props) {
@@ -10,8 +10,8 @@ class Signup extends React.Component {
         "Hulu",
         "Amazon Prime Video",
         "Vudu",
-        "HBO Max",
-        "Disney +",
+        "HBOmax",
+        "Disney+",
         "Peacock",
         "Sling TV",
         "Discovery",
@@ -24,6 +24,8 @@ class Signup extends React.Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.verifyPassword = this.verifyPassword.bind(this);
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
+    this.handleStreamSelectionClick =
+      this.handleStreamSelectionClick.bind(this);
   }
 
   handleSubmitClick(e) {
@@ -60,6 +62,11 @@ class Signup extends React.Component {
     }
   }
 
+  handleStreamSelectionClick(e) {
+    e.preventDefault();
+    console.log("Value: ", e.target.value);
+  }
+
   verifyPassword(e) {
     // This is lazy but it will work for now
     if (this.state.password !== this.state.confirm_password) {
@@ -85,14 +92,14 @@ class Signup extends React.Component {
           <input
             className="password"
             type="password"
-            autocomplete="on"
+            autoComplete="on"
             placeholder="Password"
             onChange={this.handleInputChange}
           />
           <input
             className="confirm_password"
             type="password"
-            autocomplete="on"
+            autoComplete="on"
             placeholder="Confirm Password"
             onChange={this.handleInputChange}
           />
@@ -110,7 +117,9 @@ class Signup extends React.Component {
         </form>
 
         <div className="StreamButtonAtSignUp">
-          <ServiceButtonGroup services={this.state.services} />
+          {this.state.services.map((service) => (
+            <ServiceButton key={service} service={service} />
+          ))}
         </div>
       </div>
     );
