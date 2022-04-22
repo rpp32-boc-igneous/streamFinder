@@ -45,7 +45,7 @@ class VideoCardPlatforms extends React.Component {
           if (subscribed === true) {
             return (
               <span key={i}>
-                <a href={item.web_url} className="subscribedLink" target="_blank" rel="noopener noreferrer">{item.name}</a><br></br>
+                <a href={item.web_url} className="subscribed-link" target="_blank" rel="noopener noreferrer">{item.name}</a><br></br>
               </span>
             )
           } else {
