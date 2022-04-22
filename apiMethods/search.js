@@ -2,7 +2,6 @@ require("dotenv").config();
 const key = process.env.API_KEY;
 const axios = require("axios");
 const Promise = require("bluebird");
-console.log("API KEY: ", process.env.API_KEY);
 
 // uses query string to retrieve available titles from API
 var getTitleIds = (string) => {

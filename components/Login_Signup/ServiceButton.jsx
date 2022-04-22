@@ -2,7 +2,6 @@ import React from "react";
 import { userState } from "react";
 
 function ServiceButton(props) {
-  // console.log("THis is props: ", props);
   const [checked, setChecked] = React.useState(false);
 
   const handleChange = (e) => {

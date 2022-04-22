@@ -37,7 +37,7 @@ class Signup extends React.Component {
     if (this.verifyPassword()) {
       console.log("Passwords are matching");
     } else {
-      console.log("Password mismatch, clear the form data");
+      console.log("Password mismatch, clear the form data?");
     }
 
     let subs = this.state.subscriptionTracker;
@@ -48,8 +48,6 @@ class Signup extends React.Component {
       }
     }
     const { user_name, email, password } = this.state;
-    // console.log("User name: ", user_name);
-    console.log("CurrentSubs: ", currentSubs, user_name, email, password);
     this.updateUserState({
       user_name: user_name,
       user_email: email,
