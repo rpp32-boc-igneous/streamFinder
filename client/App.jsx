@@ -310,12 +310,7 @@ class App extends React.Component {
               addToWatchlist={this.addToWatchlist}
               subscriptions={this.state.subscriptions}
             />
-            <img
-              src={SFicon}
-              onClick={this.showModal}
-              className="home"
-              id="home-title"
-            ></img>
+
           </div>
 
           <div className="page" id="Login-page">

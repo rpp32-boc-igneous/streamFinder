@@ -538,6 +538,7 @@ VIDEO CARDS
 
 #video-card-blurb {
   order: 2;
+  margin-top: 20px;
   font-size: 1.2em;
 }
 
@@ -574,6 +575,7 @@ VIDEO CARDS
 
 #video-card-platforms {
   order: 3;
+  padding: 5px 0;
   margin: auto 4px auto 0;
   border: 1px solid rgba(255, 255, 255, .3);
   border-radius: 20px;
@@ -610,21 +612,22 @@ VIDEO CARDS
 }
 
 #home-title {
-  position: absolute;
+  position: relative;
   width: 30px;
   height: auto;
-  top: 0px;
-  left: 525px;
+  top: 2%;
+  left: 51%;
 }
 
 .platformLink:hover {
   color: rgba(255, 185, 50, 1)
 }
 
-.subscribedLink {
+.subscribed-link {
   text-decoration: underline dotted;
-  border: 1px solid rgba(173, 255, 47, 0.6);
+  border: 2px solid rgba(173, 255, 47, 0.8);
   border-radius: 5px;
+  padding: 0 3px;
 }
 
 .platformLink .subscribedLink {
@@ -657,9 +660,11 @@ WATCHLIST
 }
 
 #home-watchlist {
-  position: absolute;
-  top: 0px;
-  left: 590px;
+  position: relative;
+  width: 30px;
+  height: auto;
+  top: -135%;
+  left: 53%;
 }
 
 .watch_title {
