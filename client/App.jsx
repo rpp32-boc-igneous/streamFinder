@@ -8,6 +8,7 @@ import Search from "../components/Search.jsx";
 import Carousel from "../components/Carousel.jsx";
 import MobileCarousel from "../components/MobileCarousel.jsx"
 import VideoCard from "../components/VideoCard.jsx";
+import SingleMobileVideoCard from '../components/SingleMobileVideoCard.jsx';
 import Watchlist from "../components/Watchlist.jsx";
 import Settings from "../components/Settings/Settings.jsx";
 
@@ -33,7 +34,7 @@ class App extends React.Component {
       trending: mockTrending,
       active: mockTrending,
       carouselType: "trending",
-      user_name: null,
+      user_name: "Jaimie D.",
       user_email: null,
       user_password: null,
       watch_list: [],
@@ -291,6 +292,19 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Title-page">
+
+            <SingleMobileVideoCard
+              title={this.state.active[this.state.selectedTitleIndex]}
+              addToWatchlist={this.addToWatchlist}
+              subscriptions={this.state.subscriptions}
+            />
+            <img
+              src={SFicon}
+              onClick={this.showModal}
+              className="home"
+              id="home-title"
+            ></img>
+
             <VideoCard
               title={this.state.active[this.state.selectedTitleIndex]}
               addToWatchlist={this.addToWatchlist}

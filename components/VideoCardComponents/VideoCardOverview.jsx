@@ -16,10 +16,10 @@ class VideoCardOverview extends React.Component {
 
   render() {
     //metadata logic here
-      //rating leave as is
-      //release date is year
-      //if has seasons/parts/etc, then 'content amount' is number of those seasons/parts/etc
-        //else it displays runtime as xhours xminutes
+    //rating leave as is
+    //release date is year
+    //if has seasons/parts/etc, then 'content amount' is number of those seasons/parts/etc
+    //else it displays runtime as xhours xminutes
     let content_length = this.props.title.runtime_minutes.toString() + 'minutes';
 
     return (
@@ -27,7 +27,9 @@ class VideoCardOverview extends React.Component {
         <div id='video-card-title'>{this.props.title.title}</div>
         <div id="video-card-program-metadata"><b>{this.props.title.us_rating}</b> <i>{this.props.title.year}</i> {content_length}</div>
         <button id='video-card-add-to-watchlist-button' onClick={this.addToWatchlist}>Add To Watchlist</button>
-        <div id="video-card-blurb">{this.props.title.plot_overview}</div>
+        <div id="video-card-blurb-box">
+          <div id="video-card-blurb">{this.props.title.plot_overview}</div>
+        </div>
         <div id="video-card-rating"><i>User Rating:</i> {this.props.title.user_rating}/10<br></br><i>Critic Score:</i> {this.props.title.critic_score}/100</div>
       </div>
     )

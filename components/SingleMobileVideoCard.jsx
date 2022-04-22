@@ -2,8 +2,7 @@ import React from 'react';
 import VideoCardOverview from './videoCardComponents/VideoCardOverview.jsx'
 import VideoCardPlatforms from './videoCardComponents/VideoCardPlatforms.jsx'
 
-
-class VideoCard extends React.Component {
+class SingleMobileVideoCard extends React.Component {
 
   constructor(props) {
     super(props);
@@ -13,21 +12,23 @@ class VideoCard extends React.Component {
   }
 
   render() {
-    let display =  <div id='video-card-default'>Loading Program Information...</div>
+    let display = <div id='video-card-default'>Loading Program Information...</div>
 
     if (this.props.title !== undefined) {
       display =
-      <div id='video-card-info'>
-        <img id='video-card-billboard' src={this.props.title.backdrop}></img>
-        <VideoCardOverview title={this.props.title} addToWatchlist={this.props.addToWatchlist}/>
-        <VideoCardPlatforms title={this.props.title} subscriptions={this.props.subscriptions}/>
-      </div>
+        <div id='video-card-info'>
+          <div id="video-card-left-pane">
+            <img id='mobile-video-card-billboard' src={this.props.title.backdrop}></img>
+            <VideoCardOverview title={this.props.title} addToWatchlist={this.props.addToWatchlist} />
+          </div>
+          <VideoCardPlatforms title={this.props.title} subscriptions={this.props.subscriptions} />
+        </div>
     }
 
 
     return (
-      <div id="video-card">
-      {display}
+      <div id="single-mobile-video-card">
+        {display}
       </div>
     )
   }
@@ -65,4 +66,4 @@ year: 1997
 
 
 
-export default VideoCard;
+export default SingleMobileVideoCard;

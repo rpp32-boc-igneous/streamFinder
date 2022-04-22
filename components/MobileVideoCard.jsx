@@ -63,7 +63,7 @@ var MobileVideoCard = (props) => {
     )
   } else {
     return (
-      <div className='video-card'></div>
+      <div className='single-mobile-video-card'></div>
     )
   }
 

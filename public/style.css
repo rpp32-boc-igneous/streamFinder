@@ -2,7 +2,7 @@ body {
   background-color: rgba(0, 0, 0, 1);
   font-family: "Avenir";
   color: rgba(255, 255, 255, 1);
-  min-width: 350px;
+  min-width: 320px;
 }
 
 #banner {
@@ -184,6 +184,7 @@ SIGNUP
   display: inline-block;
   margin-left: 20px;
   font-size: .9em;
+  color: rgba(255, 100, 0, 1.0);
 }
 
 
@@ -360,7 +361,7 @@ DESKTOP CAROUSEL
 }
 
 #mobile-search-card-img {
-  margin: 0 auto;
+  margin: 5px auto 0;
   width: 70%;
   height: auto;
   border-radius: 5px;
@@ -479,7 +480,7 @@ VIDEO CARDS
 .mobile-video-card {
   display: inline-block;
   text-align: center;
-  height: 400px;
+  height: 80%;
   width: 95%;
   color: white;
   border: 1px solid rgba(255, 255, 0, 0.7);
@@ -488,6 +489,10 @@ VIDEO CARDS
   margin-left: 2px;
   margin-top: 40px;
   transition: transform 100ms ease-in-out 25ms;
+}
+
+#mobile-video-card-info {
+  display: none;
 }
 
 .video-card:hover {
@@ -509,8 +514,12 @@ VIDEO CARDS
 
 #video-card-info {
   display: flex;
-  flex-flow: row wrap;
+  flex-direction: row;
   justify-content: space-between;
+}
+
+#single-mobile-video-card {
+  display: none;
 }
 
 #video-card-info>* {
@@ -532,6 +541,11 @@ VIDEO CARDS
   font-size: 1.2em;
 }
 
+#video-card-blurb-box {
+  overflow: scroll;
+  height: 45%;
+}
+
 #video-card-rating {
   order: 3;
   font-size: 1.1em;
@@ -550,11 +564,12 @@ VIDEO CARDS
 }
 
 #video-card-billboard {
+  object-fit: cover;
   order: 1;
-  /* border: 1px solid rgba(255, 255, 0, 0.9); */
-  border-radius: 20px;
+  border-radius: 15px;
   max-height: 50%;
-  max-width: 39%
+  width: 39%;
+  max-width: 39%;
 }
 
 #video-card-platforms {
@@ -1393,13 +1408,221 @@ MEDIA QUERIES / RESPONSIVE DESIGN
     width: 100%;
   }
 
-  #mobile-video-card {
-
+  .swiper-container {
+    height: 100%;
   }
 
-  .swiper-slide {
+  #mobile-carousel {
+    height: 100%;
+  }
 
+  #mobile-swiper-box {
+    height: 100%;
+  }
+
+}
+
+@media only screen and (max-width: 480px) {
+
+  #login-button {
+    height: 35px;
+    width: 50px;
+  }
+
+  #signup-button {
+    height: 35px;
+    width: 50px;
+  }
+
+  #search-input {
+    height: 30px;
+    width: 80px;
+  }
+
+  #search-button {
+    height: 35px;
+    width: 50px;
+  }
+
+  #welcome-message {
+    font-size: .9em;
+  }
+
+  .mobile-video-card {
+    height: 90%;
+  }
+
+  #Title-page {
+    width: 95%;
+    height: 70%;
+  }
+
+  #video-card-platforms {
+    margin: 4px 4px 0 0;
+  }
+
+  #video-card-blurb {
+    overflow: hidden;
+  }
+
+  #video-card-blurb-box {
+    overflow: scroll;
+    height: 90px;
+  }
+
+  #mobile-video-card-billboard {
+    object-fit: cover;
+    order: 1;
+    border-radius: 15px;
+    height: 200px;
+    width: 95%;
+    margin-top: 5px;
+  }
+
+  #video-card-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #video-card-overview {
+    max-width: 90%;
+  }
+
+  #video-card-info {
+    display: flex;
+    flex-direction: row;
+  }
+
+  #video-card {
+    display: none;
+  }
+
+  #single-mobile-video-card {
+    display: flex;
+    flex-direction: row;
+    height: 97%;
+    width: 97%;
+    color: white;
+    border: 1.3px solid rgba(255, 255, 0, 0.9);
+    border-radius: 5px;
+    margin-left: 2px;
+  }
+
+}
+
+@media only screen and (max-width: 470px) {
+  #mobile-carousel-label {
+    top: 125px;
+  }
+
+  #welcome-message {
+    font-size: .8em;
+    margin-left: 5px;
+  }
+
+  #banner {
+    width: 76%;
+    height: auto;
+  }
+
+  .mobile-video-card {
+    height: 87%;
   }
 }
 
-@media only screen and (max-width: 450px) {}
+@media only screen and (max-width: 440px) {
+  #mobile-carousel-label {
+    top: 115px;
+    font-size: .9em;
+  }
+
+  .mobile-video-card {
+    height: 84%;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  #carousel {
+    height: 470px;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .mobile-video-card {
+    height: 81%;
+  }
+}
+
+@media only screen and (max-width: 410px) {
+  #login-button {
+    height: 30px;
+    width: 45px;
+    font-size: .7em;
+  }
+
+  #signup-button {
+    height: 30px;
+    width: 45px;
+    font-size: .7em;
+  }
+
+  #search-input {
+    height: 25px;
+    width: 80px;
+    font-size: .7em;
+  }
+
+  #search-button {
+    height: 30px;
+    width: 45px;
+    font-size: .7em;
+  }
+
+  #welcome-message {
+    font-size: .9em;
+  }
+
+  .mobile-video-card {
+    height: 76%;
+  }
+
+  #welcome-message {
+    font-size: .7em;
+    margin-left: 5px;
+  }
+
+  #mobile-carousel-label {
+    top: 110px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #mobile-carousel-label {
+    top: 118px;
+  }
+
+  #welcome-message {
+    display: block;
+  }
+
+  .swiper-button-prev {
+    height: 30px;
+    transform: scaleX(-1);
+    margin: 0 5px 30% 0;
+  }
+
+  .swiper-button-next {
+    height: 30px;
+    margin: 0 0 30% 0px;
+  }
+
+  #carousel {
+    height: 450px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #mobile-carousel-label {
+    top: 113px;
+  }
+}
