@@ -38,6 +38,7 @@ const titleSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   user_name: String,
   email: String,
+  password: String,
   watch_list: {
     movies: Array,
     shows: Array,

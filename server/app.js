@@ -80,6 +80,7 @@ app.use("/signup", signup);
 
 app.put("/update_user", (req, res) => {
   let user = req.body;
+  console.log("This is the body of information to the server: ", user);
 
   updateUser(user)
     .then((res) => {

@@ -25,6 +25,7 @@ var formatTitleObj = (obj) => {
 var formatUserObj = (obj) => {
   return {
     user_name: obj.user_name,
+    password: obj.password,
     email: obj.email,
     watch_list: {
       movies: obj.watch_list.movies || "",
@@ -34,6 +35,7 @@ var formatUserObj = (obj) => {
       movies: obj.watch_history.movies || "",
       shows: obj.watch_history.shows || "",
     },
+    subscriptions: [],
   };
 };
 

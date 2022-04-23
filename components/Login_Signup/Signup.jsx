@@ -6,15 +6,15 @@ class Signup extends React.Component {
     super(props);
     this.state = {
       services: [
-        "Netflix",
-        "Hulu",
-        "Amazon Prime Video",
-        "Vudu",
+        "netflix",
+        "hulu",
+        "amazon-prime",
+        "vudu",
         "HBOmax",
-        "Disney+",
-        "Peacock",
-        "Sling TV",
-        "Discovery",
+        "disney-plus",
+        "peacock",
+        "paramount-plus",
+        "AMC-plus",
       ],
       subscriptions: [],
       subscriptionTracker: {},
@@ -47,7 +47,7 @@ class Signup extends React.Component {
         user_name: user_name,
         user_email: email,
         watch_list: [],
-        user_password: password,
+        password: password,
         watch_history: [],
         subscriptions: currentSubs,
       });
