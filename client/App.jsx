@@ -49,6 +49,7 @@ class App extends React.Component {
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
+    this.setUserState = this.setUserState.bind(this);
   }
 
   componentDidMount() {
@@ -70,7 +71,6 @@ class App extends React.Component {
   }
 
   updateUserState(obj) {
-    console.log("This is whats gettiong passed in: ", obj);
     this.setState(
       {
         ...this.state,
@@ -84,6 +84,23 @@ class App extends React.Component {
       () => {
         console.log("user refreshed in state");
         this.updateUser();
+      }
+    );
+  }
+
+  setUserState(obj) {
+    this.setState(
+      {
+        ...this.state,
+        user_name: obj.user_name,
+        user_email: obj.user_email,
+        password: obj.password,
+        watch_list: obj.watch_list,
+        watch_history: obj.watch_history,
+        subscriptions: obj.subscriptions,
+      },
+      () => {
+        console.log("User information has been set");
       }
     );
   }
@@ -238,7 +255,7 @@ class App extends React.Component {
         <div id="header">
           <div id="login-signup-box">
             <button id="login-button" onClick={this.showModal}>
-              Login
+              {this.state.is_logged_in ? "Logout" : "Login"}
             </button>
             <button id="signup-button" onClick={this.showModal}>
               Signup
@@ -289,6 +306,7 @@ class App extends React.Component {
             <Login_Signup
               updateState={this.updateState}
               updateUserState={this.updateUserState}
+              setUserState={this.setUserState}
               showModal={this.showModal}
             />
             <img
@@ -303,6 +321,7 @@ class App extends React.Component {
             <Signup
               updateUserState={this.updateUserState}
               showModal={this.showModal}
+              updateState={this.updateState}
             />
             <img
               src={SFicon}

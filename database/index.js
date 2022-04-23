@@ -47,6 +47,7 @@ const userSchema = new mongoose.Schema({
     movies: Array,
     shows: Array,
   },
+  subscriptions: Array,
 });
 
 const streamSchema = new mongoose.Schema({

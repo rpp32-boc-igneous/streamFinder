@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 // Roter for Login and Sign Up //
 const oauth = require("../route_controllers/oauth");
 const signup = require("../route_controllers/signup");
+const login = require("../route_controllers/login");
 
 // Cong for enviornmental variables
 require("dotenv").config();
@@ -25,6 +26,7 @@ const {
   retrieveOneStream,
   insertStream,
   updateUser,
+  retrieveUserByEmail,
 } = require("../database/dbMethods.js");
 
 app.use(cookieParser());
@@ -73,6 +75,8 @@ app.post("/related", (req, res) => {
 app.use("/oauth", oauth);
 
 app.use("/signup", signup);
+
+app.use("/login", login);
 
 ///////////////////////
 // Watchlist

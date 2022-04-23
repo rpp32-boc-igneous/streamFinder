@@ -28,6 +28,8 @@ class Signup extends React.Component {
     this.handleSubmitClick = this.handleSubmitClick.bind(this);
     this.handleStreamSelect = this.handleStreamSelect.bind(this);
     this.updateUserState = props.updateUserState;
+    this.showModal = props.showModal;
+    this.updateState = props.updateState;
   }
 
   handleSubmitClick(e) {
@@ -51,6 +53,18 @@ class Signup extends React.Component {
         watch_history: [],
         subscriptions: currentSubs,
       });
+
+      let goToHome = {
+        target: {
+          innerHTML: "",
+          parentNode: {
+            id: "Login-page",
+          },
+          className: "home",
+        },
+      };
+      this.updateState("is_logged_in", true);
+      this.showModal(goToHome);
     } else {
       console.log("Password mismatch, clear the form data?");
     }

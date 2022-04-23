@@ -16,6 +16,10 @@ var retrieveUser = (id) => {
   return User.find({ id: id });
 };
 
+var retrieveUserByEmail = (email) => {
+  return User.find({ email: email });
+};
+
 var updateUser = (user) => {
   console.log("This is the user at the DB Method", user);
   return User.findOneAndUpdate({ email: user.user_email }, user, {
@@ -44,6 +48,7 @@ module.exports = {
   insertTitle: insertTitle,
   insertUser: insertUser,
   retrieveUser: retrieveUser,
+  retrieveUserByEmail: retrieveUserByEmail,
   updateUser: updateUser,
   retrieveAllStreams: retrieveAllStreams,
   retrieveOneStream: retrieveOneStream,
