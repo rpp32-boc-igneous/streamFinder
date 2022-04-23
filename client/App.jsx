@@ -41,7 +41,7 @@ class App extends React.Component {
       watch_list: [],
       watch_history: [],
       subscriptions: ["disney-plus", "iTunes", "amazon-prime"],
-      is_logged_in: false
+      is_logged_in: false,
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -114,7 +114,9 @@ class App extends React.Component {
         ...this.state,
         user_name: obj.user_name,
         email: obj.email,
+        user_email: obj.email,
         password: obj.password,
+        user_password: obj.password,
         watch_list: obj.watch_list,
         watch_history: obj.watch_history,
         is_logged_in: true,
@@ -144,9 +146,11 @@ class App extends React.Component {
       trending: mockTrending,
       active: mockTrending,
       carouselType: "trending",
-      user_name: null,
+      user_name: "Loneliness",
       email: null,
+      user_email: null,
       password: null,
+      user_password: null,
       watch_list: [],
       watch_history: [],
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
@@ -154,27 +158,32 @@ class App extends React.Component {
     });
   }
 
-  updateSettingsState(obj) {
+  // updateSettingsState(obj) {
+  //   this.setState(
+  //     {
+  //       ...this.state,
+  //       user_email: obj.user_email,
+  //       user_password: obj.user_password,
+  //       subscriptions: obj.subscriptions,
+  //     },
+  //     () => {
+  //       console.log("user settings updated");
+  //       this.updateUser();
+  //     }
+  //   );
+  // }
+
+  updateSettingsState(key, val) {
     this.setState(
       {
         ...this.state,
-        user_email: obj.user_email,
-        user_password: obj.user_password,
-        subscriptions: obj.subscriptions,
+        [key]: val,
       },
       () => {
         console.log("user settings updated");
         this.updateUser();
       }
     );
-  updateSettingsState(key, val) {
-    this.setState({
-      ...this.state,
-      [key]: val
-    }, () => {
-      console.log("user settings updated");
-      this.updateUser();
-    })
   }
 
   addToWatchlist(obj) {
@@ -447,7 +456,16 @@ class App extends React.Component {
               password={this.state.password}
             /> */}
             <Settings
-              user={userObj}
+              user={{
+                user_name: this.state.user_name,
+                user_email: this.state.email,
+                user_password: this.state.password,
+                subscriptions: this.state.subscriptions,
+              }}
+              user_name={this.state.user_name}
+              user_email={this.state.email}
+              user_password={this.state.password}
+              subscriptions={this.state.subscriptions}
               updateSettingsState={this.updateSettingsState}
             />
             <img

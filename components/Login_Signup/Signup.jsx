@@ -134,40 +134,46 @@ class Signup extends React.Component {
     return (
       <div>
         <h1>Signup</h1>
-
-        <form>
-          <input
-            className="user_name"
-            type="text"
-            placeholder="User Name"
-            onChange={this.handleInputChange}
-          />
-          <input
-            className="password"
-            type="password"
-            autoComplete="on"
-            placeholder="Password"
-            onChange={this.handleInputChange}
-          />
-          <input
-            className="confirm_password"
-            type="password"
-            autoComplete="on"
-            placeholder="Confirm Password"
-            onChange={this.handleInputChange}
-          />
-          <input
-            className="email"
-            type="text"
-            placeholder="Email Address"
-            onChange={this.handleInputChange}
-          />
-          <input
-            type="submit"
-            value="Submit"
-            onClick={this.handleSubmitClick}
-          />
-        </form>
+        <div>
+          <form id="signup-input-container">
+            <input
+              id="stream-input-at-signup"
+              className="user_name"
+              type="text"
+              placeholder="User Name"
+              onChange={this.handleInputChange}
+            />
+            <input
+              id="stream-input-at-signup"
+              className="password"
+              type="password"
+              autoComplete="on"
+              placeholder="Password"
+              onChange={this.handleInputChange}
+            />
+            <input
+              id="stream-input-at-signup"
+              className="confirm_password"
+              type="password"
+              autoComplete="on"
+              placeholder="Confirm Password"
+              onChange={this.handleInputChange}
+            />
+            <input
+              id="stream-input-at-signup"
+              className="email"
+              type="text"
+              placeholder="Email Address"
+              onChange={this.handleInputChange}
+            />
+            <input
+              // id="stream-input-at-signup"
+              type="submit"
+              value="Submit"
+              onClick={this.handleSubmitClick}
+            />
+          </form>
+        </div>
 
         <div className="StreamButtonAtSignUp">
           {this.state.services.map((service) => (

@@ -129,14 +129,11 @@ class Login_Signup extends React.Component {
               className: "home",
             },
           };
-          console.log("This would be where I have an actual user in the DB: ");
-
+          this.setUserState(result);
           this.props.showModal(goToHome);
         }
       })
       .catch((error) => error);
-
-    console.log(name, email, first_name);
   }
 
   onFailure(response) {
@@ -149,14 +146,16 @@ class Login_Signup extends React.Component {
         <h1>StreamFinder</h1>
         <div>
           <h3>Sign In</h3>
-          <form>
+          <form id="">
             <input
+              id="stream-input-at-signup"
               type="text"
               name="email"
               placeholder="email"
               onChange={this.handleInputChange}
             ></input>
             <input
+              id="stream-input-at-signup"
               autoComplete="on"
               type="password"
               name="password"

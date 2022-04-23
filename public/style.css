@@ -193,6 +193,32 @@ SIGNUP
   color: rgba(255, 100, 0, 1.0);
 }
 
+#stream-button-at-signup {
+  display: inline-block;
+}
+
+#stream-input-at-signup {
+  display: block;
+  margin: auto;
+  width: 50%;
+  border: 1px solid rgba(255, 255, 0, 0.7);
+  border-radius: 5px;
+  background-color: black;
+  padding: 10px;
+}
+
+#signup-input-container {
+  display: block;
+  margin: 20px;
+  padding: 10px;
+}
+
+#signup-input-field {
+  display: block;
+  margin: 20px;
+  padding: 20px;
+}
+
 
 /*
 /////////////////////////////////////

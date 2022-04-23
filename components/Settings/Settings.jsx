@@ -29,6 +29,18 @@ class Settings extends React.Component {
     this.getStreams();
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log("These are the next props in settings: ", nextProps);
+    this.setState({
+      ...this.state,
+      subs: nextProps.subscriptions,
+      name: nextProps.user_name,
+      email: nextProps.user_email,
+      password: nextProps.user_password,
+    });
+    console.log("This is the current state: ", this.state);
+  }
+
   // componentDidUpdate() {
   // }
 
@@ -68,7 +80,9 @@ class Settings extends React.Component {
   };
 
   setUser = () => {
+    // console.log("Set user test");
     if (this.props.user.user_email || this.props.user.user_name) {
+      // console.log("This is the user name: ", this.props.user.user_name);
       let user = {
         name: this.props.user.user_name,
         email: this.props.user.user_email,

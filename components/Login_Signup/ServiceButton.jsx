@@ -42,7 +42,7 @@ function ServiceButton(props) {
   }
 
   return (
-    <div>
+    <div id="stream-button-at-signup">
       <input
         type="checkbox"
         value={props.service}
