@@ -1,41 +1,38 @@
-import React from 'react'
+import React from 'react';
+import VideoCardOverview from './videoCardComponents/VideoCardOverview.jsx'
+import VideoCardPlatforms from './videoCardComponents/VideoCardPlatforms.jsx'
 
-class VideoCardOverview extends React.Component {
+class SingleMobileVideoCard extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
 
     }
-    this.addToWatchlist = this.addToWatchlist.bind(this);
-  }
-
-  addToWatchlist(e) {
-    this.props.addToWatchlist(this.props.title);
   }
 
   render() {
-    //metadata logic here
-      //if has seasons/parts/etc, then 'content amount' is number of those seasons/parts/etc
-        //else it displays runtime as xhours xminutes
-    let content_length = this.props.title.runtime_minutes.toString() + ' minutes';
+    let display = <div id='video-card-default'>Loading Program Information...</div>
+
+    if (this.props.title !== undefined) {
+      display =
+        <div id='video-card-info'>
+          <div id="video-card-left-pane">
+            <img id='mobile-video-card-billboard' src={this.props.title.backdrop}></img>
+            <VideoCardOverview title={this.props.title} addToWatchlist={this.props.addToWatchlist} />
+          </div>
+          <VideoCardPlatforms title={this.props.title} subscriptions={this.props.subscriptions} />
+        </div>
+    }
+
 
     return (
-      <div id="video-card-overview">
-        <div id='video-card-title'>{this.props.title.title}</div>
-        <div id="video-card-program-metadata"><b>{this.props.title.us_rating}</b> <i>{this.props.title.year}</i> {content_length}</div>
-        <button id='video-card-add-to-watchlist-button' onClick={this.addToWatchlist}>Add To Watchlist</button>
-        <div id="video-card-blurb-box">
-          <div id="video-card-blurb">{this.props.title.plot_overview}</div>
-        </div>
-        <div id="video-card-rating"><i>User Rating:</i> {this.props.title.user_rating}/10<br></br><i>Critic Score:</i> {this.props.title.critic_score}/100</div>
+      <div id="single-mobile-video-card">
+        {display}
       </div>
     )
   }
 }
-
-export default VideoCardOverview;
-
 
 /*
 backdrop: "https://cdn.watchmode.com/backdrops/01434738_bd_w780.jpg"
@@ -66,3 +63,7 @@ us_rating: "PG-13"
 user_rating: 7.6
 year: 1997
 */
+
+
+
+export default SingleMobileVideoCard;

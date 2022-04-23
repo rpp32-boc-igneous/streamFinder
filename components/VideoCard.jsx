@@ -2,6 +2,7 @@ import React from 'react';
 import VideoCardOverview from './videoCardComponents/VideoCardOverview.jsx'
 import VideoCardPlatforms from './videoCardComponents/VideoCardPlatforms.jsx'
 
+
 class VideoCard extends React.Component {
 
   constructor(props) {

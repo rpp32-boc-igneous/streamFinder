@@ -29,11 +29,6 @@ class VideoCardPlatforms extends React.Component {
       .catch((err) => console.log("all streams request failed"));
   };
 
-  componentDidMount() {
-    this.getStreams();
-    console.log(this.state.streams);
-  }
-
 
   render() {
     const removeDuplicateSources = (dataArray) => {
@@ -42,7 +37,7 @@ class VideoCardPlatforms extends React.Component {
 
       for (var i = 0; i < dataArray.length; i++) {
         if (services[dataArray[i].name] === undefined) {
-          services[dataArray[i].name] = dataArray[i];
+          services[dataArray[i].name] = 1;
           newArray.push(dataArray[i]);
         }
       }
@@ -57,7 +52,7 @@ class VideoCardPlatforms extends React.Component {
           if (subscribed === true) {
             return (
               <span key={i}>
-                <a href={item.web_url} className="subscribedLink" target="_blank" rel="noopener noreferrer">{item.name}</a><br></br>
+                <a href={item.web_url} className="subscribed-link" target="_blank" rel="noopener noreferrer">{item.name}</a><br></br>
               </span>
             )
           } else {
