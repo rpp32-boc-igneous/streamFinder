@@ -30,6 +30,10 @@ const StreamStore = (props) => {
     showArrows();
   }, [streams])
 
+  useEffect(() => {
+    if(!searching) clearSearchResults();
+  }, [ads, free])
+
   const closeStore = () => {
     $('#store').addClass('hide');
     $('#account').removeClass('hide');
@@ -73,7 +77,6 @@ const StreamStore = (props) => {
 
   const filterFree = () => {
     let list = [...searchResults];
-    if (ads) list = list.filter(stream => stream.no_ads === true);
     if($('#free').prop('checked')) {
       setFree(true);
       list = list.filter(stream => {

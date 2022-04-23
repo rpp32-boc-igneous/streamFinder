@@ -946,7 +946,7 @@ EDIT_USER
   background-color: #c4c4c4;
   color: rgba(0, 0, 0, 1);
   position: relative;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 7px;
   border-radius: 20px;
 }
@@ -966,7 +966,7 @@ EDIT_USER
 }
 
 .update-form {
-  margin: 15% auto;
+  margin: 5% auto;
 
 }
 
@@ -977,7 +977,8 @@ EDIT_USER
 .update-label {
   font-family: inherit;
   display: block;
-  margin: 5px auto;
+  margin: auto;
+  margin-top: 5%;
 }
 
 .update-input {
@@ -1015,6 +1016,7 @@ input:focus {
 
 .alert-container {
   height: 45px;
+  margin: 10px auto 40px auto;
 }
 
 .alert {
@@ -1022,8 +1024,8 @@ input:focus {
   background-color: rgb(228, 252, 228);
   border: 0.5px solid rgb(2, 113, 59);
   border-radius: 10px;
-  width: 60%;
-  padding: 20px;
+  width: 75%;
+  padding: 12px;
   margin: 0 auto;
   margin-bottom: 20px;
 }
@@ -1363,12 +1365,7 @@ input:focus+#search-x {
   position: relative;
   margin: 5px auto;
   /* vertical-align: bottom; */
-<<<<<<< HEAD
   color:#fcf003;
-=======
-  font-size: 1.5rem;
-  color: #fcf003;
->>>>>>> 1bfeffe022f00ce4691baa5d0018e47beee8585a
 }
 
 .arrow {

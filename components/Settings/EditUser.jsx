@@ -17,12 +17,14 @@ const EditUser = (props) => {
   }
 
   const updateUser = (e) => {
-    setSubmitted(true);
     e.preventDefault();
-    console.log(e.target[0].value);
-    // props.update(props.field, e.target[0].value);
-    // e.target[0].value = '';
-    // setTimeout(() => setSubmitted(false), 2000)
+    if (props.field, e.target[0].value) {
+      setSubmitted(true);
+      console.log(e.target[0].value);
+      props.update(props.field, e.target[0].value);
+      e.target[0].value = '';
+      setTimeout(() => setSubmitted(false), 1200);
+    }
   }
 
   return (

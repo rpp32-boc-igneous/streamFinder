@@ -37,6 +37,10 @@ var updateStream = (name, field, val) => {
   return Stream.updateOne({name: name}, {$set: {[field]: val}});
 }
 
+var clearSubs = () => {
+  return Stream.updateMany({}, {$set: {subscribed: true}});
+}
+
 module.exports = {
   insertTitle: insertTitle,
   insertUser: insertUser,
@@ -45,5 +49,6 @@ module.exports = {
   retrieveAllStreams: retrieveAllStreams,
   retrieveOneStream: retrieveOneStream,
   insertStream: insertStream,
-  updateStream: updateStream
+  updateStream: updateStream,
+  clearSubs: clearSubs
 }
