@@ -7,7 +7,9 @@ import Login_Signup from "../components/Login_Signup/Login_Signup.jsx";
 import Signup from "../components/Login_Signup/Signup.jsx";
 import Search from "../components/Search.jsx";
 import Carousel from "../components/Carousel.jsx";
+import MobileCarousel from "../components/MobileCarousel.jsx";
 import VideoCard from "../components/VideoCard.jsx";
+import SingleMobileVideoCard from "../components/SingleMobileVideoCard.jsx";
 import Watchlist from "../components/Watchlist.jsx";
 import Settings from "../components/Settings/Settings.jsx";
 
@@ -26,15 +28,16 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // isDesktop: true,
       searchTerm: null,
       searchResults: [],
       selectedTitleIndex: 0,
       trending: mockTrending,
       active: mockTrending,
       carouselType: "trending",
-      user_name: null,
-      email: null,
-      password: null,
+      user_name: "Jaimie D.",
+      user_email: null,
+      user_password: null,
       watch_list: [],
       watch_history: [],
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
@@ -51,10 +54,25 @@ class App extends React.Component {
     this.updateUserState = this.updateUserState.bind(this);
     this.setUserState = this.setUserState.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.updateSettingsState = this.updateSettingsState.bind(this);
+    this.updateScreenSize = this.updateScreenSize.bind(this);
   }
 
   componentDidMount() {
     $("#trending-button").addClass("button-focus");
+    // this.updateScreenSize();
+    // window.addEventListener("resize", this.updateScreenSize);
+  }
+
+  componentWillUnmount() {
+    // window.removeEventListener("resize", this.updateScreenSize);
+  }
+
+  updateScreenSize() {
+    // this.setState({
+    //   ...this.state,
+    //   isDesktop: window.innerWidth > 800
+    // })
   }
 
   // receives key / value pair, updates user state,
@@ -136,6 +154,21 @@ class App extends React.Component {
     });
   }
 
+  updateSettingsState(obj) {
+    this.setState(
+      {
+        ...this.state,
+        user_email: obj.user_email,
+        user_password: obj.user_password,
+        subscriptions: obj.subscriptions,
+      },
+      () => {
+        console.log("user settings updated");
+        this.updateUser();
+      }
+    );
+  }
+
   addToWatchlist(obj) {
     let watchlist = this.state.watch_list.slice();
     watchlist.push(obj);
@@ -207,6 +240,7 @@ class App extends React.Component {
   // sets state with index and sets "active" to reflect
   // relevant dataset for VideoCard display
   displaySelectedTitle(keyname, index) {
+    console.log("display selected title", keyname);
     var targetData = this.state[keyname];
     this.setState(
       {
@@ -280,6 +314,8 @@ class App extends React.Component {
       subscriptions: this.state.subscriptions,
     };
 
+    //const isDesktop = this.state.isDesktop;
+
     return (
       <div>
         <div id="header">
@@ -315,16 +351,26 @@ class App extends React.Component {
         </div>
 
         <div id="body">
-          <Carousel
-            carouselType={this.state.carouselType}
-            searchResults={this.state.active}
-            trending={this.state.trending}
-            displaySelectedTitle={this.displaySelectedTitle}
-            searchTerm={this.state.searchTerm}
-          />
+          <div id="carousel">
+            <Carousel
+              carouselType={this.state.carouselType}
+              searchResults={this.state.active}
+              trending={this.state.trending}
+              displaySelectedTitle={this.displaySelectedTitle}
+              searchTerm={this.state.searchTerm}
+            />
+
+            <MobileCarousel
+              carouselType={this.state.carouselType}
+              searchResults={this.state.active}
+              trending={this.state.trending}
+              displaySelectedTitle={this.displaySelectedTitle}
+              searchTerm={this.state.searchTerm}
+            />
+          </div>
 
           <div className="page" id="Title-page">
-            <VideoCard
+            <SingleMobileVideoCard
               title={this.state.active[this.state.selectedTitleIndex]}
               addToWatchlist={this.addToWatchlist}
               subscriptions={this.state.subscriptions}
@@ -335,6 +381,12 @@ class App extends React.Component {
               className="home"
               id="home-title"
             ></img>
+
+            <VideoCard
+              title={this.state.active[this.state.selectedTitleIndex]}
+              addToWatchlist={this.addToWatchlist}
+              subscriptions={this.state.subscriptions}
+            />
           </div>
 
           <div className="page" id="Login-page">
@@ -381,10 +433,14 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings
+            {/* <Settings
               user_name={this.state.user_name}
               email={this.state.password}
               password={this.state.password}
+            /> */}
+            <Settings
+              user={userObj}
+              updateSettingsState={this.updateSettingsState}
             />
             <img
               src={SFicon}
@@ -396,28 +452,34 @@ class App extends React.Component {
         </div>
 
         <div id="footer">
-          <div
-            id="trending-button"
-            className="footer-button"
-            onClick={this.showTrending}
-          >
-            Trending
+          <div className="footer-button-box">
+            <div
+              id="trending-button"
+              className="footer-button"
+              onClick={this.showTrending}
+            >
+              Trending
+            </div>
           </div>
           <div className="divider">|</div>
-          <div
-            id="watchlist-button"
-            className="footer-button"
-            onClick={this.showModal}
-          >
-            Watchlist
+          <div className="footer-button-box">
+            <div
+              id="watchlist-button"
+              className="footer-button"
+              onClick={this.showModal}
+            >
+              Watchlist
+            </div>
           </div>
           <div className="divider">|</div>
-          <div
-            id="settings-button"
-            className="footer-button"
-            onClick={this.showModal}
-          >
-            Settings
+          <div className="footer-button-box">
+            <div
+              id="settings-button"
+              className="footer-button"
+              onClick={this.showModal}
+            >
+              Settings
+            </div>
           </div>
         </div>
       </div>
