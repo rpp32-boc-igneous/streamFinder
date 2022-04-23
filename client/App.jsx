@@ -40,8 +40,13 @@ class App extends React.Component {
       user_password: null,
       watch_list: [],
       watch_history: [],
+<<<<<<< HEAD
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
       is_logged_in: false,
+=======
+      subscriptions: ["disney-plus", "iTunes", "amazon-prime"],
+      is_logged_in: false
+>>>>>>> 45218ca4891ec83512a897ba11c7fed8bd36af8f
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -108,6 +113,7 @@ class App extends React.Component {
     );
   }
 
+<<<<<<< HEAD
   setUserState(obj) {
     this.setState(
       {
@@ -167,6 +173,16 @@ class App extends React.Component {
         this.updateUser();
       }
     );
+=======
+  updateSettingsState(key, val) {
+    this.setState({
+      ...this.state,
+      [key]: val
+    }, () => {
+      console.log("user settings updated");
+      this.updateUser();
+    })
+>>>>>>> 45218ca4891ec83512a897ba11c7fed8bd36af8f
   }
 
   addToWatchlist(obj) {

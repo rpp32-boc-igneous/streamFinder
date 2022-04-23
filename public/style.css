@@ -939,14 +939,14 @@ EDIT_USER
 
 
 #update-box {
-  height: 55%;
+  height: 300px;
   width: 90%;
   max-width: 450px;
   z-index: 2;
   background-color: #c4c4c4;
   color: rgba(0, 0, 0, 1);
   position: relative;
-  margin: 50px auto;
+  margin: 20px auto;
   padding: 7px;
   border-radius: 20px;
 }
@@ -966,13 +966,19 @@ EDIT_USER
 }
 
 .update-form {
-  margin: 10% auto;
+  margin: 5% auto;
+
 }
+
+/* .form-bottom {
+
+} */
 
 .update-label {
   font-family: inherit;
   display: block;
-  margin: 5px auto;
+  margin: auto;
+  margin-top: 5%;
 }
 
 .update-input {
@@ -1008,7 +1014,21 @@ input:focus {
   color: rgb(62, 62, 62);
 }
 
+.alert-container {
+  height: 45px;
+  margin: 10px auto 40px auto;
+}
 
+.alert {
+  color: rgb(2, 113, 59);
+  background-color: rgb(228, 252, 228);
+  border: 0.5px solid rgb(2, 113, 59);
+  border-radius: 10px;
+  width: 75%;
+  padding: 12px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 
 /*
 /////////////////////////////////////
@@ -1243,7 +1263,7 @@ input:focus+#search-x {
 #stream-grid {
   position: relative;
   box-sizing: border-box;
-  transition: 0.5s all ease-out;
+  transition: 0.4s all ease-out;
   background-color: black;
   margin: 0 auto;
   padding: 8px 1.5rem;
@@ -1343,14 +1363,14 @@ input:focus+#search-x {
 
 #pages {
   position: relative;
-  margin: 0.5rem auto;
+  margin: 5px auto;
   /* vertical-align: bottom; */
-  font-size: 1.5rem;
-  color: #fcf003;
+  color:#fcf003;
 }
 
 .arrow {
   display: inline-block;
+  font-size: 2rem;
 }
 
 .arrow:hover {
@@ -1359,11 +1379,11 @@ input:focus+#search-x {
 }
 
 .arrow-span {
-  margin: 0 2px;
+  margin: 0 10px;
 }
 
 #store {
-  padding: 50px 10px;
+  padding: 40px 10px;
   height: 100%;
   overflow: hidden;
 }

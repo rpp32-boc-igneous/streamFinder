@@ -30,6 +30,10 @@ const StreamStore = (props) => {
     showArrows();
   }, [streams])
 
+  useEffect(() => {
+    if(!searching) clearSearchResults();
+  }, [ads, free])
+
   const closeStore = () => {
     $('#store').addClass('hide');
     $('#account').removeClass('hide');
@@ -39,10 +43,11 @@ const StreamStore = (props) => {
     return string.replace(/\W/g,'').toLowerCase();
   }
 
-  const searchStreams = (keyword) => {
-    keyword = regEx(keyword);
+  const searchStreams = (term) => {
+    term = regEx(term);
+    setKeyword(term);
     const results = streams.filter(stream => {
-    return regEx(stream.name).includes(keyword);
+    return regEx(stream.name).includes(term);
     });
     setSearching(true);
     setSearchResults(results);
@@ -72,7 +77,6 @@ const StreamStore = (props) => {
 
   const filterFree = () => {
     let list = [...searchResults];
-    if (ads) list = list.filter(stream => stream.no_ads === true);
     if($('#free').prop('checked')) {
       setFree(true);
       list = list.filter(stream => {

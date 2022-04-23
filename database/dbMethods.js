@@ -29,7 +29,7 @@ var updateUser = (user) => {
 
 //STREAM Collection Methods
 var retrieveAllStreams = () => {
-  return Stream.find();
+  return Stream.find().sort({ subscribed: -1 });
 };
 
 var retrieveOneStream = (name) => {
@@ -44,6 +44,10 @@ var updateStream = (name, field, val) => {
   return Stream.updateOne({ name: name }, { $set: { [field]: val } });
 };
 
+var clearSubs = () => {
+  return Stream.updateMany({}, { $set: { subscribed: true } });
+};
+
 module.exports = {
   insertTitle: insertTitle,
   insertUser: insertUser,
@@ -54,4 +58,5 @@ module.exports = {
   retrieveOneStream: retrieveOneStream,
   insertStream: insertStream,
   updateStream: updateStream,
+  clearSubs: clearSubs,
 };
