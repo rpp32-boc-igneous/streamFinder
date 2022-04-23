@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 // Roter for Login and Sign Up //
 const oauth = require("../route_controllers/oauth");
 const signup = require("../route_controllers/signup");
+const login = require("../route_controllers/login");
 
 // Cong for enviornmental variables
 require("dotenv").config();
@@ -24,8 +25,10 @@ const {
   retrieveAllStreams,
   retrieveOneStream,
   insertStream,
+  updateUser,
+  retrieveUserByEmail,
   updateStream,
-  clearSubs
+  clearSubs,
 } = require("../database/dbMethods.js");
 
 app.use(cookieParser());
@@ -74,21 +77,17 @@ app.post("/related", (req, res) => {
 app.use("/oauth", oauth);
 
 app.use("/signup", signup);
-// app.get('/signup', (req, res) => {
-//   var user = req.body.user;
-//   insertUser(user)
-//   .then(data => {
-//     console.log('user creation success')
-//     res.send(data);
-//   })
-// })\
+
+app.use("/login", login);
 
 ///////////////////////
 // Watchlist
 ///////////////////////
 
 app.put("/update_user", (req, res) => {
-  let user = req.body.user;
+  let user = req.body;
+  console.log("This is the body of information to the server: ", user);
+
   updateUser(user)
     .then((res) => {
       console.log("user update successful");
@@ -132,8 +131,10 @@ app.patch("/streams/:stream", (req, res) => {
 
 app.patch("/streams/clear", (req, res) => {
   clearSubs()
-  .then(() => res.status(204).json({ success: true, msg: 'suscriptions cleared' }))
-  .catch((err) => res.status(400).json({ success: false, error: err }));
+    .then(() =>
+      res.status(204).json({ success: true, msg: "suscriptions cleared" })
+    )
+    .catch((err) => res.status(400).json({ success: false, error: err }));
 });
 
 module.exports = app;

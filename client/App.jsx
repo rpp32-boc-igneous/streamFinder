@@ -7,9 +7,9 @@ import Login_Signup from "../components/Login_Signup/Login_Signup.jsx";
 import Signup from "../components/Login_Signup/Signup.jsx";
 import Search from "../components/Search.jsx";
 import Carousel from "../components/Carousel.jsx";
-import MobileCarousel from "../components/MobileCarousel.jsx"
+import MobileCarousel from "../components/MobileCarousel.jsx";
 import VideoCard from "../components/VideoCard.jsx";
-import SingleMobileVideoCard from '../components/SingleMobileVideoCard.jsx';
+import SingleMobileVideoCard from "../components/SingleMobileVideoCard.jsx";
 import Watchlist from "../components/Watchlist.jsx";
 import Settings from "../components/Settings/Settings.jsx";
 
@@ -41,7 +41,7 @@ class App extends React.Component {
       watch_list: [],
       watch_history: [],
       subscriptions: ["disney-plus", "iTunes", "amazon-prime"],
-      is_logged_in: false
+      is_logged_in: false,
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
     this.showModal = this.showModal.bind(this);
@@ -52,6 +52,8 @@ class App extends React.Component {
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
+    this.setUserState = this.setUserState.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
     this.updateSettingsState = this.updateSettingsState.bind(this);
     this.updateScreenSize = this.updateScreenSize.bind(this);
   }
@@ -88,14 +90,16 @@ class App extends React.Component {
   }
 
   updateUserState(obj) {
+    console.log("stuff at app: ", obj);
     this.setState(
       {
         ...this.state,
         user_name: obj.user_name,
-        user_email: obj.user_email,
+        email: obj.email,
+        password: obj.password,
         watch_list: obj.watch_list,
         watch_history: obj.watch_history,
-        subscriptions: obj.subscriptions,
+        is_logged_in: obj.is_logged_in,
       },
       () => {
         console.log("user refreshed in state");
@@ -104,14 +108,82 @@ class App extends React.Component {
     );
   }
 
-  updateSettingsState(key, val) {
+  setUserState(obj) {
+    this.setState(
+      {
+        ...this.state,
+        user_name: obj.user_name,
+        email: obj.email,
+        user_email: obj.email,
+        password: obj.password,
+        user_password: obj.password,
+        watch_list: obj.watch_list,
+        watch_history: obj.watch_history,
+        is_logged_in: true,
+      },
+      () => {
+        console.log("User information has been set");
+        let goToHome = {
+          target: {
+            innerHTML: "",
+            parentNode: {
+              id: "Login-page",
+            },
+            className: "home",
+          },
+        };
+        this.showModal(goToHome);
+      }
+    );
+  }
+
+  handleLogout(e) {
+    e.preventDefault();
     this.setState({
-      ...this.state,
-      [key]: val
-    }, () => {
-      console.log("user settings updated");
-      this.updateUser();
-    })
+      searchTerm: null,
+      searchResults: [],
+      selectedTitleIndex: 0,
+      trending: mockTrending,
+      active: mockTrending,
+      carouselType: "trending",
+      user_name: "Loneliness",
+      email: null,
+      user_email: null,
+      password: null,
+      user_password: null,
+      watch_list: [],
+      watch_history: [],
+      subscriptions: ["Disney Plus", "iTunes", "Amazon"],
+      is_logged_in: false,
+    });
+  }
+
+  // updateSettingsState(obj) {
+  //   this.setState(
+  //     {
+  //       ...this.state,
+  //       user_email: obj.user_email,
+  //       user_password: obj.user_password,
+  //       subscriptions: obj.subscriptions,
+  //     },
+  //     () => {
+  //       console.log("user settings updated");
+  //       this.updateUser();
+  //     }
+  //   );
+  // }
+
+  updateSettingsState(key, val) {
+    this.setState(
+      {
+        ...this.state,
+        [key]: val,
+      },
+      () => {
+        console.log("user settings updated");
+        this.updateUser();
+      }
+    );
   }
 
   addToWatchlist(obj) {
@@ -130,12 +202,13 @@ class App extends React.Component {
 
   updateUser() {
     let options = {
-      method: "post",
+      method: "put",
       url: "/update_user",
       data: {
         user_id: this.state.user_id,
         user_name: this.state.user_name,
-        user_email: this.state.user_email,
+        email: this.state.email,
+        password: this.state.password,
         watch_list: this.state.watch_list,
         watch_history: this.state.watch_history,
         subscriptions: this.state.subscriptions,
@@ -147,7 +220,7 @@ class App extends React.Component {
     };
     axios(options)
       .then((result) => {
-        console.log(result.data);
+        console.log("I don't think this works", result.data);
       })
       .catch((err) => {
         console.log("error updating user", err);
@@ -184,7 +257,7 @@ class App extends React.Component {
   // sets state with index and sets "active" to reflect
   // relevant dataset for VideoCard display
   displaySelectedTitle(keyname, index) {
-    console.log('display selected title', keyname)
+    console.log("display selected title", keyname);
     var targetData = this.state[keyname];
     this.setState(
       {
@@ -251,13 +324,12 @@ class App extends React.Component {
   }
 
   render() {
-
     let userObj = {
       user_name: this.state.user_name,
-      user_email: this.state.user_email,
+      email: this.state.email,
       user_password: this.state.user_password,
-      subscriptions: this.state.subscriptions
-    }
+      subscriptions: this.state.subscriptions,
+    };
 
     //const isDesktop = this.state.isDesktop;
 
@@ -265,13 +337,24 @@ class App extends React.Component {
       <div>
         <div id="header">
           <div id="login-signup-box">
-            <button id="login-button" onClick={this.showModal}>
-              Login
+            <button
+              id="login-button"
+              onClick={
+                this.state.is_logged_in ? this.handleLogout : this.showModal
+              }
+            >
+              {this.state.is_logged_in ? "Logout" : "Login"}
             </button>
             <button id="signup-button" onClick={this.showModal}>
               Signup
             </button>
-            <div id="welcome-message">{this.state.user_name !== null ? (<div>Welcome Back, {this.state.user_name}</div>) : (<div></div>)}</div>
+            <div id="welcome-message">
+              {this.state.user_name !== null ? (
+                <div>Welcome Back, {this.state.user_name}</div>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
           <Search
             changePage={this.showModal}
@@ -304,7 +387,6 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Title-page">
-
             <SingleMobileVideoCard
               title={this.state.active[this.state.selectedTitleIndex]}
               addToWatchlist={this.addToWatchlist}
@@ -322,12 +404,13 @@ class App extends React.Component {
               addToWatchlist={this.addToWatchlist}
               subscriptions={this.state.subscriptions}
             />
-
           </div>
 
           <div className="page" id="Login-page">
             <Login_Signup
+              updateState={this.updateState}
               updateUserState={this.updateUserState}
+              setUserState={this.setUserState}
               showModal={this.showModal}
             />
             <img
@@ -342,6 +425,7 @@ class App extends React.Component {
             <Signup
               updateUserState={this.updateUserState}
               showModal={this.showModal}
+              updateState={this.updateState}
             />
             <img
               src={SFicon}
@@ -366,7 +450,24 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings user={userObj} updateSettingsState={this.updateSettingsState}/>
+            {/* <Settings
+              user_name={this.state.user_name}
+              email={this.state.password}
+              password={this.state.password}
+            /> */}
+            <Settings
+              user={{
+                user_name: this.state.user_name,
+                user_email: this.state.email,
+                user_password: this.state.password,
+                subscriptions: this.state.subscriptions,
+              }}
+              user_name={this.state.user_name}
+              user_email={this.state.email}
+              user_password={this.state.password}
+              subscriptions={this.state.subscriptions}
+              updateSettingsState={this.updateSettingsState}
+            />
             <img
               src={SFicon}
               onClick={this.showModal}

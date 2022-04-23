@@ -5,7 +5,10 @@ import GoogleLogin from "react-google-login";
 class Login_Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      password: "",
+    };
     // this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleGoogleOauthSubmit = this.handleGoogleOauthSubmit.bind(this);
     this.handleMySpaceOauthSubmit = this.handleMySpaceOauthSubmit.bind(this);
@@ -15,10 +18,46 @@ class Login_Signup extends React.Component {
     this.onFailure = this.onFailure.bind(this);
     this.redirect = this.props.showModal;
     this.liftUserInfoUp = this.props.updateState;
+    this.updateState = props.updateState;
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
+    this.setUserState = this.props.setUserState;
   }
 
-  handleOauthSubmit(event) {
-    event.preventDefault();
+  // Check to see if the user exists
+  handleLoginSubmit(e) {
+    e.preventDefault();
+
+    let { email, password } = this.state;
+    let user = {
+      email,
+      password,
+    };
+    let jsonUser = JSON.stringify(user);
+
+    $.ajax({
+      url: "/login/user",
+      method: "POST",
+      dataType: "json",
+      data: jsonUser,
+      contentType: "application/json; charset=UTF-8",
+      success: (result) => result,
+    })
+      .then((result) => {
+        this.setUserState(result);
+      })
+      .catch((error) => console.log("jquery error"));
+  }
+
+  // Update the state with the entered information
+  handleInputChange(e) {
+    e.preventDefault();
+    let { name, value } = e.target;
+    this.setState({ [name]: value });
+  }
+
+  handleOauthSubmit(e) {
+    e.preventDefault();
     $.ajax({
       url: "/oauth",
       method: "GET",
@@ -28,8 +67,8 @@ class Login_Signup extends React.Component {
     });
   }
 
-  handleGoogleOauthSubmit(event) {
-    event.preventDefault();
+  handleGoogleOauthSubmit(e) {
+    e.preventDefault();
 
     $.ajax({
       url: "/oauth/google",
@@ -90,14 +129,11 @@ class Login_Signup extends React.Component {
               className: "home",
             },
           };
-          console.log("This would be where I have an actual user in the DB: ");
-
+          this.setUserState(result);
           this.props.showModal(goToHome);
         }
       })
       .catch((error) => error);
-
-    console.log(name, email, first_name);
   }
 
   onFailure(response) {
@@ -110,13 +146,21 @@ class Login_Signup extends React.Component {
         <h1>StreamFinder</h1>
         <div>
           <h3>Sign In</h3>
-          <form>
-            <input type="text" name="userName" placeholder="User Name"></input>
+          <form id="">
             <input
-              autocomplete="on"
+              id="stream-input-at-signup"
+              type="text"
+              name="email"
+              placeholder="email"
+              onChange={this.handleInputChange}
+            ></input>
+            <input
+              id="stream-input-at-signup"
+              autoComplete="on"
               type="password"
               name="password"
               placeholder="Password"
+              onChange={this.handleInputChange}
             ></input>
             <input
               type="submit"
@@ -126,6 +170,7 @@ class Login_Signup extends React.Component {
           </form>
           <h3>or Sign in with</h3>
           <GoogleLogin
+            updateState={this.updateState}
             clientId="768315598088-9hct54aqr973f9uccu076mvs5smvlg6j.apps.googleusercontent.com"
             buttonText="Login"
             // redirectUri="http://localhost:3000/oauth/google/redirect"

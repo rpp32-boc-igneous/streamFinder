@@ -29,6 +29,18 @@ class Settings extends React.Component {
     this.getStreams();
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log("These are the next props in settings: ", nextProps);
+    this.setState({
+      ...this.state,
+      subs: nextProps.subscriptions,
+      name: nextProps.user_name,
+      email: nextProps.user_email,
+      password: nextProps.user_password,
+    });
+    console.log("This is the current state: ", this.state);
+  }
+
   // componentDidUpdate() {
   // }
 
@@ -50,18 +62,17 @@ class Settings extends React.Component {
       return acc;
     }, []);
 
-    const subs = []
+    const subs = [];
     if (this.state.subs.length > 0) {
-      const subscribed = this.state.subs.filter(name => !defaults.find(sub => sub.name === name))
-        .forEach(sub => {
-          subs.push(
-            {
-              name: sub,
-              default: true,
-              _id: this.state.streams.find(stream => stream.name === sub)._id
-            }
-          )
-      })
+      const subscribed = this.state.subs
+        .filter((name) => !defaults.find((sub) => sub.name === name))
+        .forEach((sub) => {
+          subs.push({
+            name: sub,
+            default: true,
+            _id: this.state.streams.find((stream) => stream.name === sub)._id,
+          });
+        });
     }
     const list = defaults.concat(subs);
 
@@ -69,39 +80,42 @@ class Settings extends React.Component {
   };
 
   setUser = () => {
+    // console.log("Set user test");
     if (this.props.user.user_email || this.props.user.user_name) {
+      // console.log("This is the user name: ", this.props.user.user_name);
       let user = {
         name: this.props.user.user_name,
         email: this.props.user.user_email,
-        password: this.props.user.user_password
-      }
+        password: this.props.user.user_password,
+      };
 
       this.setState({
         name: this.props.user.user_name,
         email: this.props.user.user_email,
-        password: this.props.user.user_password
+        password: this.props.user.user_password,
       });
 
-      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem("user", JSON.stringify(user));
     }
-  }
+  };
 
   clearSubs = () => {
-    axios.patch(`${this.state.URL}/streams/clear`)
-    .then(() => console.log('subs cleared'))
-    .catch(err => console.log(err))
-  }
+    axios
+      .patch(`${this.state.URL}/streams/clear`)
+      .then(() => console.log("subs cleared"))
+      .catch((err) => console.log(err));
+  };
 
   setSubs = () => {
     if (this.props.user.subscriptions.length > 0) {
-      this.setState({subs: this.props.user.subscriptions}, () =>{
-        this.state.subs.forEach(sub => this.addDbSub(sub));
+      this.setState({ subs: this.props.user.subscriptions }, () => {
+        this.state.subs.forEach((sub) => this.addDbSub(sub));
         // const promises = []
         // this.state.subs.forEach(sub => promises.push(this.addDbSub(sub)));
         // Promise.all(promises).then(() =>  this.getStreams())
       });
       let subscriptions = this.props.user.subscriptions;
-      localStorage.setItem('subscriptions', JSON.stringify(subscriptions));
+      localStorage.setItem("subscriptions", JSON.stringify(subscriptions));
     }
   };
 
@@ -121,9 +135,9 @@ class Settings extends React.Component {
     console.log(field, val);
     this.setState({ [key]: val }, () => console.log(this.state[key]));
     this.props.updateSettingsState(`user_${key}`, val);
-    let currentUser = JSON.parse(localStorage.getItem('user'));
-    let user = {...currentUser, [key]: val};
-    localStorage.setItem('user', JSON.stringify(user));
+    let currentUser = JSON.parse(localStorage.getItem("user"));
+    let user = { ...currentUser, [key]: val };
+    localStorage.setItem("user", JSON.stringify(user));
   };
 
   isSubbed = (name) => {
@@ -147,24 +161,28 @@ class Settings extends React.Component {
 
     this.addDbSub(name);
 
-    this.setState((state) => ({ subs: [...state.subs, name] }), () => {
-      this.props.updateSettingsState('subscriptions', [...this.state.subs]);
-    });
+    this.setState(
+      (state) => ({ subs: [...state.subs, name] }),
+      () => {
+        this.props.updateSettingsState("subscriptions", [...this.state.subs]);
+      }
+    );
   };
 
   addDbSub = (name) => {
     axios
-    .patch(`${this.state.URL}/streams/${name}?field=subscribed&val=true`)
-    .then(() => console.log(`now subscribed to ${name}`))
-    .catch((err) => console.log(`error subscribing to ${name}`));
-  }
+      .patch(`${this.state.URL}/streams/${name}?field=subscribed&val=true`)
+      .then(() => console.log(`now subscribed to ${name}`))
+      .catch((err) => console.log(`error subscribing to ${name}`));
+  };
 
   unsubscribe = (name, id, isDefault) => {
-    axios.patch(`${this.state.URL}/streams/${name}?field=subscribed&val=false`)
-    .then(() =>{
-      console.log(`now unsubscribed from ${name}`)
-    })
-    .catch(err => console.log(`error unsubscribing from ${name}`))
+    axios
+      .patch(`${this.state.URL}/streams/${name}?field=subscribed&val=false`)
+      .then(() => {
+        console.log(`now unsubscribed from ${name}`);
+      })
+      .catch((err) => console.log(`error unsubscribing from ${name}`));
 
     $(`#store-${id}`).removeClass("subscribed");
 
@@ -172,7 +190,7 @@ class Settings extends React.Component {
 
     let newSubs = this.state.subs.filter((sub) => sub !== name);
     this.setState({ subs: newSubs }, () => {
-      this.props.updateSettingsState('subscriptions', [...this.state.subs]);
+      this.props.updateSettingsState("subscriptions", [...this.state.subs]);
     });
   };
 

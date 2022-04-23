@@ -54,7 +54,6 @@ router.get("/verifyUser", (req, res) => {
 
   User.findOne(query)
     .then((user) => {
-      console.log("This is the findOne result: ", user);
       if (user === null) {
         console.log("User does not exist, redirecting to sign up");
         res.send(false);
