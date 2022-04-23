@@ -16,11 +16,9 @@ class VideoCardOverview extends React.Component {
 
   render() {
     //metadata logic here
-    //rating leave as is
-    //release date is year
-    //if has seasons/parts/etc, then 'content amount' is number of those seasons/parts/etc
-    //else it displays runtime as xhours xminutes
-    let content_length = this.props.title.runtime_minutes.toString() + 'minutes';
+      //if has seasons/parts/etc, then 'content amount' is number of those seasons/parts/etc
+        //else it displays runtime as xhours xminutes
+    let content_length = this.props.title.runtime_minutes.toString() + ' minutes';
 
     return (
       <div id="video-card-overview">
