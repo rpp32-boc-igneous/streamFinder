@@ -36,7 +36,7 @@ class App extends React.Component {
       user_password: null,
       watch_list: [],
       watch_history: [],
-      subscriptions: ["Disney Plus", "iTunes", "Amazon"],
+      subscriptions: ["disney-plus", "iTunes", "amazon-prime"],
       is_logged_in: false
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);

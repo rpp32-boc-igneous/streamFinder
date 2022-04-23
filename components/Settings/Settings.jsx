@@ -11,71 +11,27 @@ class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      streams: [
-        // {
-        //   name:'movie1',
-        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-        //   no_ads: false,
-        //   free: true,
-        //   cost: 0,
-        //   subscription: false,
-        //   website: 'https://google.com'
-        // },
-        // {
-        //   name:'show1',
-        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-        //   no_ads: true,
-        //   free: false,
-        //   cost: 10,
-        //   subscription: true,
-        //   website: 'https://google.com'
-        // },
-        // {
-        //   name:'movie2',
-        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-        //   no_ads: true,
-        //   free: true,
-        //   cost: 0,
-        //   subscription: false,
-        //   website: 'https://google.com'
-        // },
-        // {
-        //   name:'show2',
-        //   logo: 'https://i.pinimg.com/474x/f8/b2/4f/f8b24f01d7059f6b63c5572d0d3a736b.jpg',
-        //   no_ads: false,
-        //   free: false,
-        //   cost: 5.99,
-        //   subscription: true,
-        //   website: 'https://google.com'
-        // }
-      ],
-      defaultSubs: [
-        // {name: 'netflix', default: true, _id: "62550cf08b0715e896c88e19"},
-        // {name:'amazon-prime', default: true, _id: '62550dee8b0715e896c88e1b'},
-        // {name:'hulu', default: true, _id: '62550e558b0715e896c88e1d'},
-        // {name:'HBOmax', default: true, _id: '6255148cf095c769813492ad'},
-        // {name:'vudu', default: true, _id: "6255130df095c769813492a9"},
-        // {name:'disney-plus', default: true, _id:"625513b8f095c769813492ab"}
-      ],
+      streams: [],
+      defaultSubs: [],
       subs: [],
       updateField: null,
       URL: "http://localhost:3000",
-      username: "Jane",
-      email: "jane@gmail.com",
+      username: "You",
+      email: "you@web.com",
       password: "*****",
     };
   }
 
   componentDidMount() {
     this.getStreams();
+    this.setUser();
+    this.setSubs();
+    console.log(this.props)
   }
 
-  // componentDidUpdate() {
-  //   console.log('update');
-  //   if (this.state.streams.length === 0){
-  //     this.getStreams();
-  //   }
-  // }
+  componentDidUpdate() {
+    console.log(this.props)
+  }
 
   getStreams = () => {
     axios
@@ -94,14 +50,51 @@ class Settings extends React.Component {
       return acc;
     }, []);
 
-    this.setState({ defaultSubs: defaults });
+    const subs = []
+    if (this.state.subs.length > 0) {
+      const subscribed = this.state.subs.filter(name => !defaults.find(sub => sub.name === name))
+        .forEach(sub => {
+          console.log(this.state.streams.find(stream => stream.name === sub)._id);
+          subs.push(
+            {
+              name: sub,
+              default: true,
+              _id: this.state.streams.find(stream => stream.name === sub)._id
+            }
+          )
+      })
+    }
+    const list = defaults.concat(subs);
+
+    this.setState({ defaultSubs: list });
   };
 
-  getSubs = () => {
-    let subs = this.state.subs.map((sub) => {
-      this.state.streams.find((stream) => stream.name === sub);
-    });
-    // console.log(subs);
+  setUser = () => {
+    if (this.props.user.user_email) {
+      let user = {
+        username: this.props.user.user_name,
+        email: this.props.user.user_email,
+        password: this.props.user.user_password
+       }
+
+      this.setState({
+        username: this.props.user.user_name,
+        email: this.props.user.user_email,
+        password: this.props.user.user_password
+      });
+
+      localStorage.setItem('user', JSON.stringify(user));
+    }
+  }
+
+  setSubs = () => {
+    if (this.props.user.subscriptions.length > 0) {
+      this.setState({subs: this.props.user.subscriptions}, () =>{
+        this.state.subs.forEach(sub => this.addDbSub(sub));
+      });
+      let subscriptions = this.props.user.subscriptions;
+      localStorage.setItem('subscriptions', JSON.stringify(subscriptions));
+    }
   };
 
   close = () => {
@@ -148,6 +141,15 @@ class Settings extends React.Component {
 
     this.setState((state) => ({ subs: [...state.subs, name] }));
   };
+
+  addDbSub = (name) => {
+    axios
+    .patch(`${this.state.URL}/streams/${name}?field=subscribed&val=true`)
+    .then(() => {
+      console.log(`now subscribed to ${name}`);
+    })
+    .catch((err) => console.log(`error subscribing to ${name}`));
+  }
 
   unsubscribe = (name, id, isDefault) => {
     axios.patch(`${this.state.URL}/streams/${name}?field=subscribed&val=false`)

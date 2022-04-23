@@ -22,7 +22,7 @@ var updateUser = (user) => {
 
 //STREAM Collection Methods
 var retrieveAllStreams = () => {
-  return Stream.find();
+  return Stream.find().sort({subscribed: -1});
 };
 
 var retrieveOneStream = (name) => {

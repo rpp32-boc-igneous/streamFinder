@@ -823,7 +823,7 @@ EDIT_USER
 
 
 #update-box {
-  height: 55%;
+  height: 300px;
   width: 90%;
   max-width: 450px;
   z-index: 2;
@@ -850,8 +850,13 @@ EDIT_USER
 }
 
 .update-form {
-  margin: 10% auto;
+  margin: 15% auto;
+
 }
+
+/* .form-bottom {
+
+} */
 
 .update-label {
   font-family: inherit;
@@ -892,7 +897,20 @@ input:focus {
   color: rgb(62, 62, 62);
 }
 
+.alert-container {
+  height: 45px;
+}
 
+.alert {
+  color: rgb(2, 113, 59);
+  background-color: rgb(228, 252, 228);
+  border: 0.5px solid rgb(2, 113, 59);
+  border-radius: 10px;
+  width: 60%;
+  padding: 20px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
 
 /*
 /////////////////////////////////////
