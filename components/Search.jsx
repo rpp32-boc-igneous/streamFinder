@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React from 'react';
+import $ from 'jquery';
 
 class Search extends React.Component {
   constructor(props) {
@@ -24,8 +25,6 @@ class Search extends React.Component {
     let options = {
       method: 'post',
       url: 'http://127.0.0.1:3000/search',
-      // url: 'http://192.168.1.151:3000/search',
-      // url: '/search',
       data: {
         query: searchTerm
       },
@@ -36,10 +35,11 @@ class Search extends React.Component {
     }
     axios(options)
       .then(result => {
-        // console.log('data retrieval complete')
-        // console.log(result.data);
-        console.log("search results = ", result.data)
         this.props.cb(result.data);
+        $('#search-input').val('');
+        this.setState({
+          text: ''
+        })
       })
       .catch(err => {
         console.log(err);
