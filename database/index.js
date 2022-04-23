@@ -2,7 +2,7 @@ require("dotenv").config();
 // db key for future deployment db security (non-localhost in connection string)
 const key = process.env.DB_KEY;
 const mongoose = require("mongoose");
-
+console.log(process.env.MONGO_URI);
 mongoose.connect(
   process.env.MONGO_URI,
   { useUnifiedTopology: true, useNewUrlParser: true },
