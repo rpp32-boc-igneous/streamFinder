@@ -33,8 +33,8 @@ class App extends React.Component {
       active: mockTrending,
       carouselType: "trending",
       user_name: null,
-      user_email: null,
-      user_password: null,
+      email: null,
+      password: null,
       watch_list: [],
       watch_history: [],
       subscriptions: ["Disney Plus", "iTunes", "Amazon"],
@@ -50,6 +50,7 @@ class App extends React.Component {
     this.addToWatchlist = this.addToWatchlist.bind(this);
     this.updateUserState = this.updateUserState.bind(this);
     this.setUserState = this.setUserState.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   componentDidMount() {
@@ -71,15 +72,16 @@ class App extends React.Component {
   }
 
   updateUserState(obj) {
+    console.log("stuff at app: ", obj);
     this.setState(
       {
         ...this.state,
         user_name: obj.user_name,
-        user_email: obj.user_email,
+        email: obj.email,
         password: obj.password,
         watch_list: obj.watch_list,
         watch_history: obj.watch_history,
-        subscriptions: obj.subscriptions,
+        is_logged_in: obj.is_logged_in,
       },
       () => {
         console.log("user refreshed in state");
@@ -93,16 +95,45 @@ class App extends React.Component {
       {
         ...this.state,
         user_name: obj.user_name,
-        user_email: obj.user_email,
+        email: obj.email,
         password: obj.password,
         watch_list: obj.watch_list,
         watch_history: obj.watch_history,
-        subscriptions: obj.subscriptions,
+        is_logged_in: true,
       },
       () => {
         console.log("User information has been set");
+        let goToHome = {
+          target: {
+            innerHTML: "",
+            parentNode: {
+              id: "Login-page",
+            },
+            className: "home",
+          },
+        };
+        this.showModal(goToHome);
       }
     );
+  }
+
+  handleLogout(e) {
+    e.preventDefault();
+    this.setState({
+      searchTerm: null,
+      searchResults: [],
+      selectedTitleIndex: 0,
+      trending: mockTrending,
+      active: mockTrending,
+      carouselType: "trending",
+      user_name: null,
+      email: null,
+      password: null,
+      watch_list: [],
+      watch_history: [],
+      subscriptions: ["Disney Plus", "iTunes", "Amazon"],
+      is_logged_in: false,
+    });
   }
 
   addToWatchlist(obj) {
@@ -120,14 +151,13 @@ class App extends React.Component {
   }
 
   updateUser() {
-    console.log("Is this even running ??");
     let options = {
       method: "put",
       url: "/update_user",
       data: {
         user_id: this.state.user_id,
         user_name: this.state.user_name,
-        user_email: this.state.user_email,
+        email: this.state.email,
         password: this.state.password,
         watch_list: this.state.watch_list,
         watch_history: this.state.watch_history,
@@ -245,7 +275,7 @@ class App extends React.Component {
   render() {
     let userObj = {
       user_name: this.state.user_name,
-      user_email: this.state.user_email,
+      email: this.state.email,
       user_password: this.state.user_password,
       subscriptions: this.state.subscriptions,
     };
@@ -254,7 +284,12 @@ class App extends React.Component {
       <div>
         <div id="header">
           <div id="login-signup-box">
-            <button id="login-button" onClick={this.showModal}>
+            <button
+              id="login-button"
+              onClick={
+                this.state.is_logged_in ? this.handleLogout : this.showModal
+              }
+            >
               {this.state.is_logged_in ? "Logout" : "Login"}
             </button>
             <button id="signup-button" onClick={this.showModal}>
@@ -346,7 +381,11 @@ class App extends React.Component {
           </div>
 
           <div className="page" id="Settings-page">
-            <Settings user={userObj} />
+            <Settings
+              user_name={this.state.user_name}
+              email={this.state.password}
+              password={this.state.password}
+            />
             <img
               src={SFicon}
               onClick={this.showModal}

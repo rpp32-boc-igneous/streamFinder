@@ -36,7 +36,6 @@ class Signup extends React.Component {
     e.preventDefault();
 
     if (this.verifyPassword()) {
-      console.log("Passwords are matching");
       let subs = this.state.subscriptionTracker;
       let currentSubs = [];
       for (let key in subs) {
@@ -45,13 +44,21 @@ class Signup extends React.Component {
         }
       }
       const { user_name, email, password } = this.state;
+
+      console.log(
+        "In signup... about to go to app level: ",
+        user_name,
+        email,
+        password
+      );
+
       this.updateUserState({
         user_name: user_name,
-        user_email: email,
-        watch_list: [],
+        email: email,
         password: password,
+        watch_list: [],
         watch_history: [],
-        subscriptions: currentSubs,
+        is_logged_in: true,
       });
 
       let goToHome = {
@@ -63,7 +70,6 @@ class Signup extends React.Component {
           className: "home",
         },
       };
-      this.updateState("is_logged_in", true);
       this.showModal(goToHome);
     } else {
       console.log("Password mismatch, clear the form data?");
@@ -75,6 +81,8 @@ class Signup extends React.Component {
     let userSetting = e.target.className;
     let value = e.target.value;
     let stateChange = {};
+
+    console.log(userSetting, value);
 
     switch (userSetting) {
       case "user_name":

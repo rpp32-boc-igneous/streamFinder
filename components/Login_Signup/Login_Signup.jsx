@@ -44,7 +44,6 @@ class Login_Signup extends React.Component {
       success: (result) => result,
     })
       .then((result) => {
-        console.log("Back at the front end with our user: ", result);
         this.setUserState(result);
       })
       .catch((error) => console.log("jquery error"));

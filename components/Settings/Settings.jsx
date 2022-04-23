@@ -60,9 +60,9 @@ class Settings extends React.Component {
       subs: [],
       updateField: null,
       URL: "http://localhost:3000",
-      username: "Jane",
-      email: "jane@gmail.com",
-      password: "*****",
+      user_name: this.props.user_name || "Jane",
+      email: this.props.email || "jane@gmail.com",
+      password: this.props.password || "*****",
     };
   }
 
@@ -205,7 +205,7 @@ class Settings extends React.Component {
           </span>
           <div className="account-heading">Account</div>
           <UserInfo
-            user={this.state.username}
+            user={this.state.user_name}
             email={this.state.email}
             password={this.state.password}
             setField={this.setUpdateField}

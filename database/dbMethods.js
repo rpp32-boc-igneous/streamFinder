@@ -22,7 +22,7 @@ var retrieveUserByEmail = (email) => {
 
 var updateUser = (user) => {
   console.log("This is the user at the DB Method", user);
-  return User.findOneAndUpdate({ email: user.user_email }, user, {
+  return User.findOneAndUpdate({ email: user.email }, user, {
     upsert: true,
   });
 };
