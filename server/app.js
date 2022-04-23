@@ -25,13 +25,10 @@ const {
   retrieveAllStreams,
   retrieveOneStream,
   insertStream,
-<<<<<<< HEAD
   updateUser,
   retrieveUserByEmail,
-=======
   updateStream,
-  clearSubs
->>>>>>> 45218ca4891ec83512a897ba11c7fed8bd36af8f
+  clearSubs,
 } = require("../database/dbMethods.js");
 
 app.use(cookieParser());
@@ -134,8 +131,10 @@ app.patch("/streams/:stream", (req, res) => {
 
 app.patch("/streams/clear", (req, res) => {
   clearSubs()
-  .then(() => res.status(204).json({ success: true, msg: 'suscriptions cleared' }))
-  .catch((err) => res.status(400).json({ success: false, error: err }));
+    .then(() =>
+      res.status(204).json({ success: true, msg: "suscriptions cleared" })
+    )
+    .catch((err) => res.status(400).json({ success: false, error: err }));
 });
 
 module.exports = app;
