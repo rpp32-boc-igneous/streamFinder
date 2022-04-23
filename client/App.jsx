@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import axios from "axios";
 
 // Components
 import Login_Signup from "../components/Login_Signup/Login_Signup.jsx";
@@ -39,7 +40,7 @@ class App extends React.Component {
       user_password: null,
       watch_list: [],
       watch_history: [],
-      subscriptions: ["Disney Plus", "iTunes", "Amazon"],
+      subscriptions: ["disney-plus", "iTunes", "amazon-prime"],
       is_logged_in: false
     };
     this.updateSearchResults = this.updateSearchResults.bind(this);
@@ -103,12 +104,10 @@ class App extends React.Component {
     );
   }
 
-  updateSettingsState(obj) {
+  updateSettingsState(key, val) {
     this.setState({
       ...this.state,
-      user_email: obj.user_email,
-      user_password: obj.user_password,
-      subscriptions: obj.subscriptions
+      [key]: val
     }, () => {
       console.log("user settings updated");
       this.updateUser();
